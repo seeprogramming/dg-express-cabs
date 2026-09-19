@@ -22,8 +22,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "RelaxCabs — Rides, Airports & Tours",
-    template: "%s | RelaxCabs",
+    default: "D&G Express Cabs — Rides, Airports & Tours",
+    template: "%s | D&G Express Cabs",
   },
   description: siteConfig.description,
   keywords: [
@@ -34,26 +34,26 @@ export const metadata: Metadata = {
     "mumbai airport cab",
     "sedan ertiga crysta outstation",
   ],
-  authors: [{ name: "RelaxCabs" }],
+  authors: [{ name: "D&G Express Cabs" }],
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "RelaxCabs — Rides, Airports & Tours",
+    title: "D&G Express Cabs — Rides, Airports & Tours",
     description: siteConfig.description,
     images: [
       {
         url: siteConfig.stockImages.hero,
         width: 1200,
         height: 630,
-        alt: "RelaxCabs Outstation & Airport Transfers",
+        alt: "D&G Express Cabs Outstation & Airport Transfers",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RelaxCabs — Rides, Airports & Tours",
+    title: "D&G Express Cabs — Rides, Airports & Tours",
     description: siteConfig.description,
     images: [siteConfig.stockImages.hero],
   },
@@ -71,10 +71,17 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoRental",
-    "name": "RelaxCabs",
+    "name": "D&G Express Cabs",
     "description": siteConfig.description,
-    "telephone": siteConfig.phoneFormatted,
+    "telephone": "+917030813082",
     "url": siteConfig.url,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Sant Nagar, Lohgaon, Near Pune International Airport",
+      "addressLocality": "Pune",
+      "postalCode": "411047",
+      "addressCountry": "IN",
+    },
     "areaServed": ["Pune", "Mumbai", "Mahabaleshwar", "Nashik", "Lonavala"],
     "priceRange": "₹₹",
     "openingHours": "Mo-Su 00:00-24:00",

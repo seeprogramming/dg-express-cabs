@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Online Cab Booking",
-  description: "Book comfortable outstation cabs and airport transfers online with RelaxCabs.",
+  description: "Book comfortable outstation cabs and airport transfers online with D&G Express Cabs.",
 };
 
 export default function BookingPage() {

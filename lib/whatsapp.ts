@@ -14,9 +14,9 @@ export function generateWhatsAppBookingUrl(details: {
   let message = "";
 
   if (details.packageTitle) {
-    message = `Hi RelaxCabs, I'm interested in booking the tour package "${details.packageTitle}" from ${details.from} on ${d}.${n}`;
+    message = `Hi D&G Express Cabs, I'm interested in booking the tour package "${details.packageTitle}" from ${details.from} on ${d}.${n}`;
   } else {
-    message = `Hi RelaxCabs, I want to book a ${details.vehicle} (${details.model}) for ${details.from} to ${details.to} on ${d}.${n}`;
+    message = `Hi D&G Express Cabs, I want to book a ${details.vehicle} (${details.model}) for ${details.from} to ${details.to} on ${d}.${n}`;
   }
 
   return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;

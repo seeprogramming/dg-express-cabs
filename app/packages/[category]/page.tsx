@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${cat.category} — Cab Tour Packages`,
     description: `Browse curated ${cat.category} from Pune & Mumbai. Check complete day-wise itineraries and guaranteed transparent fares for Sedan, Ertiga, and Crysta.`,
     openGraph: {
-      title: `${cat.category} | RelaxCabs`,
+      title: `${cat.category} | D&G Express Cabs`,
       description: `Complete ${cat.category} with verified day-by-day itineraries and transparent vehicle pricing.`,
     },
   };

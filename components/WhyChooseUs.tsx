@@ -43,15 +43,74 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-      {/* Promise Strip */}
-      <section className="promiseStrip">
-        <div className="container promiseGrid">
-          <div>Trust</div>
-          <div>Comfort</div>
-          <div>Safety</div>
-          <div>Reliability</div>
-          <div>Punctuality</div>
-          <div>Support</div>
+      {/* Enhanced Promise Strip */}
+      <section className="bg-gradient-to-r from-[#0d342e] via-[#123f38] to-[#184d44] text-white py-10 border-y border-[#1f594f] shadow-inner relative overflow-hidden">
+        {/* Subtle ambient glow */}
+        <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-[#62c33a]/15 blur-3xl pointer-events-none" />
+        <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-[#62c33a]/10 blur-3xl pointer-events-none" />
+
+        <div className="container relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                🛡️
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Trust
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Verified chauffeurs</span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                ✨
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Comfort
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Sanitized AC cabs</span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                🔒
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Safety
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Live ride tracking</span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                🏷️
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Reliability
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Fixed clear fares</span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                ⏱️
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Punctuality
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Guaranteed on-time</span>
+            </div>
+
+            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
+              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
+                💬
+              </span>
+              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
+                Support
+              </span>
+              <span className="text-[11px] text-[#a1b5ae] mt-0.5">24×7 WhatsApp</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -59,7 +118,7 @@ export default function WhyChooseUs() {
       <section className="comfort">
         <div className="container comfortGrid">
           <div className="comfortCopy">
-            <div className="ey">WHY RELAXCABS</div>
+            <div className="ey">WHY D&amp;G EXPRESS CABS</div>
             <h2>Travel with comfort and trust.</h2>
             <p>
               Small details make long journeys better. These service promises are intentionally compact so they support the booking experience rather than compete with it.

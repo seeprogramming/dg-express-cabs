@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${parsed.from} to ${parsed.to} Cab Service`,
     description: `Book reliable private AC cabs from ${parsed.from} to ${parsed.to}.${startingFare} Choose Sedan, Ertiga, or Crysta with professional drivers and doorstep pickup.`,
     openGraph: {
-      title: `${parsed.from} to ${parsed.to} Cab | RelaxCabs`,
+      title: `${parsed.from} to ${parsed.to} Cab | D&G Express Cabs`,
       description: `Book comfortable outstation cabs for ${parsed.from} to ${parsed.to}. Transparent pricing and 24x7 support.`,
     },
   };
@@ -93,11 +93,11 @@ export default async function RoutePage({ params }: Props) {
           <div className="head">
             <div>
               <div className="ey">TRAVEL INFORMATION</div>
-              <h2>Why book {parsed.from} to {parsed.to} with RelaxCabs?</h2>
+              <h2>Why book {parsed.from} to {parsed.to} with D&amp;G Express Cabs?</h2>
             </div>
           </div>
           <p style={{ color: "var(--muted)", lineHeight: 1.8, marginBottom: "24px" }}>
-            Whether traveling for business, family vacation, or leisure, RelaxCabs provides
+            Whether traveling for business, family vacation, or leisure, D&amp;G Express Cabs provides
             well-maintained air-conditioned vehicles driven by experienced chauffeurs. Enjoy fixed,
             transparent fares with no hidden surcharges.
           </p>

@@ -69,86 +69,146 @@ export default function CabSearch({
 
   const baseFare = matchedRoute ? matchedRoute.fare : 2800;
 
+  const handleSwapLocations = () => {
+    setFromLocation(toLocation);
+    setToLocation(fromLocation);
+  };
+
   return (
     <>
-      <div className="search" id="booking">
-        <div className="tabs">
+      <div className="search max-w-5xl mx-auto rounded-2xl shadow-xl border border-[#dce5da] bg-white p-5 sm:p-6 transition-all" id="booking">
+        {/* Mode Selector Tabs */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 mb-5 border-b border-[#eef2eb]">
           <button
             type="button"
-            className={`tab ${mode === "one" ? "on" : ""}`}
+            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              mode === "one"
+                ? "bg-[#123f38] text-white shadow-sm"
+                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
+            }`}
             onClick={() => setMode("one")}
           >
-            One Way
+            <span>→</span> One Way
           </button>
           <button
             type="button"
-            className={`tab ${mode === "round" ? "on" : ""}`}
+            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              mode === "round"
+                ? "bg-[#123f38] text-white shadow-sm"
+                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
+            }`}
             onClick={() => setMode("round")}
           >
-            Round Trip
+            <span>⇄</span> Round Trip
           </button>
           <button
             type="button"
-            className={`tab ${mode === "airport" ? "on" : ""}`}
+            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              mode === "airport"
+                ? "bg-[#123f38] text-white shadow-sm"
+                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
+            }`}
             onClick={() => setMode("airport")}
           >
-            Airport
+            <span>✈</span> Airport
           </button>
           <button
             type="button"
-            className={`tab ${mode === "local" ? "on" : ""}`}
+            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              mode === "local"
+                ? "bg-[#123f38] text-white shadow-sm"
+                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
+            }`}
             onClick={() => setMode("local")}
           >
-            Hourly Rental
+            <span>⏱</span> Hourly Rental
           </button>
         </div>
 
-        <form className="form" id="search" onSubmit={handleSearch}>
-          <div className="field">
-            <label htmlFor="from">FROM</label>
-            <input
-              id="from"
-              list="routeCities"
-              value={fromLocation}
-              onChange={(e) => setFromLocation(e.target.value)}
-              placeholder="e.g. Pune"
-              required
-            />
+        {/* Compact, Modern Grid Form */}
+        <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+          {/* From & To with Swap Button */}
+          <div className="md:col-span-6 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+            <div className="w-full">
+              <label htmlFor="from" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                FROM
+              </label>
+              <input
+                id="from"
+                list="routeCities"
+                value={fromLocation}
+                onChange={(e) => setFromLocation(e.target.value)}
+                placeholder="Pickup City"
+                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                required
+              />
+            </div>
+
+            <button
+              type="button"
+              onClick={handleSwapLocations}
+              className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
+              title="Swap Locations"
+            >
+              ⇄
+            </button>
+
+            <div className="w-full">
+              <label htmlFor="to" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                TO
+              </label>
+              <input
+                id="to"
+                list="routeCities"
+                value={toLocation}
+                onChange={(e) => setToLocation(e.target.value)}
+                placeholder="Drop City"
+                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                required
+              />
+            </div>
           </div>
-          <div className="field">
-            <label htmlFor="to">TO</label>
-            <input
-              id="to"
-              list="routeCities"
-              value={toLocation}
-              onChange={(e) => setToLocation(e.target.value)}
-              placeholder="e.g. Mumbai"
-              required
-            />
+
+          {/* Date & Time */}
+          <div className="md:col-span-4 grid grid-cols-2 gap-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+            <div>
+              <label htmlFor="date" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                DATE
+              </label>
+              <input
+                id="date"
+                type="date"
+                value={travelDate}
+                onChange={(e) => setTravelDate(e.target.value)}
+                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="time" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                TIME
+              </label>
+              <input
+                id="time"
+                type="time"
+                value={travelTime}
+                onChange={(e) => setTravelTime(e.target.value)}
+                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                required
+              />
+            </div>
           </div>
-          <div className="field">
-            <label htmlFor="date">DATE</label>
-            <input
-              id="date"
-              type="date"
-              value={travelDate}
-              onChange={(e) => setTravelDate(e.target.value)}
-              required
-            />
+
+          {/* Search Button */}
+          <div className="md:col-span-2">
+            <button
+              type="submit"
+              className="w-full bg-[#62c33a] hover:bg-[#52ad2e] text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 h-[54px]"
+            >
+              <span>Search rides</span>
+              <span className="text-base">→</span>
+            </button>
           </div>
-          <div className="field">
-            <label htmlFor="time">TIME</label>
-            <input
-              id="time"
-              type="time"
-              value={travelTime}
-              onChange={(e) => setTravelTime(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="btn green">
-            Search rides →
-          </button>
         </form>
 
         <datalist id="routeCities">
