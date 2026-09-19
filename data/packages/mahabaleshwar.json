@@ -1,0 +1,223 @@
+{
+  "category": "Mahabaleshwar Packages",
+  "packages": [
+    {
+      "id": "grand-exploration-mahayatra",
+      "route": {
+        "from": "Pune",
+        "to": "Mahabaleshwar",
+        "return_to": "Pune"
+      },
+      "option": 1,
+      "title": "The Grand Exploration Mahayatra",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days / 3 Nights"
+      },
+      "status": "Added",
+      "description": "The most comprehensive package covering \"Mini-Kashmir\" and the historic Fort.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrival & Venna Lake",
+          "activities": [
+            "Pickup from Pune. Check-in and relax.",
+            "Evening stroll at the Mahabaleshwar Market and Venna Lake."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "History & Sunset",
+          "activities": [
+            "Morning trip to the mighty Pratapgad Fort (History of Shivaji Maharaj).",
+            "Afternoon visit to Lodwick Point and Elephant’s Head Point.",
+            "Watch a stunning sunset from Bombay Point."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "The \"Mini Kashmir\" (Tapola)",
+          "activities": [
+            "Full-day excursion to Tapola (Koyna Backwaters).",
+            "Enjoy water sports, kayaking, and a peaceful boat ride.",
+            "Return to Mahabaleshwar by evening."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Panchgani Discovery & Return",
+          "activities": [
+            "Morning visit to Old Mahabaleshwar Temples.",
+            "Drive to Panchgani: Visit Table Land, Sydney Point, and Devrai Art Village.",
+            "Evening drop-off back to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 18600,
+        "ertiga": 21600,
+        "crysta": 29600
+      }
+    },
+    {
+      "id": "fort-and-forest-trail",
+      "route": {
+        "from": "Pune",
+        "to": "Mahabaleshwar"
+      },
+      "title": "The \"Fort & Forest\" Trail",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3D/2N"
+      },
+      "status": "Added",
+      "best_for": "History buffs and Nature lovers.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Mighty Pratapgad",
+          "activities": [
+            "Morning drive to the historic Pratapgad Fort (Explore the heritage of Shivaji Maharaj).",
+            "Evening visit to Bombay Point (Sunset Point)."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Hidden Gems & Valleys",
+          "activities": [
+            "Visit Lodwick Point, Elephant’s Head Point, and Lingmala Waterfall (Seasonal).",
+            "Afternoon drive to Panchgani for Sydney Point and Dhom Dam views."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Leisure & Shopping",
+          "activities": [
+            "Morning at Venna Lake.",
+            "Afternoon shopping at the Mahabaleshwar Main Market (Leather goods, Honey, Jams)."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 14600,
+        "ertiga": 17600,
+        "crysta": 21600
+      }
+    },
+    {
+      "id": "leisure-and-luxury-retreat",
+      "route": {
+        "from": "Mumbai",
+        "to": "Mahabaleshwar",
+        "return_to": "Mumbai"
+      },
+      "section": "Mumbai to Mahabaleshwar: 4-Day Cab Packages",
+      "option": 2,
+      "title": "The \"Leisure & Luxury\" Retreat",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4D/3N"
+      },
+      "status": "Added",
+      "best_for": "Couples and senior citizens wanting a comfortable, slow-paced holiday.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrival & Venna Lake",
+          "activities": [
+            "Leisurely drive from Mumbai. Afternoon arrival.",
+            "Enjoy a private boat ride at Venna Lake."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Spiritual & Scenic Morning",
+          "activities": [
+            "Visit Panchganga Mandir and Mahabaleshwar Temple.",
+            "Afternoon visit to Kate’s Point and Needle Hole."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Pratapgad & Local Flavors",
+          "activities": [
+            "Morning visit to Pratapgad Fort.",
+            "Afternoon visit to a Strawberry Farm (seasonal) and Mapro Garden."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Panchgani Shopping & Return",
+          "activities": [
+            "Explore Panchgani Market for local handicrafts and honey.",
+            "Visit Harrison’s Folly before the downhill drive to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 18600,
+        "ertiga": 21600,
+        "crysta": 29600
+      }
+    },
+    {
+      "id": "classic-hill-getaway",
+      "route": {
+        "from": "Mumbai",
+        "to": "Mahabaleshwar",
+        "return_to": "Mumbai"
+      },
+      "section": "Mumbai to Mahabaleshwar: 3-Day Cab Packages",
+      "option": 1,
+      "title": "The \"Classic Hill Getaway\"",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3D/2N"
+      },
+      "status": "Added",
+      "best_for": "Families looking for a quick escape from Mumbai’s humidity.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Scenic Climb",
+          "activities": [
+            "Early morning pickup from Mumbai. Drive via Mumbai-Pune Expressway.",
+            "Afternoon check-in at Mahabaleshwar.",
+            "Evening visit to Venna Lake for boating and Town Market shopping."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Viewpoints & Strawberry Dreams",
+          "activities": [
+            "Morning visit to Arthur’s Seat, Echo Point, and Tiger Spring.",
+            "Afternoon exploration of Old Mahabaleshwar Temples.",
+            "Evening visit to Mapro Garden for famous Strawberry Cream and snacks."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Panchgani Discovery & Return",
+          "activities": [
+            "Check-out and head to Panchgani. Explore Table Land and Parsi Point.",
+            "Afternoon visit to Harrison’s Folly for a final view of the valley.",
+            "Return journey to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 14600,
+        "ertiga": 17600,
+        "crysta": 21600
+      }
+    }
+  ]
+}

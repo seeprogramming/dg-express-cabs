@@ -1,0 +1,25 @@
+export const siteConfig = {
+  name: "RelaxCabs",
+  tagline: "Rides, Airports & Tours",
+  description: "Airport transfers, intercity cabs and weekend escapes — comfortable private cab booking with transparent pricing and WhatsApp assistance.",
+  url: "https://relaxcabs.vercel.app",
+  whatsapp: "919876543210",
+  phoneFormatted: "+91 98765 43210",
+  supportHours: "24×7 Assistance",
+  nav: [
+    { label: "Rides", href: "/#rides" },
+    { label: "Airports", href: "/#airports" },
+    { label: "Packages", href: "/packages" },
+    { label: "Why Us", href: "/#why" },
+  ],
+  stockImages: {
+    hero: "https://images.pexels.com/photos/30317431/pexels-photo-30317431.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    highway: "https://images.pexels.com/photos/30317431/pexels-photo-30317431.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    lonavala: "https://images.pexels.com/photos/2408945/pexels-photo-2408945.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    road: "https://images.pexels.com/photos/9420512/pexels-photo-9420512.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    car: "https://images.pexels.com/photos/17156941/pexels-photo-17156941.jpeg?auto=compress&cs=tinysrgb&w=1400",
+    maha: "https://images.unsplash.com/photo-1595658658481-d53d3f999875?auto=format&fit=crop&w=1400&q=82",
+    airport: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=82",
+    city: "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?auto=format&fit=crop&w=1400&q=82",
+  },
+};

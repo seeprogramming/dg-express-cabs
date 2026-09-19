@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Hatchback",
+    "model": "WagonR or similar",
+    "seats": 4,
+    "bags": 2,
+    "multiplier": 0.96,
+    "icon": "🚗"
+  },
+  {
+    "category": "Sedan",
+    "model": "Dzire / Aura",
+    "seats": 4,
+    "bags": 2,
+    "multiplier": 1.0,
+    "icon": "🚘"
+  },
+  {
+    "category": "SUV",
+    "model": "Ertiga / Rumion",
+    "seats": 6,
+    "bags": 3,
+    "multiplier": 1.18,
+    "icon": "🚙"
+  },
+  {
+    "category": "Premium",
+    "model": "Innova Crysta",
+    "seats": 6,
+    "bags": 4,
+    "multiplier": 1.78,
+    "icon": "🚐"
+  }
+]

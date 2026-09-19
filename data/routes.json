@@ -1,0 +1,6 @@
+[
+  { "from": "Pune", "to": "Mumbai", "fare": 2730 },
+  { "from": "Pune", "to": "Mahabaleshwar", "fare": 3150 },
+  { "from": "Mumbai", "to": "Nashik", "fare": 3097 },
+  { "from": "Pune", "to": "Lonavala", "fare": 2520 }
+]
