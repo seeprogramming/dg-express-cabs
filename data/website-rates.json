@@ -1,0 +1,522 @@
+{
+  "currency": "INR",
+  "vehicle_labels": {
+    "hatchback": "Hatchback",
+    "sedan": "Sedan",
+    "suv": "SUV",
+    "innova_kia_carens": "Innova / Kia Carens",
+    "innova_crysta": "Innova Crysta"
+  },
+  "one_way": [
+    {
+      "from": "Pune",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3150,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 4880
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3150,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 4880
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Nashik",
+      "fares": {
+        "hatchback": 2940,
+        "sedan": 3150,
+        "suv": 3885,
+        "innova_kia_carens": 5355,
+        "innova_crysta": 7885
+      }
+    },
+    {
+      "from": "Nashik",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 2940,
+        "sedan": 3150,
+        "suv": 3885,
+        "innova_kia_carens": 5355,
+        "innova_crysta": 7885
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Nashik",
+      "fares": {
+        "hatchback": 2940,
+        "sedan": 3097,
+        "suv": 3780,
+        "innova_kia_carens": 4305,
+        "innova_crysta": 5355
+      }
+    },
+    {
+      "from": "Nashik",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3360,
+        "innova_kia_carens": 4410,
+        "innova_crysta": 5145
+      }
+    },
+    {
+      "from": "Nashik",
+      "to": "Navi Mumbai",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3360,
+        "innova_kia_carens": 4410,
+        "innova_crysta": 5145
+      }
+    },
+    {
+      "from": "Navi Mumbai",
+      "to": "Nashik",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3360,
+        "innova_kia_carens": 4410,
+        "innova_crysta": 5145
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Kolhapur",
+      "fares": {
+        "hatchback": 3780,
+        "sedan": 3885,
+        "suv": 4935,
+        "innova_kia_carens": 6405,
+        "innova_crysta": 7235
+      }
+    },
+    {
+      "from": "Kolhapur",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 3780,
+        "sedan": 3885,
+        "suv": 4935,
+        "innova_kia_carens": 6405,
+        "innova_crysta": 7235
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Kolhapur",
+      "fares": {
+        "hatchback": 7770,
+        "sedan": 7885,
+        "suv": 8925,
+        "innova_kia_carens": 10500,
+        "innova_crysta": 15750
+      }
+    },
+    {
+      "from": "Kolhapur",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 7770,
+        "sedan": 7885,
+        "suv": 8925,
+        "innova_kia_carens": 10500,
+        "innova_crysta": 15750
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Lonavala",
+      "fares": {
+        "hatchback": 2415,
+        "sedan": 2520,
+        "suv": 3045,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 5040
+      }
+    },
+    {
+      "from": "Lonavala",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 2415,
+        "sedan": 2520,
+        "suv": 3045,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 5040
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Lonavala",
+      "fares": {
+        "hatchback": 2520,
+        "sedan": 2625,
+        "suv": 3150,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 5040
+      }
+    },
+    {
+      "from": "Lonavala",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 2520,
+        "sedan": 2625,
+        "suv": 3150,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 5040
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Mahabaleshwar",
+      "fares": {
+        "hatchback": 3045,
+        "sedan": 3150,
+        "suv": 3675,
+        "innova_kia_carens": 4550,
+        "innova_crysta": 6090
+      }
+    },
+    {
+      "from": "Mahabaleshwar",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 3250,
+        "sedan": 3360,
+        "suv": 3990,
+        "innova_kia_carens": 5040,
+        "innova_crysta": 6510
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Mahabaleshwar",
+      "fares": {
+        "hatchback": 5565,
+        "sedan": 5775,
+        "suv": 6615,
+        "innova_kia_carens": 7665,
+        "innova_crysta": 8715
+      }
+    },
+    {
+      "from": "Mahabaleshwar",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 5670,
+        "sedan": 5780,
+        "suv": 6825,
+        "innova_kia_carens": 7875,
+        "innova_crysta": 9030
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Sangli",
+      "fares": {
+        "hatchback": 3780,
+        "sedan": 3885,
+        "suv": 4935,
+        "innova_kia_carens": 6405,
+        "innova_crysta": 7235
+      }
+    },
+    {
+      "from": "Sangli",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 3780,
+        "sedan": 3885,
+        "suv": 4935,
+        "innova_kia_carens": 6405,
+        "innova_crysta": 7235
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Sangli",
+      "fares": {
+        "hatchback": 7770,
+        "sedan": 7885,
+        "suv": 8925,
+        "innova_kia_carens": 10500,
+        "innova_crysta": 15750
+      }
+    },
+    {
+      "from": "Sangli",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 7770,
+        "sedan": 7885,
+        "suv": 8925,
+        "innova_kia_carens": 10500,
+        "innova_crysta": 15750
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Satara",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3098,
+        "innova_kia_carens": 4148,
+        "innova_crysta": 5513
+      }
+    },
+    {
+      "from": "Satara",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 2625,
+        "sedan": 2730,
+        "suv": 3098,
+        "innova_kia_carens": 4148,
+        "innova_crysta": 5513
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Satara",
+      "fares": {
+        "hatchback": 5565,
+        "sedan": 5775,
+        "suv": 6405,
+        "innova_kia_carens": 8400,
+        "innova_crysta": 9975
+      }
+    },
+    {
+      "from": "Satara",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 5775,
+        "sedan": 5985,
+        "suv": 6615,
+        "innova_kia_carens": 8925,
+        "innova_crysta": 10290
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Igatpuri",
+      "fares": {
+        "hatchback": 5355,
+        "sedan": 5670,
+        "suv": 6250,
+        "innova_kia_carens": 7845,
+        "innova_crysta": 9240
+      }
+    },
+    {
+      "from": "Igatpuri",
+      "to": "Pune",
+      "fares": {
+        "hatchback": 5565,
+        "sedan": 5775,
+        "suv": 6405,
+        "innova_kia_carens": 8400,
+        "innova_crysta": 9450
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Igatpuri",
+      "fares": {
+        "hatchback": 2415,
+        "sedan": 2520,
+        "suv": 3045,
+        "innova_kia_carens": 3675,
+        "innova_crysta": 4410
+      }
+    },
+    {
+      "from": "Igatpuri",
+      "to": "Mumbai",
+      "fares": {
+        "hatchback": 2835,
+        "sedan": 2940,
+        "suv": 3360,
+        "innova_kia_carens": 3990,
+        "innova_crysta": 5040
+      }
+    }
+  ],
+  "local_rentals": [
+    {
+      "vehicle": "Sedan",
+      "plans": [
+        {
+          "hours": 4,
+          "km": 40,
+          "label": "4/40",
+          "fare": 1575
+        },
+        {
+          "hours": 8,
+          "km": 80,
+          "label": "8/80",
+          "fare": 2100
+        },
+        {
+          "hours": 12,
+          "km": 120,
+          "label": "12/120",
+          "fare": 3675
+        }
+      ]
+    },
+    {
+      "vehicle": "SUV",
+      "plans": [
+        {
+          "hours": 4,
+          "km": 40,
+          "label": "4/40",
+          "fare": 2100
+        },
+        {
+          "hours": 8,
+          "km": 80,
+          "label": "8/80",
+          "fare": 3255
+        },
+        {
+          "hours": 12,
+          "km": 120,
+          "label": "12/120",
+          "fare": 4725
+        }
+      ]
+    },
+    {
+      "vehicle": "Crysta",
+      "plans": [
+        {
+          "hours": 4,
+          "km": 40,
+          "label": "4/40",
+          "fare": 2625
+        },
+        {
+          "hours": 8,
+          "km": 80,
+          "label": "8/80",
+          "fare": 4725
+        },
+        {
+          "hours": 12,
+          "km": 120,
+          "label": "12/120",
+          "fare": 6300
+        }
+      ]
+    }
+  ],
+  "round_trip": [
+    {
+      "from": "Pune",
+      "to": "Mumbai",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 7245
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Pune",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 6930
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Nashik",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 6930
+      }
+    },
+    {
+      "from": "Nashik",
+      "to": "Pune",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 6930
+      }
+    },
+    {
+      "from": "Mumbai",
+      "to": "Nashik",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 6930
+      }
+    },
+    {
+      "from": "Nashik",
+      "to": "Mumbai",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_kia_carens": 6985,
+        "innova_crysta": 6930
+      }
+    },
+    {
+      "from": "Pune",
+      "to": "Kolhapur",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_crysta": 6985
+      }
+    },
+    {
+      "from": "Kolhapur",
+      "to": "Pune",
+      "fares": {
+        "sedan": 4095,
+        "suv": 4725,
+        "innova_crysta": 6985
+      }
+    }
+  ],
+  "source_notes": [
+    "Values are transcribed from the supplied Website Rates document.",
+    "One-way fares are directional; reverse-route prices are kept separately where the source differs.",
+    "The supplied older website array corresponds to Sedan fares for Pune→Mumbai (2730), Pune→Mahabaleshwar (3150), Mumbai→Nashik (3097), and Pune→Lonavala (2520).",
+    "Round-trip data is included only for routes and vehicle categories explicitly present in the supplied source.",
+    "The source spells the vehicle as 'KIA CARENCE/CARNCE' in places; the normalized JSON key/label uses 'Kia Carens'."
+  ]
+}

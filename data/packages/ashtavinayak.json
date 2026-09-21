@@ -1,0 +1,734 @@
+{
+  "category": "Ashtavinayak Packages",
+  "packages": [
+    {
+      "id": "pune-divine-4-shrine-sprint-route-1",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Morgaon",
+          "Siddhatek",
+          "Theur",
+          "Ranjangaon"
+        ]
+      },
+      "title": "The Divine 4-Shrine Sprint",
+      "variant": "Route 1",
+      "duration": {
+        "days": 1,
+        "nights": 0,
+        "label": "1 Day"
+      },
+      "status": "Done",
+      "route_sequence": "Morgaon → Siddhatek → Theur → Ranjangaon",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 4900
+        },
+        "ertiga": {
+          "amount": 5900
+        },
+        "crysta": {
+          "amount": 7900
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morgaon%20temple.jpg"
+    },
+    {
+      "id": "pune-divine-4-shrine-sprint-route-2",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Ozar",
+          "Lenyadri",
+          "Mahad",
+          "Pali"
+        ]
+      },
+      "title": "The Divine 4-Shrine Sprint",
+      "variant": "Route 2 (OR option)",
+      "duration": {
+        "days": 1,
+        "nights": 0,
+        "label": "1 Day"
+      },
+      "status": "Done",
+      "route_sequence": "Ozar → Lenyadri → Mahad → Pali",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 6600
+        },
+        "ertiga": {
+          "amount": 7600
+        },
+        "crysta": {
+          "amount": 10600
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lenyadri%20Ganpati%20Temple.jpg"
+    },
+    {
+      "id": "pune-complete-ashtavinayak-darshan",
+      "route": {
+        "from": "Pune"
+      },
+      "title": "The Complete Ashtavinayak Darshan",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2 Day 1 Nights"
+      },
+      "status": "Done",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek → Theur → Ranjangaon"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ozar → Lenyadri → Mahad → Pali"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 13600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 17600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 21600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lenyadri%20Ganpati%20Temple.jpg"
+    },
+    {
+      "id": "pune-ashtavinayak-plus-jyotirlinga-edition",
+      "route": {
+        "from": "Pune"
+      },
+      "title": "Ashtavinayak Plus: The Jyotirlinga Edition",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Days 2 Nights"
+      },
+      "status": "DONE",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek → Theur → Ranjangaon"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ozar → Lenyadri → Mahad → Pali"
+          ]
+        }
+      ],
+      "additional_visits": [
+        "Includes One Jyotirlinga - Bhimashankar"
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 18600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 25600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 29600,
+          "pax": 4
+        }
+      },
+      "source_notes": [
+        "The source specifies a 3 Days / 2 Nights duration but explicitly lists only Day 1 and Day 2. Preserved without inventing a Day 3 itinerary."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple.JPG"
+    },
+    {
+      "id": "pune-complete-blessing-trail",
+      "route": {
+        "from": "Pune"
+      },
+      "title": "The Complete Blessing Trail",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek → Theur → Ranjangaon",
+            "Shirdi & Shanishingnapur - Bhimashankar"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ozar → Lenyadri → Mahad → Pali"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 26600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 37600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 44600,
+          "pax": 4
+        }
+      },
+      "source_notes": [
+        "The source specifies 4 Days / 3 Nights but explicitly labels itinerary entries only for Day 1 and Day 2. Preserved as supplied."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sri%20Sai%20Baba%20Temple%20%2C%20Shirdi.jpg"
+    },
+    {
+      "id": "pune-authentic-shashtrokta-ashtavinayak",
+      "route": {
+        "from": "Pune"
+      },
+      "title": "The Authentic Shashtrokta Ashtavinayak",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days - 3 Nights"
+      },
+      "description": "This sequence is believed to be the most spiritually rewarding way to complete the Ashtavinayak Yatra.",
+      "route_sequence": "Morgaon → Siddhatek → Pali → Mahad | Theur → Lenyadri → Ozar → Ranjangaon → Morgaon",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek (Stay At Pali)"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad (Stay At Theur)"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Theur → Lenyadri → Ozar (Stay At Ozar)"
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            "Ozar → Ranjangaon → Morgaon"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 25600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 36600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 43600,
+          "pax": 4
+        }
+      },
+      "inclusions": [
+        "Toll - tax",
+        "Parking",
+        "Entry Fees",
+        "Driver Allowance",
+        "Accomodation"
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morgaon%20temple.jpg"
+    },
+    {
+      "id": "mumbai-ashtavinayak-2d1n",
+      "route": {
+        "from": "Mumbai",
+        "stops": [
+          "Mahad",
+          "Pali",
+          "Ozar",
+          "Lenyadri"
+        ]
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2 Day 1 Night"
+      },
+      "route_sequence": "Mahad → Pali → Ozar → Lenyadri",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 11600
+        },
+        "ertiga": {
+          "amount": 16600
+        },
+        "crysta": {
+          "amount": 19600
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lenyadri%20Ganpati%20Temple.jpg"
+    },
+    {
+      "id": "mumbai-ashtavinayak-3d2n",
+      "route": {
+        "from": "Mumbai"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Day 2 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Mahad → Pali (Stay at ozar)"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ozar → Lenyadri (Stay At Ranjangaon)"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Ranjangaon → Theur → Siddhatek → Morgaon"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 18600
+        },
+        "ertiga": {
+          "amount": 21600
+        },
+        "crysta": {
+          "amount": 26600
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morgaon%20temple.jpg"
+    },
+    {
+      "id": "mumbai-ashtavinayak-4d3n-jyotirlinga",
+      "route": {
+        "from": "Mumbai"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Mahad → Pali → Ozar → Lenyadri"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ranjangaon → Theur →"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Siddhatek → Morgaon"
+          ]
+        }
+      ],
+      "additional_visits": [
+        "Includes One Jyotirlinga - Bhimashankar"
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 26600
+        },
+        "ertiga": {
+          "amount": 36600
+        },
+        "crysta": {
+          "amount": 44600
+        }
+      },
+      "source_notes": [
+        "The source specifies 4 Days / 3 Nights but explicitly labels only Day 1 through Day 3. Day 2 also ends with an arrow in the source; preserved as supplied."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple.JPG"
+    },
+    {
+      "id": "mumbai-ashtavinayak-5d4n",
+      "route": {
+        "from": "Mumbai"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days 4 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Mahad → Pali →"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Ozar → Lenyadri",
+            "Shirdi & Shanishingnapur - Bhimashankar"
+          ]
+        },
+        {
+          "day": 2,
+          "source_label": "Day 2",
+          "activities": [
+            "Ranjangaon → Theur"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Siddhatek → Morgaon"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 33600
+        },
+        "ertiga": {
+          "amount": 47600
+        },
+        "crysta": {
+          "amount": 56600
+        }
+      },
+      "source_notes": [
+        "The source repeats the label 'Day 2' and only explicitly labels through Day 3 despite a 5 Days / 4 Nights duration. Preserved as supplied."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sri%20Sai%20Baba%20Temple%20%2C%20Shirdi.jpg"
+    },
+    {
+      "id": "mumbai-traditional-ashtavinayak-4d3n",
+      "route": {
+        "from": "Mumbai"
+      },
+      "title": "Ashtavinyak",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days - 3 Nights"
+      },
+      "description": "This sequence is believed to be the most spiritually rewarding way to complete the Ashtavinayak Yatra.",
+      "route_sequence": "Morgaon → Siddhatek → Pali → Mahad | Theur → Lenyadri → Ozar → Ranjangaon → Morgaon",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek (Stay At Pali)"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad (Stay At Theur)"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Theur → Lenyadri → Ozar (Stay At Ranjangaon)"
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            "Ranjangaon → Morgaon"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 26600
+        },
+        "ertiga": {
+          "amount": 37600
+        },
+        "crysta": {
+          "amount": 45600
+        }
+      },
+      "inclusions": [
+        "Toll - tax",
+        "Parking",
+        "Entry Fees",
+        "Driver Allowance",
+        "Accomodation"
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morgaon%20temple.jpg"
+    },
+    {
+      "id": "nashik-ashtavinayak-3d2n",
+      "route": {
+        "from": "Nashik"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Day 2 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Ozar → Lenyadri"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad → Morgaon"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Siddhatek → Theur → Ranjangaon"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 20600
+        },
+        "ertiga": {
+          "amount": 27600
+        },
+        "crysta": {
+          "amount": 33600
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lenyadri%20Ganpati%20Temple.jpg"
+    },
+    {
+      "id": "nashik-ashtavinayak-4d3n-jyotirlinga",
+      "route": {
+        "from": "Nashik"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Day 3 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Ozar → Lenyadri"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad → Morgaon"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Siddhatek → Theur → Ranjangaon"
+          ]
+        }
+      ],
+      "additional_visits": [
+        "Includes One Jyotirlinga - Bhimashankar"
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 27600
+        },
+        "ertiga": {
+          "amount": 38600
+        },
+        "crysta": {
+          "amount": 45600
+        }
+      },
+      "source_notes": [
+        "The source specifies 4 Days / 3 Nights but explicitly labels only Day 1 through Day 3. Preserved without inventing Day 4."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple.JPG"
+    },
+    {
+      "id": "nashik-ashtavinayak-5d4n",
+      "route": {
+        "from": "Nashik"
+      },
+      "title": "Ashtavinayak",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Day 4 Nights"
+      },
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Ozar → Lenyadri"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad → Morgaon"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Siddhatek → Theur → Ranjangaon"
+          ]
+        }
+      ],
+      "additional_visits": [
+        "Shirdi & Shanishingnapur - Bhimashankar"
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 34600
+        },
+        "ertiga": {
+          "amount": 48600
+        },
+        "crysta": {
+          "amount": 57600
+        }
+      },
+      "source_notes": [
+        "The source specifies 5 Days / 4 Nights but explicitly labels only Day 1 through Day 3 before the additional Shirdi, Shanishingnapur and Bhimashankar line. Preserved as supplied."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sri%20Sai%20Baba%20Temple%20%2C%20Shirdi.jpg"
+    },
+    {
+      "id": "nashik-traditional-ashtavinayak-source-4d3n",
+      "route": {
+        "from": "Nashik",
+        "return_to": "Nashik"
+      },
+      "title": "Ashtavinyak",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days - 3 Nights"
+      },
+      "description": "This sequence is believed to be the most spiritually rewarding way to complete the Ashtavinayak Yatra.",
+      "route_sequence": "Morgaon → Siddhatek → Pali → Mahad | Theur → Lenyadri → Ozar → Ranjangaon → Morgaon",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Morgaon → Siddhatek (Stay At Pali)"
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Pali → Mahad (Stay At Theur)"
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Theur →"
+          ]
+        },
+        {
+          "day": 4,
+          "activities": [
+            "Lenyadri → Ozar (Stay At Ranjangaon)"
+          ]
+        },
+        {
+          "day": 5,
+          "activities": [
+            "Ranjangaon → Morgaon"
+          ]
+        },
+        {
+          "day": 6,
+          "activities": [
+            "Morgaon → Nashik"
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 26600
+        },
+        "ertiga": {
+          "amount": 37600
+        },
+        "crysta": {
+          "amount": 44600
+        }
+      },
+      "source_notes": [
+        "The source title says 4 Days / 3 Nights but provides six day-labelled itinerary entries (Day One through Day Six). Both the stated duration and all six entries are preserved exactly for verification."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Morgaon%20temple.jpg"
+    }
+  ]
+}

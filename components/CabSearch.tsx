@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { findRoute, calculateFare } from "@/lib/routes";
+import { getFareForMode, getLocalRentalPlans } from "@/lib/routes";
 import { formatINR } from "@/lib/packages";
 import type { VehicleInfo } from "@/types";
 
@@ -27,12 +27,14 @@ export default function CabSearch({
   const [travelTime, setTravelTime] = useState("09:00");
   const [hasSearched, setHasSearched] = useState(false);
 
-  const matchedRoute = findRoute(fromLocation, toLocation);
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fromLocation.trim() || !toLocation.trim()) {
+    if (mode !== "local" && (!fromLocation.trim() || !toLocation.trim())) {
       alert("Please enter both From and To locations.");
+      return;
+    }
+    if (mode === "local" && !fromLocation.trim()) {
+      alert("Please enter a pickup city.");
       return;
     }
     setHasSearched(true);
@@ -44,17 +46,20 @@ export default function CabSearch({
     }, 50);
   };
 
-  const handleSelectCab = (vehicle: VehicleInfo, price: number) => {
+  const handleSelectCab = (vehicle: VehicleInfo, price: number, planLabel?: string) => {
     const params = new URLSearchParams({
       vehicle: vehicle.category,
       model: vehicle.model,
       seats: String(vehicle.seats),
       bags: String(vehicle.bags),
       from: fromLocation.trim(),
-      to: toLocation.trim(),
+      to: mode === "local" ? "Local" : toLocation.trim(),
       date: travelDate,
       price: String(price),
     });
+    if (planLabel) {
+      params.append("plan", planLabel);
+    }
     router.push(`/cabs/details?${params.toString()}`);
   };
 
@@ -64,15 +69,24 @@ export default function CabSearch({
       : mode === "airport"
       ? "Airport Transfer"
       : mode === "local"
-      ? "Hourly Rental"
+      ? "Local Rentals"
       : "One Way";
-
-  const baseFare = matchedRoute ? matchedRoute.fare : 2800;
 
   const handleSwapLocations = () => {
     setFromLocation(toLocation);
     setToLocation(fromLocation);
   };
+
+  // Determine if there are any valid fares for standard modes to decide if we show "No fixed fare found"
+  let hasValidFare = false;
+  if (mode !== "local") {
+    for (const v of vehicles) {
+      if (getFareForMode(fromLocation, toLocation, v.category, mode) !== null) {
+        hasValidFare = true;
+        break;
+      }
+    }
+  }
 
   return (
     <>
@@ -121,7 +135,7 @@ export default function CabSearch({
             }`}
             onClick={() => setMode("local")}
           >
-            <span>⏱</span> Hourly Rental
+            <span>⏱</span> Local Rentals
           </button>
         </div>
 
@@ -144,27 +158,30 @@ export default function CabSearch({
               />
             </div>
 
-            <button
-              type="button"
-              onClick={handleSwapLocations}
-              className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
-              title="Swap Locations"
-            >
-              ⇄
-            </button>
+            {mode !== "local" && (
+              <button
+                type="button"
+                onClick={handleSwapLocations}
+                className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
+                title="Swap Locations"
+              >
+                ⇄
+              </button>
+            )}
 
             <div className="w-full">
               <label htmlFor="to" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-                TO
+                {mode === "local" ? "TO (Optional)" : "TO"}
               </label>
               <input
                 id="to"
                 list="routeCities"
                 value={toLocation}
                 onChange={(e) => setToLocation(e.target.value)}
-                placeholder="Drop City"
-                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
-                required
+                placeholder={mode === "local" ? "Local" : "Drop City"}
+                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition disabled:bg-gray-100 disabled:text-gray-400"
+                disabled={mode === "local"}
+                required={mode !== "local"}
               />
             </div>
           </div>
@@ -227,7 +244,7 @@ export default function CabSearch({
               <div>
                 <div className="ey">AVAILABLE RIDES</div>
                 <h2 id="route">
-                  {fromLocation} → {toLocation}
+                  {mode === "local" ? `${fromLocation} Local` : `${fromLocation} → ${toLocation}`}
                 </h2>
               </div>
               <p id="meta">
@@ -235,24 +252,102 @@ export default function CabSearch({
               </p>
             </div>
 
-            {!matchedRoute && mode === "one" ? (
-              <div className="panel">
-                <h2>No fixed fare found</h2>
-                <p>
-                  We don't have a demo fixed fare for{" "}
+            {/* Cancellation & Refund Policy */}
+            <div className="flex flex-wrap items-center gap-4 mb-6 p-4 rounded-2xl bg-[#edf5e7] border border-[#d5e8ca]">
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-base">✓</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Free Cancellation</span>
+                  <span className="text-[11px] text-[#718079] ml-1">up to 2 hrs before pickup</span>
+                </div>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-[#c5d6be]" />
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-base">💰</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Full Refund</span>
+                  <span className="text-[11px] text-[#718079] ml-1">if cancelled within policy</span>
+                </div>
+              </div>
+              <div className="hidden sm:block w-px h-6 bg-[#c5d6be]" />
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-base">🔒</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">No Hidden Charges</span>
+                  <span className="text-[11px] text-[#718079] ml-1">transparent GST billing</span>
+                </div>
+              </div>
+            </div>
+
+            {!hasValidFare && mode !== "local" ? (
+              <div className="panel p-6 border rounded-xl bg-gray-50 border-gray-200">
+                <h2 className="text-lg font-bold text-gray-800 mb-2">No fixed fare found</h2>
+                <p className="text-gray-600">
+                  We don't have a fixed fare for{" "}
                   <b>
                     {fromLocation} → {toLocation}
                   </b>{" "}
-                  yet. Try Pune → Mumbai, Pune → Mahabaleshwar, Mumbai → Nashik or Pune → Lonavala.
+                  in {modeLabel} mode. Try Pune → Mumbai, Pune → Mahabaleshwar, Mumbai → Nashik or Pune → Lonavala.
                 </p>
+              </div>
+            ) : mode === "local" ? (
+              <div className="results" id="results">
+                {vehicles.map((v) => {
+                  const plans = getLocalRentalPlans(v.category);
+                  if (!plans || plans.length === 0) return null;
+                  return (
+                    <div className="result" key={v.category}>
+                      <div className="rart">
+                        {v.image ? (
+                          <img src={v.image} alt={v.category} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                        ) : (
+                          v.icon
+                        )}
+                      </div>
+                      <div>
+                        <h3>
+                          {v.category} · {v.model}
+                        </h3>
+                        <p>Comfortable air-conditioned cab for local travel</p>
+                        <div className="chips">
+                          <span>👤 {v.seats} seats</span>
+                          <span>🧳 {v.bags} bags</span>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-2 w-full justify-center">
+                        {plans.map((plan) => (
+                          <div key={plan.label} className="flex items-center justify-between gap-2 border border-[#dce5da] p-2 rounded-lg hover:border-[#62c33a] transition-colors bg-white hover:shadow-sm">
+                            <div className="text-[11px] font-extrabold text-[#718079] w-12">{plan.label}</div>
+                            <div className="text-sm font-extrabold text-[#123f38]">{formatINR(plan.fare)}</div>
+                            <button
+                              type="button"
+                              className="btn green !min-h-[32px] px-3 py-1 text-[11px]"
+                              onClick={() => handleSelectCab(v, plan.fare, plan.label)}
+                            >
+                              Select
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="results" id="results">
                 {vehicles.map((v) => {
-                  const price = calculateFare(baseFare, v.multiplier, mode);
+                  const price = getFareForMode(fromLocation, toLocation, v.category, mode);
+                  if (price === null) return null; // hide vehicle if no fare available
+                  
                   return (
                     <div className="result" key={v.category}>
-                      <div className="rart">{v.icon}</div>
+                      <div className="rart">
+                        {v.image ? (
+                          <img src={v.image} alt={v.category} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                        ) : (
+                          v.icon
+                        )}
+                      </div>
                       <div>
                         <h3>
                           {v.category} · {v.model}
@@ -266,7 +361,7 @@ export default function CabSearch({
                       </div>
                       <div className="rp">
                         <b>{formatINR(price)}</b>
-                        <small>{matchedRoute ? "route fare" : "demo estimate"}</small>
+                        <small>route fare</small>
                         <br />
                         <button
                           type="button"

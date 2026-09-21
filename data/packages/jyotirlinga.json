@@ -1,0 +1,461 @@
+{
+  "category": "Jyotirlinga Packages",
+  "packages": [
+    {
+      "id": "pune-heritage-shiva-trail",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Bhimashankar",
+          "Trimbakeshwar",
+          "Ghrishneshwar"
+        ]
+      },
+      "title": "Heritage Shiva Trail",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2D/1N"
+      },
+      "status": "Added",
+      "route_sequence": "Bhimashankar → Trimbakeshwar → Ghrishneshwar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 15600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 20600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 25600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple%20front.jpg"
+    },
+    {
+      "id": "pune-panch-dham-shakti-yatra",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Bhimashankar",
+          "Panchvati (Nashik)",
+          "Trimbakeshwar",
+          "Ghrishneshwar",
+          "Shirdi (Sai Baba Temple)",
+          "Shani Shingnapur"
+        ]
+      },
+      "title": "Panch-Dham Shakti Yatra",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Days 2 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Bhimashankar → Panchvati (Nashik) → Trimbakeshwar → Ghrishneshwar → Shirdi (Sai Baba Temple) → Shani Shingnapur",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 19600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 27600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 33600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Shiridi.jpg"
+    },
+    {
+      "id": "pune-panch-jyotirlinga-bhakti-path",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Bhimashankar",
+          "Panchvati (Nashik)",
+          "Trimbakeshwar",
+          "Ghrishneshwar",
+          "Aundha Nagnath",
+          "Parali vaijnath",
+          "Shirdi (Sai Baba Temple)",
+          "Shani Shingnapur"
+        ]
+      },
+      "title": "Panch-Jyotirlinga Bhakti Path",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days 4 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Bhimashankar → Panchvati (Nashik) → Trimbakeshwar → Ghrishneshwar → Aundha Nagnath → Parali vaijnath → Shirdi (Sai Baba Temple) → Shani Shingnapur",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 35600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 49600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 59600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Trimbakeshwar%20temple.jpg"
+    },
+    {
+      "id": "pune-panch-jyotirlinga",
+      "route": {
+        "from": "Pune",
+        "stops": [
+          "Bhimashankar",
+          "Panchvati (Nashik)",
+          "Trimbakeshwar",
+          "Ghrishneshwar",
+          "Aundha Nagnath",
+          "Parali vaijnath"
+        ]
+      },
+      "title": "Panch-Jyotirlinga",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Bhimashankar → Panchvati (Nashik) → Trimbakeshwar → Ghrishneshwar → Aundha Nagnath → Parali vaijnath",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 19600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 27600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 33600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple%20front.jpg"
+    },
+    {
+      "id": "mumbai-heritage-shiva-trail",
+      "route": {
+        "from": "Mumbai",
+        "stops": [
+          "Trimbakeshwar",
+          "Ghrishneshwar",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Heritage Shiva Trail",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3D/2N"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Ghrishneshwar → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 252600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 28600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 34600,
+          "pax": 4
+        }
+      },
+      "source_notes": [
+        "The source PDF lists the Sedan price as 252600/- for 2 pax. This value has been preserved exactly and should be verified before publishing."
+      ],
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Trimbakeshwar%20temple.jpg"
+    },
+    {
+      "id": "mumbai-panch-dham-shakti-yatra",
+      "route": {
+        "from": "Mumbai",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Shani Shingnapur",
+          "Shirdi",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Panch-Dham Shakti Yatra",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Shani Shingnapur → Shirdi → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 27600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 38600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 45600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Shiridi.jpg"
+    },
+    {
+      "id": "mumbai-panch-jyotirlinga-bhakti-path",
+      "route": {
+        "from": "Mumbai",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Aundha nagnath",
+          "Parali vajnath",
+          "Shani Shingnapur",
+          "Shirdi (Sai Baba Temple)",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Panch-Jyotirlinga Bhakti Path",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days 4 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Aundha nagnath → Parali vajnath → Shani Shingnapur → Shirdi (Sai Baba Temple) → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 35600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 49600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 59600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple%20front.jpg"
+    },
+    {
+      "id": "mumbai-panch-jyotirlinga",
+      "route": {
+        "from": "Mumbai",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Aundha nagnath",
+          "Parali vajnath"
+        ]
+      },
+      "title": "Panch-Jyotirlinga",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Aundha nagnath → Parali vajnath",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 30600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 41600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 49600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Trimbakeshwar%20temple.jpg"
+    },
+    {
+      "id": "nashik-heritage-shiva-trail",
+      "route": {
+        "from": "Nashik",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Heritage Shiva Trail",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3D/2N"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 18600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 26600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 31600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Trimbakeshwar%20temple.jpg"
+    },
+    {
+      "id": "nashik-panch-jyotirlinga",
+      "route": {
+        "from": "Nashik",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Aundha Nagnath",
+          "Parali vaijnath",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Panch-Jyotirlinga",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days 3 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Aundha Nagnath → Parali vaijnath → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 27600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 39600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 47600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Bhimashankar%20temple%20front.jpg"
+    },
+    {
+      "id": "nashik-panch-dham-shakti-yatra",
+      "route": {
+        "from": "Nashik",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Shirdi (Sai Baba Temple)",
+          "Shani Shingnapur",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Panch-Dham Shakti Yatra",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Days 2 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Shirdi (Sai Baba Temple) → Shani Shingnapur → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 19600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 27600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 33600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Shiridi.jpg"
+    },
+    {
+      "id": "nashik-panch-jyotirlinga-bhakti-path",
+      "route": {
+        "from": "Nashik",
+        "stops": [
+          "Trimbakeshwar",
+          "Panchvati (Nashik)",
+          "Ghrishneshwar",
+          "Aundha Nagnath",
+          "Parali vaijnath",
+          "Shani Shingnapur",
+          "Shirdi (Sai Baba Temple)",
+          "Bhimashankar"
+        ]
+      },
+      "title": "Panch-Jyotirlinga Bhakti Path",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days 4 Nights"
+      },
+      "status": "Added",
+      "route_sequence": "Trimbakeshwar → Panchvati (Nashik) → Ghrishneshwar → Aundha Nagnath → Parali vaijnath → Shani Shingnapur → Shirdi (Sai Baba Temple) → Bhimashankar",
+      "prices": {
+        "currency": "INR",
+        "sedan": {
+          "amount": 32600,
+          "pax": 2
+        },
+        "ertiga": {
+          "amount": 37600,
+          "pax": 4
+        },
+        "crysta": {
+          "amount": 46600,
+          "pax": 4
+        }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Trimbakeshwar%20temple.jpg"
+    }
+  ]
+}

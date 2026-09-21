@@ -1,6 +1,162 @@
 [
-  { "from": "Pune", "to": "Mumbai", "fare": 2730 },
-  { "from": "Pune", "to": "Mahabaleshwar", "fare": 3150 },
-  { "from": "Mumbai", "to": "Nashik", "fare": 3097 },
-  { "from": "Pune", "to": "Lonavala", "fare": 2520 }
+  {
+    "from": "Pune",
+    "to": "Mumbai",
+    "fare": 2730
+  },
+  {
+    "from": "Mumbai",
+    "to": "Pune",
+    "fare": 2730
+  },
+  {
+    "from": "Pune",
+    "to": "Nashik",
+    "fare": 3150
+  },
+  {
+    "from": "Nashik",
+    "to": "Pune",
+    "fare": 3150
+  },
+  {
+    "from": "Mumbai",
+    "to": "Nashik",
+    "fare": 3097
+  },
+  {
+    "from": "Nashik",
+    "to": "Mumbai",
+    "fare": 2730
+  },
+  {
+    "from": "Nashik",
+    "to": "Navi Mumbai",
+    "fare": 2730
+  },
+  {
+    "from": "Navi Mumbai",
+    "to": "Nashik",
+    "fare": 2730
+  },
+  {
+    "from": "Pune",
+    "to": "Kolhapur",
+    "fare": 3885
+  },
+  {
+    "from": "Kolhapur",
+    "to": "Pune",
+    "fare": 3885
+  },
+  {
+    "from": "Mumbai",
+    "to": "Kolhapur",
+    "fare": 7885
+  },
+  {
+    "from": "Kolhapur",
+    "to": "Mumbai",
+    "fare": 7885
+  },
+  {
+    "from": "Pune",
+    "to": "Lonavala",
+    "fare": 2520
+  },
+  {
+    "from": "Lonavala",
+    "to": "Pune",
+    "fare": 2520
+  },
+  {
+    "from": "Mumbai",
+    "to": "Lonavala",
+    "fare": 2625
+  },
+  {
+    "from": "Lonavala",
+    "to": "Mumbai",
+    "fare": 2625
+  },
+  {
+    "from": "Pune",
+    "to": "Mahabaleshwar",
+    "fare": 3150
+  },
+  {
+    "from": "Mahabaleshwar",
+    "to": "Pune",
+    "fare": 3360
+  },
+  {
+    "from": "Mumbai",
+    "to": "Mahabaleshwar",
+    "fare": 5775
+  },
+  {
+    "from": "Mahabaleshwar",
+    "to": "Mumbai",
+    "fare": 5780
+  },
+  {
+    "from": "Pune",
+    "to": "Sangli",
+    "fare": 3885
+  },
+  {
+    "from": "Sangli",
+    "to": "Pune",
+    "fare": 3885
+  },
+  {
+    "from": "Mumbai",
+    "to": "Sangli",
+    "fare": 7885
+  },
+  {
+    "from": "Sangli",
+    "to": "Mumbai",
+    "fare": 7885
+  },
+  {
+    "from": "Pune",
+    "to": "Satara",
+    "fare": 2730
+  },
+  {
+    "from": "Satara",
+    "to": "Pune",
+    "fare": 2730
+  },
+  {
+    "from": "Mumbai",
+    "to": "Satara",
+    "fare": 5775
+  },
+  {
+    "from": "Satara",
+    "to": "Mumbai",
+    "fare": 5985
+  },
+  {
+    "from": "Pune",
+    "to": "Igatpuri",
+    "fare": 5670
+  },
+  {
+    "from": "Igatpuri",
+    "to": "Pune",
+    "fare": 5775
+  },
+  {
+    "from": "Mumbai",
+    "to": "Igatpuri",
+    "fare": 2520
+  },
+  {
+    "from": "Igatpuri",
+    "to": "Mumbai",
+    "fare": 2940
+  }
 ]

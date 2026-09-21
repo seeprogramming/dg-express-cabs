@@ -5,6 +5,7 @@ import type { RouteInfo } from "@/types";
 
 interface PopularRidesProps {
   rides: RouteInfo[];
+  showViewAll?: boolean;
 }
 
 function getRouteImage(route: RouteInfo): string {
@@ -15,7 +16,7 @@ function getRouteImage(route: RouteInfo): string {
   return siteConfig.stockImages.highway;
 }
 
-export default function PopularRides({ rides }: PopularRidesProps) {
+export default function PopularRides({ rides, showViewAll }: PopularRidesProps) {
   return (
     <section className="section white" id="rides">
       <div className="container">
@@ -39,7 +40,7 @@ export default function PopularRides({ rides }: PopularRidesProps) {
                   <h3>
                     {r.from} → {r.to}
                   </h3>
-                  <p>One-way · Sedan starting fare</p>
+                  <p>One-way · Starting fare</p>
                   <div className="bottom">
                     <div className="price">
                       <small>Starting at</small>
@@ -54,6 +55,13 @@ export default function PopularRides({ rides }: PopularRidesProps) {
             );
           })}
         </div>
+        {showViewAll && (
+          <div className="text-center mt-8">
+            <Link className="btn dark" href="/cabs">
+              View all routes →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

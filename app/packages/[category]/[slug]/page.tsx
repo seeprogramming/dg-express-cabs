@@ -7,6 +7,8 @@ import {
   getAllPackages,
   getPackageBySlugAndCategory,
   formatINR,
+  priceAmount,
+  getPackageDestination,
 } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 
@@ -16,6 +18,15 @@ interface Props {
     slug: string;
   }>;
 }
+
+/* Map category slug → stock hero image */
+const categoryHeroImage: Record<string, string> = {
+  mahabaleshwar: siteConfig.stockImages.maha,
+  goa: siteConfig.stockImages.road,
+  konkan: siteConfig.stockImages.highway,
+  ashtavinayak: siteConfig.stockImages.lonavala,
+  jyotirlinga: siteConfig.stockImages.city,
+};
 
 export async function generateStaticParams() {
   const all = getAllPackages();
@@ -29,15 +40,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const pkg = getPackageBySlugAndCategory(category, slug);
   if (!pkg) {
-    return { title: "Tour Package | RelaxCabs" };
+    return { title: "Tour Package | D&G Express Cabs" };
   }
 
+  const dest = getPackageDestination(pkg);
   const durationStr = pkg.duration.label;
   const intro = pkg.description || pkg.best_for || "Tour package";
-  const title = `${pkg.route.from} to ${pkg.route.to} Cab Package - ${durationStr}`;
+  const title = `${pkg.route.from} to ${dest} Cab Package - ${durationStr}`;
   const description = `Book ${pkg.title} (${durationStr}) from ${pkg.route.from}. ${intro} Starting at ${formatINR(
-    pkg.prices.sedan
+    priceAmount(pkg.prices.sedan)
   )} for Sedan. Ertiga and Crysta available.`;
+
+  const heroImg = categoryHeroImage[category] || siteConfig.stockImages.road;
 
   return {
     title,
@@ -47,9 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [
         {
-          url: pkg.id.includes("fort")
-            ? siteConfig.stockImages.road
-            : siteConfig.stockImages.maha,
+          url: heroImg,
           width: 1200,
           height: 630,
           alt: pkg.title,
@@ -66,10 +78,9 @@ export default async function PackageDetailPage({ params }: Props) {
     notFound();
   }
 
-  const intro = pkg.description || pkg.best_for || "Mahabaleshwar cab package";
-  const heroImage = pkg.id.includes("fort")
-    ? siteConfig.stockImages.road
-    : siteConfig.stockImages.maha;
+  const dest = getPackageDestination(pkg);
+  const intro = pkg.description || pkg.best_for || pkg.route_sequence || `${dest} cab package`;
+  const heroImage = pkg.image || categoryHeroImage[category] || siteConfig.stockImages.road;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -81,32 +92,36 @@ export default async function PackageDetailPage({ params }: Props) {
       {
         "@type": "Offer",
         "name": "Sedan (Dzire / Aura)",
-        "price": pkg.prices.sedan,
+        "price": priceAmount(pkg.prices.sedan),
         "priceCurrency": "INR",
       },
       {
         "@type": "Offer",
         "name": "SUV (Ertiga / Rumion)",
-        "price": pkg.prices.ertiga,
+        "price": priceAmount(pkg.prices.ertiga),
         "priceCurrency": "INR",
       },
       {
         "@type": "Offer",
         "name": "Premium (Innova Crysta)",
-        "price": pkg.prices.crysta,
+        "price": priceAmount(pkg.prices.crysta),
         "priceCurrency": "INR",
       },
     ],
-    "itinerary": {
-      "@type": "ItemList",
-      "numberOfItems": pkg.itinerary.length,
-      "itemListElement": pkg.itinerary.map((d, index) => ({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": `Day ${d.day}: ${d.title}`,
-        "description": d.activities.join("; "),
-      })),
-    },
+    ...(pkg.itinerary && pkg.itinerary.length > 0
+      ? {
+          itinerary: {
+            "@type": "ItemList",
+            numberOfItems: pkg.itinerary.length,
+            itemListElement: pkg.itinerary.map((d, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: `Day ${d.day}: ${d.title || "Travel"}`,
+              description: d.activities.join("; "),
+            })),
+          },
+        }
+      : {}),
   };
 
   return (
@@ -117,18 +132,61 @@ export default async function PackageDetailPage({ params }: Props) {
       />
       <PackageHero
         from={pkg.route.from}
-        destination={pkg.route.to}
+        destination={dest}
         durationLabel={pkg.duration.label}
         title={pkg.title}
         intro={intro}
+        heroImage={heroImage}
       />
 
       <section className="section">
         <div className="container packageLayout">
           <div>
-            <PackageItinerary itinerary={pkg.itinerary} heroImage={heroImage} />
+            {pkg.itinerary && pkg.itinerary.length > 0 ? (
+              <PackageItinerary itinerary={pkg.itinerary} heroImage={heroImage} />
+            ) : (
+              /* For packages without full itinerary (e.g. one-day darshan), show route sequence */
+              <div className="panel">
+                <div
+                  style={{
+                    height: "220px",
+                    borderRadius: "14px",
+                    marginBottom: "22px",
+                    background: `url('${heroImage}') center/cover no-repeat`,
+                  }}
+                />
+                <div className="ey">ROUTE</div>
+                <h2>{pkg.title}{pkg.variant ? ` — ${pkg.variant}` : ""}</h2>
+                {pkg.route_sequence && (
+                  <div className="mt-4 p-4 bg-[#f7faf4] rounded-xl border border-[#dce5da]">
+                    <div className="text-xs font-extrabold text-[#718079] tracking-wider mb-2">
+                      ROUTE SEQUENCE
+                    </div>
+                    <p className="text-lg font-bold text-[#123f38]">{pkg.route_sequence}</p>
+                  </div>
+                )}
+                {pkg.route.stops && pkg.route.stops.length > 0 && (
+                  <div className="mt-4">
+                    <div className="text-xs font-extrabold text-[#718079] tracking-wider mb-2">
+                      STOPS
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {pkg.route.stops.map((stop, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1.5 bg-[#edf5e7] text-[#123f38] text-sm font-bold rounded-lg border border-[#d2e6c8]"
+                        >
+                          {i + 1}. {stop}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <p className="mt-4 text-[#718079] text-sm leading-relaxed">{intro}</p>
+              </div>
+            )}
           </div>
-          <PackagePricing pkg={pkg} />
+          <PackagePricing pkg={pkg} categorySlug={category} />
         </div>
       </section>
     </main>

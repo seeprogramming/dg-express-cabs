@@ -1,0 +1,553 @@
+{
+  "category": "Konkan Packages",
+  "source_spelling": "KOKAN",
+  "packages": [
+    {
+      "id": "pune-forts-and-beaches-trail",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "The \"Forts & Beaches\" Trail (Diveagar & Harihareshwar)",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days / 3 Nights"
+      },
+      "option": 2,
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "North Konkan Entry",
+          "activities": [
+            "Drive from Pune via Tamhini Ghat.",
+            "Arrive at Diveagar Beach.",
+            "Visit the Suvarna Ganesha Temple and enjoy the long, flat beach."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "The Sea Fort",
+          "activities": [
+            "Travel to Murud-Janjira Fort (accessible by boat).",
+            "Spend the afternoon at Shrivardhan Beach, known for its clean sands and betel nut plantations."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "The Dakshin Kashi",
+          "activities": [
+            "Head to Harihareshwar.",
+            "Visit the ancient Shiva temple and walk the spectacular cliff-side Pradakshina path.",
+            "Evening at the rocky Harihareshwar Beach."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Return",
+          "activities": [
+            "Scenic drive back to Pune via Mangaon."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 25600,
+        "ertiga": 36600,
+        "crysta": 44600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murud-Janjira%20Fort.jpg"
+    },
+    {
+      "id": "pune-adventure-and-scuba-hub",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "The \"Adventure & Scuba\" Hub (Malvan & Tarkarli)",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days / 4 Nights"
+      },
+      "option": 1,
+      "best_for": "Adventure seekers and those willing to drive further south.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Long Drive",
+          "activities": [
+            "Depart Pune early for a long drive (approx. 8–9 hours) to Malvan/Tarkarli via Kolhapur and Gaganbawda Ghat."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Scuba & Snorkeling",
+          "activities": [
+            "Spend the day at Sindhudurg Fort.",
+            "Enjoy scuba diving or snorkeling in the clear waters near the fort.",
+            "Evening at Chivla Beach."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Backwaters & Dolphins",
+          "activities": [
+            "Head to Devbagh.",
+            "Take a boat ride to see the \"Sangam\" (confluence of river and sea), Tsunami Island, and spot dolphins in the morning."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Secret Beaches",
+          "activities": [
+            "Visit Kunkeshwar Temple (the \"Kashi of Konkan\" on the beach) and the nearby Vayangani Beach for a peaceful, tourist-free experience."
+          ]
+        },
+        {
+          "day": 5,
+          "title": "Return",
+          "activities": [
+            "Early morning start for the drive back to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 32600,
+        "ertiga": 47600,
+        "crysta": 56600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tarkarli%20Beach.jpg"
+    },
+    {
+      "id": "mumbai-mini-goa-experience",
+      "route": {
+        "from": "Mumbai",
+        "to": "Konkan",
+        "return_to": "Mumbai"
+      },
+      "title": "The \"Mini-Goa\" Experience (Alibaug & Revdanda)",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days / 3 Nights"
+      },
+      "option": 2,
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Quick Getaway",
+          "activities": [
+            "A short drive from Mumbai to Alibaug.",
+            "Visit Kolaba Fort (accessible during low tide).",
+            "Evening at Varsoli or Nagaon Beach."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Forts & Camping Vibes",
+          "activities": [
+            "Head south to Revdanda Fort and the beach.",
+            "Visit the Korlai Fort and Lighthouse for a 360-degree view of the ocean and the Kundalika river."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Tranquil Sands",
+          "activities": [
+            "Visit the quiet Kashid Beach (famous for its white sand) or Murud Beach.",
+            "Explore the Padmadurg Fort from a distance."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Return",
+          "activities": [
+            "A relaxed drive back to Mumbai or take the M2M Ferries (Ro-Ro) from Mandwa to save driving time."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 25600,
+        "ertiga": 36600,
+        "crysta": 44600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Alibag%20Beach.jpg"
+    },
+    {
+      "id": "mumbai-adventure-and-scuba-hub",
+      "route": {
+        "from": "Mumbai",
+        "to": "Konkan",
+        "return_to": "Mumbai"
+      },
+      "title": "The \"Adventure & Scuba\" Hub (Tarkarli & Malvan)",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days / 4 Nights"
+      },
+      "option": 2,
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Journey South",
+          "activities": [
+            "A full day's drive (approx. 10-11 hours) from Mumbai to Malvan."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Under the Sea",
+          "activities": [
+            "Head to the massive Sindhudurg Fort.",
+            "Spend the day Scuba Diving or Snorkeling in the clear waters surrounding the fort.",
+            "Evening at Chivla Beach."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "River Meets Sea",
+          "activities": [
+            "Visit Devbagh for a boat safari to see the Sangam, Tsunami Island, and dolphin spotting."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Architectural Marvels",
+          "activities": [
+            "Visit the Kunkeshwar Temple (a stunning temple on the edge of the sea) and the quiet Mithbav Beach."
+          ]
+        },
+        {
+          "day": 5,
+          "title": "Return",
+          "activities": [
+            "Early morning departure for the return journey to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 32600,
+        "ertiga": 47600,
+        "crysta": 56600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sindhudurg%20Fort.jpg"
+    },
+    {
+      "id": "pune-one-day-alibaug",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "One-Day Trip — Alibaug",
+      "duration": {
+        "days": 1,
+        "nights": 0,
+        "label": "1 Day"
+      },
+      "option": "A",
+      "focus": "Spiritual & Beach",
+      "best_for": "A refreshing break without an overnight stay.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Alibaug",
+          "activities": [
+            "Leave early (5:00 AM) for Alibaug.",
+            "Spend the day at Nagaon Beach (famous for water sports) and visit the Kolaba Fort during low tide.",
+            "Return to Pune by night."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 6600,
+        "ertiga": 7600,
+        "crysta": 9600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Alibag%20Beach.jpg"
+    },
+    {
+      "id": "pune-one-day-diveagar",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "One-Day Trip — Diveagar",
+      "duration": {
+        "days": 1,
+        "nights": 0,
+        "label": "1 Day"
+      },
+      "option": "B",
+      "focus": "History & Nature",
+      "best_for": "A refreshing break without an overnight stay.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Diveagar",
+          "activities": [
+            "North Konkan Entry.",
+            "Drive from Pune via Tamhini Ghat.",
+            "Arrive at Diveagar Beach.",
+            "Visit the Suvarna Ganesha Temple and enjoy the long, flat beach."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 6600,
+        "ertiga": 7600,
+        "crysta": 9600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Diveagar%20Beach.jpg"
+    },
+    {
+      "id": "pune-two-day-alibaug-murud-janjira",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "Two-Day Trip — Alibaug & Murud Janjira Fort",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2 Days / 1 Night"
+      },
+      "option": "A",
+      "best_for": "A more relaxed pace and a night stay by the sea.",
+      "source_notes": [
+        "This package is under the Pune section, but the source explicitly says Day 2 returns to Mumbai. Preserved as supplied for verification."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Drive to Alibaug.",
+            "Visit Ablibaug beach kolaba fort (When Low Tide), nagaon beach."
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Head to Murud janjira fort and Padmadurg Fort before returning to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 12600,
+        "ertiga": 17600,
+        "crysta": 20600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murud-Janjira%20Fort.jpg"
+    },
+    {
+      "id": "pune-two-day-diveagar-harihareshwar-shrivardhan",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "Two-Day Trip — Diveagar & Harihareshwar - Shrivardhan",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2 Days / 1 Night"
+      },
+      "option": "B",
+      "best_for": "A more relaxed pace and a night stay by the sea.",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Drive to Diveagar By Agardanda - Dighi Ferry.",
+            "Visit Diveagar beach and Suvarna Ganesh Temple."
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Visit Harihareshwar fort and Shrivardhan before returning to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 11600,
+        "ertiga": 16600,
+        "crysta": 19600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Harihareshwar%20Beach.jpg"
+    },
+    {
+      "id": "pune-three-day-malvan-tarkarli",
+      "route": {
+        "from": "Pune",
+        "to": "Konkan",
+        "return_to": "Pune"
+      },
+      "title": "Three-Day Trip — Malvan & Tarkarli (Adventure & Heritage)",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Days / 2 Nights"
+      },
+      "option": "B",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Travel to Malvan.",
+            "Visit the massive Sindhudurg Fort built by Chhatrapati Shivaji Maharaj."
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Head to Tarkarli for scuba diving, snorkeling, and backwater boat rides.",
+            "Enjoy authentic Malvani seafood."
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Visit the serene Devbag beach where the Karli river meets the sea, then travel back to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 18600,
+        "ertiga": 26600,
+        "crysta": 31600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Sindhudurg%20Fort.jpg"
+    },
+    {
+      "id": "mumbai-one-day-alibaug-ro-ro",
+      "route": {
+        "from": "Mumbai",
+        "to": "Konkan",
+        "return_to": "Mumbai"
+      },
+      "title": "One-Day Trip — Alibaug via Ro-Ro Ferry",
+      "duration": {
+        "days": 1,
+        "nights": 0,
+        "label": "1 Day"
+      },
+      "option": "A",
+      "focus": "Easy travel and beach leisure.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Plan",
+          "activities": [
+            "Take the M2M Ferries (Ro-Ro) from Ferry Wharf (Mazgaon) with your car.",
+            "Spend the day at Nagaon Beach (famous for water sports) and visit the Kolaba Fort during low tide."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 5600,
+        "ertiga": 6600,
+        "crysta": 8600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Alibag%20Beach.jpg"
+    },
+    {
+      "id": "mumbai-two-day-alibaug-murud-janjira",
+      "route": {
+        "from": "Mumbai",
+        "to": "Konkan",
+        "return_to": "Mumbai"
+      },
+      "title": "Two-Day Trip — Alibaug & Murud Janjira Fort",
+      "duration": {
+        "days": 2,
+        "nights": 1,
+        "label": "2 Days / 1 Night"
+      },
+      "option": "A",
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Drive to Alibaug.",
+            "Visit Ablibaug beach kolaba fort (When Low Tide), nagaon beach."
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Head to Murud janjira fort and Padmadurg Fort before returning to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 12600,
+        "ertiga": 16600,
+        "crysta": 20600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Murud-Janjira%20Fort.jpg"
+    },
+    {
+      "id": "mumbai-three-day-deep-konkan",
+      "route": {
+        "from": "Mumbai",
+        "to": "Konkan",
+        "return_to": "Mumbai"
+      },
+      "title": "Three-Day Trip — Alibaug & Murud Janjira Fort & Diveagar",
+      "duration": {
+        "days": 3,
+        "nights": 2,
+        "label": "3 Days / 2 Nights"
+      },
+      "option": "A",
+      "source_notes": [
+        "The Day 2 wording says 'before returning to Mumbai' even though a Day 3 itinerary follows. Preserved as supplied for verification."
+      ],
+      "itinerary": [
+        {
+          "day": 1,
+          "activities": [
+            "Drive to Alibaug.",
+            "Visit Ablibaug beach kolaba fort (When Low Tide), nagaon beach."
+          ]
+        },
+        {
+          "day": 2,
+          "activities": [
+            "Head to Murud janjira fort and Padmadurg Fort before returning to Mumbai."
+          ]
+        },
+        {
+          "day": 3,
+          "activities": [
+            "Head To Diveagar, Shrivardhan, Harihareshwar Return To Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 18600,
+        "ertiga": 26600,
+        "crysta": 31600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Diveagar%20Beach.jpg"
+    }
+  ]
+}

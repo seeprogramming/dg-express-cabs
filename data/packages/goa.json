@@ -1,0 +1,250 @@
+{
+  "category": "Goa Packages",
+  "packages": [
+    {
+      "id": "pune-north-goa-pulse",
+      "route": {
+        "from": "Pune",
+        "to": "Goa",
+        "return_to": "Pune"
+      },
+      "option": 1,
+      "title": "The \"North Goa Pulse\" (Action & Nightlife)",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days / 3 Nights"
+      },
+      "status": "DONE",
+      "best_for": "A quick break where the focus is on a specific region of Goa.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrival & Sunset",
+          "activities": [
+            "Early morning departure from Pune via Belagavi and Chorla Ghat.",
+            "Arrive in North Goa by late afternoon.",
+            "Evening visit to Aguada Fort for sunset, followed by dinner at a beach shack in Candolim."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Beach Hopping & Forts",
+          "activities": [
+            "Spend the morning at Baga and Calangute.",
+            "Afternoon visit to Chapora Fort (the \"Dil Chahta Hai\" fort) and a scenic sunset at Vagator Beach."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Water Sports & Panjim",
+          "activities": [
+            "Morning water sports (parasailing, jet ski) at Anjuna or Candolim.",
+            "Post-lunch, visit the colorful Fontainhas (Latin Quarter) in Panjim and enjoy a Mandovi River cruise."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Departure",
+          "activities": [
+            "Breakfast and early departure back to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 20600,
+        "ertiga": 24600,
+        "crysta": 31600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Calangute%20beach%20Goa.jpg"
+    },
+    {
+      "id": "pune-best-of-both-worlds",
+      "route": {
+        "from": "Pune",
+        "to": "Goa",
+        "return_to": "Pune"
+      },
+      "option": 1,
+      "title": "The \"Best of Both Worlds\" (North & South Mix)",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days / 4 Nights"
+      },
+      "best_for": "A comprehensive experience that covers both nature and culture.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrival",
+          "activities": [
+            "Drive from Pune to North Goa.",
+            "Evening walk at Sinquerim Beach."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "North Goa Exploration",
+          "activities": [
+            "Visit the famous northern belt: Anjuna, Vagator, and Chapora Fort.",
+            "Experience a popular beach club or night market in the evening."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Heritage & Panjim",
+          "activities": [
+            "Visit Old Goa’s historic churches, followed by the Mangueshi Temple.",
+            "Spend the evening walking through the vibrant streets of Panjim."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "South Goa Escape",
+          "activities": [
+            "Head to South Goa for the day.",
+            "Relax at Varca or Majorda Beach, known for their white sands and peaceful atmosphere."
+          ]
+        },
+        {
+          "day": 5,
+          "title": "Departure",
+          "activities": [
+            "Return drive to Pune."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 25600,
+        "ertiga": 29600,
+        "crysta": 38600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fontainhas%2C%20the%20Latin%20Quarter%20of%20Panjim%2C%20Goa.jpg"
+    },
+    {
+      "id": "mumbai-north-goa-power-trip",
+      "route": {
+        "from": "Mumbai",
+        "to": "Goa",
+        "return_to": "Mumbai"
+      },
+      "option": 1,
+      "title": "The \"North Goa Power Trip\"",
+      "duration": {
+        "days": 4,
+        "nights": 3,
+        "label": "4 Days / 3 Nights"
+      },
+      "best_for": "Those who want a quick escape and don't mind the long drive.",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "The Long Drive",
+          "activities": [
+            "Early morning departure (5:00 AM) from Mumbai via NH48 (Pune-Kolhapur-Belgaum).",
+            "Arrive in North Goa by evening.",
+            "Check-in and relax at a beach shack in Calangute."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "Forts & Sunsets",
+          "activities": [
+            "Visit Aguada Fort and the lighthouse in the morning.",
+            "Spend the afternoon at Vagator Beach and climb up to Chapora Fort for the iconic sunset view."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Panjim & Vibes",
+          "activities": [
+            "Head to Panjim for a walk through the colorful Fontainhas Latin Quarter.",
+            "In the evening, explore the cafes of Anjuna or enjoy a sunset cruise on the Mandovi River."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "Return Leg",
+          "activities": [
+            "Breakfast and early departure.",
+            "Stop at Kolhapur for a quick lunch break before heading back to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 25600,
+        "ertiga": 29600,
+        "crysta": 38600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Chapora%20Fort%20GOA.jpg"
+    },
+    {
+      "id": "mumbai-grand-goan-circuit",
+      "route": {
+        "from": "Mumbai",
+        "to": "Goa",
+        "return_to": "Mumbai"
+      },
+      "option": 1,
+      "title": "The \"Grand Goan Circuit\" (North & South Mix)",
+      "duration": {
+        "days": 5,
+        "nights": 4,
+        "label": "5 Days / 4 Nights"
+      },
+      "best_for": "A more relaxed pace or for travelers who want to see \"Hidden Goa.\"",
+      "itinerary": [
+        {
+          "day": 1,
+          "title": "Arrival in the North",
+          "activities": [
+            "Drive from Mumbai to North Goa.",
+            "Evening at leisure at Candolim Beach."
+          ]
+        },
+        {
+          "day": 2,
+          "title": "The Northern Hub",
+          "activities": [
+            "Explore the \"famous\" Goa—Baga, Calangute, and Anjuna.",
+            "Evening visit to a local night market (if seasonal) or a popular beach club."
+          ]
+        },
+        {
+          "day": 3,
+          "title": "Central Heritage & Spice",
+          "activities": [
+            "Visit Old Goa in the morning.",
+            "Afternoon lunch at a Spice Plantation in Ponda, followed by a visit to the Mangueshi Temple."
+          ]
+        },
+        {
+          "day": 4,
+          "title": "South Goa Serenity",
+          "activities": [
+            "Move toward the South.",
+            "Spend the day at Agonda Beach or Colva.",
+            "This provides a peaceful contrast to the North Goa bustle."
+          ]
+        },
+        {
+          "day": 5,
+          "title": "Homebound",
+          "activities": [
+            "Early morning start for the return journey to Mumbai."
+          ]
+        }
+      ],
+      "prices": {
+        "currency": "INR",
+        "sedan": 28600,
+        "ertiga": 32600,
+        "crysta": 41600
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Agonda%20beach.JPG"
+    }
+  ]
+}

@@ -59,7 +59,8 @@
         "sedan": 18600,
         "ertiga": 21600,
         "crysta": 29600
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Venna%20Lake%2C%20Mahabaleshwar.jpg"
     },
     {
       "id": "fort-and-forest-trail",
@@ -106,7 +107,8 @@
         "sedan": 14600,
         "ertiga": 17600,
         "crysta": 21600
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pratapgad%20Fort.jpg"
     },
     {
       "id": "leisure-and-luxury-retreat",
@@ -164,7 +166,8 @@
         "sedan": 18600,
         "ertiga": 21600,
         "crysta": 29600
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mapro%20Garden%2C%20Mahabaleshwar.jpg"
     },
     {
       "id": "classic-hill-getaway",
@@ -217,7 +220,8 @@
         "sedan": 14600,
         "ertiga": 17600,
         "crysta": 21600
-      }
+      },
+      "image": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Table%20Land%2C%20Panchgani.jpg"
     }
   ]
 }

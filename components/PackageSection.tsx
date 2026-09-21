@@ -1,30 +1,62 @@
 import Link from "next/link";
-import { formatINR } from "@/lib/packages";
+import { formatINR, priceAmount, getPackageDestination } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 import type { TourPackage } from "@/types";
+import ImageWithFallback from "@/components/ImageWithFallback";
+
+/* Category → stock image map */
+const categoryImageMap: Record<string, string> = {
+  mahabaleshwar: siteConfig.stockImages.maha,
+  goa: siteConfig.stockImages.road,
+  konkan: siteConfig.stockImages.highway,
+  ashtavinayak: siteConfig.stockImages.lonavala,
+  jyotirlinga: siteConfig.stockImages.city,
+};
+
+/* Category → emoji for fallback display */
+const categoryEmojiMap: Record<string, string> = {
+  mahabaleshwar: "🏔️",
+  goa: "🏖️",
+  konkan: "🌊",
+  ashtavinayak: "🙏",
+  jyotirlinga: "🕉️",
+};
 
 interface PackageCardProps {
   pkg: TourPackage & { categorySlug?: string };
 }
 
 export function PackageCard({ pkg }: PackageCardProps) {
-  const start = Math.min(pkg.prices.sedan, pkg.prices.ertiga, pkg.prices.crysta);
-  const copy = pkg.description || pkg.best_for || "Mahabaleshwar tour package";
-  const bgImage = pkg.id.includes("fort")
-    ? siteConfig.stockImages.road
-    : siteConfig.stockImages.maha;
+  const start = Math.min(
+    priceAmount(pkg.prices.sedan),
+    priceAmount(pkg.prices.ertiga),
+    priceAmount(pkg.prices.crysta)
+  );
+  const copy = pkg.description || pkg.best_for;
   const categorySlug = pkg.categorySlug || "mahabaleshwar";
+  const bgImage = pkg.image || categoryImageMap[categorySlug] || siteConfig.stockImages.road;
+  const destination = getPackageDestination(pkg);
+  const emoji = categoryEmojiMap[categorySlug] || "📦";
 
   return (
     <div className="card">
-      <div className="art" style={{ backgroundImage: `url(${bgImage})` }} />
+      <div className="art relative overflow-hidden bg-[#e5ede8]">
+        {bgImage && (
+          <ImageWithFallback 
+            src={bgImage} 
+            alt={pkg.title}
+            className="absolute inset-0 w-full h-full object-cover"
+            fallback={categoryImageMap[categorySlug] || siteConfig.stockImages.road}
+          />
+        )}
+      </div>
       <div className="body">
         <div className="ey">
-          {pkg.route.from.toUpperCase()} → MAHABALESHWAR
+          {pkg.route.from.toUpperCase()} → {destination.toUpperCase()}
         </div>
-        <h3>{pkg.title}</h3>
+        <h3>{pkg.title}{pkg.variant ? ` — ${pkg.variant}` : ""}</h3>
         <p>
-          {pkg.duration.label} · {copy}
+          <strong>{pkg.duration.label}</strong>{copy ? ` · ${copy}` : ""}
         </p>
         <div className="bottom">
           <div className="price">
@@ -66,9 +98,16 @@ export default function PackageSection({
         </div>
         <div className="grid4" id="pkgGrid">
           {packages.map((p) => (
-            <PackageCard key={p.id} pkg={p} />
+            <PackageCard key={`${p.categorySlug}-${p.id}`} pkg={p} />
           ))}
         </div>
+        {packages.length > 8 && (
+          <div className="text-center mt-8">
+            <Link className="btn dark" href="/packages">
+              View all packages →
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

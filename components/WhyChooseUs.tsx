@@ -1,151 +1,92 @@
-import Link from "next/link";
+import React from "react";
 
 export default function WhyChooseUs() {
+  const whyPoints = [
+    { title: "2-Hour Advance Booking", desc: "Plan your trip with just a 2-hour notice. We are always ready for your last-minute plans.", icon: "⏱️" },
+    { title: "A Cab That Arrives", desc: "No last-minute cancellations from our end. When you book a cab, we guarantee we'll show up.", icon: "🚕" },
+    { title: "Free Cancellation", desc: "Change in plans? No worries. Cancel your ride for free up to 2 hours before your scheduled pickup.", icon: "🆓" },
+    { title: "Verified Chauffeurs", desc: "Travel with peace of mind. Our drivers are experienced, highly trained, and fully background-checked.", icon: "👨‍✈️" },
+    { title: "Clean & Comfortable Cars", desc: "Enjoy a premium ride every time. Our vehicles are strictly maintained, sanitized, and fully air-conditioned.", icon: "✨" },
+    { title: "Real-Time Ride Tracking", desc: "Safety first. Track your cab in real-time and share your live location with your loved ones.", icon: "📍" },
+    { title: "24×7 Human Support", desc: "No frustrating bots. Talk or chat with our dedicated human support team anytime you need assistance.", icon: "🎧" },
+    { title: "Transparent GST Invoices", desc: "Clear billing with absolutely no hidden charges. Get perfect, compliant invoices for your corporate travel.", icon: "🧾" },
+  ];
+
   return (
     <>
-      {/* Story / More Than A Cab Section */}
-      <section className="section" id="why">
-        <div className="container story">
-          <div className="storyArt">🛣️</div>
-          <div>
-            <div className="ey">MORE THAN A CAB</div>
-            <h2>Making travel feel less complicated.</h2>
-            <p>
-              From catching an early flight to taking a weekend break, your booking should be the easiest part of the journey.
-            </p>
-            <div className="tick">✓ Clear fares before booking</div>
-            <div className="tick">✓ Multiple vehicle choices</div>
-            <div className="tick">✓ Airport, intercity and tour options</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Editorial Band */}
-      <section className="editorialBand">
-        <div className="container editorialGrid">
-          <div className="editorialVisual">🚘</div>
-          <div className="editorialCopy">
-            <div className="ey">TRAVEL TOGETHER, RIDE BETTER</div>
-            <h2>A cab for every kind of journey.</h2>
-            <p>
-              Keep the experience simple: choose the trip, pick the cab and travel at your own pace. This section adds the editorial storytelling feel from the reference without making the homepage busy.
-            </p>
-            <div className="editorialList">
-              <div>Airport transfers with room for luggage</div>
-              <div>Intercity rides for families and groups</div>
-              <div>Day-wise tour packages with clear cab pricing</div>
-              <div>Flexible pickup details and direct booking support</div>
+      {/* About Us Section */}
+      <section className="py-20 lg:py-28 bg-white" id="about">
+        <div className="container">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="w-full lg:w-1/2 relative rounded-[32px] overflow-hidden shadow-2xl h-[400px] lg:h-[540px] group">
+               <img 
+                 src="https://images.pexels.com/photos/4606402/pexels-photo-4606402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900&dpr=2" 
+                 alt="Comfortable intercity cab travel" 
+                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" 
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-[#123f38]/60 to-transparent pointer-events-none" />
+               <div className="absolute bottom-8 left-8 text-white pr-8">
+                 <div className="text-2xl font-extrabold mb-1">D&G Express</div>
+                 <div className="text-sm opacity-90">Premium outstation travel since 2018</div>
+               </div>
             </div>
-            <Link className="btn dark" href="/packages">
-              Explore tour packages
-            </Link>
+            <div className="w-full lg:w-1/2">
+              <div className="text-[13px] font-extrabold uppercase tracking-[2px] text-[var(--g)] mb-3">ABOUT D&G EXPRESS</div>
+              <h2 className="font-['Plus_Jakarta_Sans'] text-4xl lg:text-5xl font-extrabold leading-[1.15] tracking-[-1.5px] text-[var(--d)] mb-6">
+                Your reliable travel partner.
+              </h2>
+              <p className="text-[17px] text-[var(--muted)] leading-[1.7] mb-6">
+                We believe that the journey should be as memorable as the destination. At D&G Express Cabs, we have built a vast network of premium vehicles and professional chauffeurs dedicated to making your travel seamless, safe, and incredibly comfortable.
+              </p>
+              <p className="text-[17px] text-[var(--muted)] leading-[1.7] mb-8">
+                Whether you're heading for a crucial business meeting, a family weekend getaway, or an airport transfer in the middle of the night, our commitment remains the same: a clean cab, a verified driver, and an on-time arrival, every single time.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <div className="bg-[#f7f5eb] px-6 py-4 rounded-2xl border border-[#eef2eb] min-w-[160px]">
+                  <div className="text-3xl font-extrabold text-[var(--d)] mb-1">10k+</div>
+                  <div className="text-sm font-bold text-[var(--muted)]">Happy Customers</div>
+                </div>
+                <div className="bg-[#f7f5eb] px-6 py-4 rounded-2xl border border-[#eef2eb] min-w-[160px]">
+                  <div className="text-3xl font-extrabold text-[var(--d)] mb-1">99%</div>
+                  <div className="text-sm font-bold text-[var(--muted)]">On-Time Arrival</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Enhanced Promise Strip */}
-      <section className="bg-gradient-to-r from-[#0d342e] via-[#123f38] to-[#184d44] text-white py-10 border-y border-[#1f594f] shadow-inner relative overflow-hidden">
-        {/* Subtle ambient glow */}
-        <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-[#62c33a]/15 blur-3xl pointer-events-none" />
-        <div className="absolute -right-20 top-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-[#62c33a]/10 blur-3xl pointer-events-none" />
+      {/* Why Us Section */}
+      <section className="py-20 lg:py-28 bg-[#f7f5eb] relative overflow-hidden" id="why">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#62c33a]/10 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
 
         <div className="container relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                🛡️
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Trust
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Verified chauffeurs</span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                ✨
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Comfort
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Sanitized AC cabs</span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                🔒
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Safety
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Live ride tracking</span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                🏷️
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Reliability
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Fixed clear fares</span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                ⏱️
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Punctuality
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">Guaranteed on-time</span>
-            </div>
-
-            <div className="flex flex-col items-center text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#62c33a]/50 hover:bg-white/10 transition-all group">
-              <span className="w-10 h-10 rounded-xl bg-[#62c33a]/20 text-[#89df63] flex items-center justify-center text-lg mb-2.5 group-hover:scale-110 group-hover:bg-[#62c33a] group-hover:text-[#123f38] transition-all shadow-sm">
-                💬
-              </span>
-              <span className="font-extrabold text-sm tracking-wide text-white group-hover:text-[#aee27d] transition-colors">
-                Support
-              </span>
-              <span className="text-[11px] text-[#a1b5ae] mt-0.5">24×7 WhatsApp</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Comfort Section */}
-      <section className="comfort">
-        <div className="container comfortGrid">
-          <div className="comfortCopy">
-            <div className="ey">WHY D&amp;G EXPRESS CABS</div>
-            <h2>Travel with comfort and trust.</h2>
-            <p>
-              Small details make long journeys better. These service promises are intentionally compact so they support the booking experience rather than compete with it.
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <div className="text-[13px] font-extrabold uppercase tracking-[2px] text-[var(--g)] mb-3">THE D&G PROMISE</div>
+            <h2 className="font-['Plus_Jakarta_Sans'] text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-[-1.5px] text-[var(--d)] mb-6">
+              Why Choose Us
+            </h2>
+            <p className="text-[17px] text-[var(--muted)] leading-relaxed">
+              We've obsessed over every detail of your journey so you don't have to. Here is our unwavering promise to you when you book a ride.
             </p>
           </div>
-          <div className="comfortCards">
-            <div className="comfortCard">
-              <div className="comfortIcon">✓</div>
-              <div>
-                <h3>Transparent booking</h3>
-                <p>See the route, cab category and fare information before sending your request.</p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whyPoints.map((point, i) => (
+              <div key={i} className="bg-white p-8 rounded-[24px] border border-[#dce5da] shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+                <div className="w-16 h-16 rounded-2xl bg-[#edf5e7] text-[#123f38] text-3xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#123f38] group-hover:text-white transition-all duration-300">
+                  {point.icon}
+                </div>
+                <h3 className="font-['Plus_Jakarta_Sans'] text-[19px] font-extrabold text-[var(--d)] mb-3 leading-[1.3]">
+                  {point.title}
+                </h3>
+                <p className="text-[15px] text-[var(--muted)] leading-[1.6]">
+                  {point.desc}
+                </p>
               </div>
-            </div>
-            <div className="comfortCard">
-              <div className="comfortIcon">🚕</div>
-              <div>
-                <h3>Right cab for the trip</h3>
-                <p>Choose Sedan, Ertiga or Crysta where package pricing is available.</p>
-              </div>
-            </div>
-            <div className="comfortCard">
-              <div className="comfortIcon">☎</div>
-              <div>
-                <h3>Human support</h3>
-                <p>Booking and WhatsApp options stay easy to find when you need assistance.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ export interface VehicleInfo {
   bags: number;
   multiplier: number;
   icon: string;
+  image?: string;
   badge?: string;
 }
 
@@ -24,7 +25,7 @@ export interface AirportInfo {
 
 export interface ItineraryDay {
   day: number;
-  title: string;
+  title?: string;
   activities: string[];
 }
 
@@ -34,29 +35,41 @@ export interface PackageDuration {
   label: string;
 }
 
+/** Prices can be flat numbers (Goa/Konkan/Mahabaleshwar) or objects with amount+pax (Ashtavinayak/Jyotirlinga) */
+export type PriceValue = number | { amount: number; pax?: number };
+
 export interface PackagePrices {
-  currency: string;
-  sedan: number;
-  ertiga: number;
-  crysta: number;
+  currency?: string;
+  sedan: PriceValue;
+  ertiga: PriceValue;
+  crysta: PriceValue;
+}
+
+/** Extract the numeric amount from a PriceValue */
+export function getPriceAmount(price: PriceValue): number {
+  return typeof price === "number" ? price : price.amount;
 }
 
 export interface TourPackage {
   id: string;
   route: {
     from: string;
-    to: string;
+    to?: string;
     return_to?: string;
+    stops?: string[];
   };
   option?: number;
+  variant?: string;
   title: string;
   duration: PackageDuration;
   status?: string;
   description?: string;
   best_for?: string;
   section?: string;
-  itinerary: ItineraryDay[];
+  route_sequence?: string;
+  itinerary?: ItineraryDay[];
   prices: PackagePrices;
+  image?: string;
 }
 
 export interface BookingDetails {

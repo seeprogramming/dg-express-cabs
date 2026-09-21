@@ -7,6 +7,12 @@ import InclusionExclusion from "./InclusionExclusion";
 import { formatINR } from "@/lib/packages";
 import { generateWhatsAppBookingUrl, getQrCodeImageUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
+import vehicles from "@/data/vehicles.json";
+
+/* Map vehicle category → image path from vehicles.json */
+const vehicleImageMap: Record<string, string> = Object.fromEntries(
+  vehicles.map((v) => [v.category, v.image])
+);
 
 export default function CabDetails() {
   const searchParams = useSearchParams();
@@ -19,6 +25,12 @@ export default function CabDetails() {
   const bags = searchParams.get("bags") || "2";
   const initialDate = searchParams.get("date") || "";
   const priceParam = searchParams.get("price") || "";
+
+  /* Resolve the correct vehicle image */
+  const vehicleImage =
+    vehicleImageMap[vehicle] ||             // exact match (e.g. "Sedan", "SUV")
+    vehicles.find((v) => v.model.toLowerCase().includes(model.toLowerCase()))?.image ||
+    siteConfig.stockImages.car;             // fallback
 
   const [travelDate, setTravelDate] = useState(initialDate);
   const [name, setName] = useState("");
@@ -51,7 +63,10 @@ export default function CabDetails() {
           <div
             className="cabPhoto"
             style={{
-              backgroundImage: `url('${siteConfig.stockImages.car}')`,
+              backgroundImage: `url('${vehicleImage}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundColor: "#f0f7ec",
             }}
           >
             <span className="badge" id="photoBadge">
@@ -87,6 +102,34 @@ export default function CabDetails() {
             <div className="spec">
               <small>ESTIMATED FARE</small>
               <b id="selectedFare">{formattedFare}</b>
+            </div>
+          </div>
+
+          {/* Cancellation & Refund Policy */}
+          <div className="mt-6 p-4 rounded-2xl bg-[#edf5e7] border border-[#d5e8ca]">
+            <h3 className="text-[13px] font-extrabold text-[#123f38] uppercase tracking-wide mb-3">Cancellation & Refund Policy</h3>
+            <div className="flex flex-col gap-2.5">
+              <div className="flex items-start gap-2.5">
+                <span className="w-7 h-7 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-sm shrink-0 mt-0.5">✓</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Free Cancellation</span>
+                  <span className="text-[12px] text-[#718079] block">Cancel your ride for free up to 2 hours before your scheduled pickup time.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <span className="w-7 h-7 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-sm shrink-0 mt-0.5">💰</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Full Refund</span>
+                  <span className="text-[12px] text-[#718079] block">100% refund is processed if cancelled within the free cancellation window.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <span className="w-7 h-7 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-sm shrink-0 mt-0.5">⚠️</span>
+                <div>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Late Cancellation</span>
+                  <span className="text-[12px] text-[#718079] block">Cancellations made less than 2 hours before pickup may attract a partial charge.</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -181,10 +224,10 @@ export default function CabDetails() {
             </a>
           </div>
 
-          <p className="disclaimer">
+          {/* <p className="disclaimer">
             Demo website: replace the WhatsApp number with the business number before publishing.
             Inclusions/exclusions shown here are website defaults and can be updated to your actual terms.
-          </p>
+          </p> */}
         </aside>
       </div>
     </main>

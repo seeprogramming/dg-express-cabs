@@ -1,10 +1,44 @@
-import routesData from "@/data/routes.json";
+import websiteRates from "@/data/website-rates.json";
 import vehiclesData from "@/data/vehicles.json";
 import airportsData from "@/data/airports.json";
 import type { RouteInfo, VehicleInfo, AirportInfo } from "@/types";
 
+export interface WebsiteRateRoute {
+  from: string;
+  to: string;
+  fares: Record<string, number>;
+}
+
+export interface LocalRentalPlan {
+  hours: number;
+  km: number;
+  label: string;
+  fare: number;
+}
+
+export interface LocalRentalVehicle {
+  vehicle: string;
+  plans: LocalRentalPlan[];
+}
+
 export function getRoutes(): RouteInfo[] {
-  return routesData as RouteInfo[];
+  // Convert one_way routes to RouteInfo format (using lowest fare, usually hatchback)
+  const oneWayRoutes = websiteRates.one_way as WebsiteRateRoute[];
+  return oneWayRoutes.map((r) => {
+    // Find the minimum fare to use as starting fare
+    const startingFare = Math.min(...Object.values(r.fares));
+    return {
+      from: r.from,
+      to: r.to,
+      fare: startingFare,
+    };
+  });
+}
+
+export function findRoute(from: string, to: string): RouteInfo | null {
+  const norm = (v: string) => v.trim().toLowerCase();
+  const routes = getRoutes();
+  return routes.find((r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)) || null;
 }
 
 export function getVehicles(): VehicleInfo[] {
@@ -15,21 +49,77 @@ export function getAirports(): AirportInfo[] {
   return airportsData as AirportInfo[];
 }
 
-export function findRoute(from: string, to: string): RouteInfo | undefined {
-  const norm = (v: string) => v.trim().toLowerCase();
-  return (routesData as RouteInfo[]).find(
-    (r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)
-  );
+// Map the vehicle info category to the key used in website-rates.json
+export function getVehicleRateKey(category: string): string {
+  const mapping: Record<string, string> = {
+    "Hatchback": "hatchback",
+    "Sedan": "sedan",
+    "SUV": "suv",
+    "Innova / Kia Carens": "innova_kia_carens",
+    "Innova Crysta": "innova_crysta"
+  };
+  return mapping[category] || category.toLowerCase();
 }
 
-export function calculateFare(
-  baseFare: number,
-  multiplier: number,
+export function getLocalRentalVehicleKey(category: string): string {
+  const mapping: Record<string, string> = {
+    "Hatchback": "", // Typically not available in local
+    "Sedan": "Sedan",
+    "SUV": "SUV",
+    "Innova / Kia Carens": "Crysta", // Fallback or map Innova to Crysta if carens is missing
+    "Innova Crysta": "Crysta"
+  };
+  return mapping[category] || category;
+}
+
+export function getFareForMode(
+  from: string,
+  to: string,
+  category: string,
   mode: "one" | "round" | "airport" | "local"
-): number {
-  const modeFactor =
-    mode === "round" ? 1.55 : mode === "airport" ? 0.55 : mode === "local" ? 0.72 : 1.0;
-  return Math.round(baseFare * multiplier * modeFactor);
+): number | null {
+  const norm = (v: string) => v.trim().toLowerCase();
+  const rateKey = getVehicleRateKey(category);
+
+  if (mode === "one" || mode === "airport") {
+    const route = (websiteRates.one_way as WebsiteRateRoute[]).find(
+      (r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)
+    );
+    if (route && route.fares[rateKey]) {
+      return route.fares[rateKey];
+    }
+  } else if (mode === "round") {
+    const route = (websiteRates.round_trip as WebsiteRateRoute[]).find(
+      (r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)
+    );
+    if (route && route.fares[rateKey]) {
+      return route.fares[rateKey];
+    }
+  }
+  return null;
+}
+
+export function getLocalRentalPlans(category: string): LocalRentalPlan[] | null {
+  const localVehicleKey = getLocalRentalVehicleKey(category);
+  const rentals = websiteRates.local_rentals as LocalRentalVehicle[];
+  const match = rentals.find((r) => r.vehicle === localVehicleKey);
+  return match ? match.plans : null;
+}
+
+export function getRoundTripRoutes(): RouteInfo[] {
+  const roundTrip = websiteRates.round_trip as WebsiteRateRoute[];
+  return roundTrip.map((r) => {
+    const startingFare = Math.min(...Object.values(r.fares));
+    return {
+      from: r.from,
+      to: r.to,
+      fare: startingFare,
+    };
+  });
+}
+
+export function getLocalRentals(): LocalRentalVehicle[] {
+  return websiteRates.local_rentals as LocalRentalVehicle[];
 }
 
 export function routeSlug(from: string, to: string): string {

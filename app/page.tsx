@@ -6,21 +6,23 @@ import PackageSection from "@/components/PackageSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import RouteRibbon from "@/components/RouteRibbon";
 import TravelGallery from "@/components/TravelGallery";
+import MumbaiOutstationPoster from "@/components/MumbaiOutstationPoster";
 import { getRoutes, getVehicles, getAirports } from "@/lib/routes";
-import { getAllPackages } from "@/lib/packages";
+import { getFeaturedPackages } from "@/lib/packages";
 
 export default function HomePage() {
   const routes = getRoutes();
   const vehicles = getVehicles();
   const airports = getAirports();
-  const packages = getAllPackages();
+  const packages = getFeaturedPackages();
 
   return (
     <main>
       <Hero />
       <CabSearch vehicles={vehicles} initialFrom="Pune" initialTo="Mumbai" />
       <WhyChooseUs />
-      <PopularRides rides={routes} />
+      <MumbaiOutstationPoster />
+      <PopularRides rides={routes.slice(0, 4)} showViewAll={true} />
       <AirportTransfers airports={airports} />
       <PackageSection packages={packages} />
       <RouteRibbon />

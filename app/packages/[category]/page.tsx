@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const cat = getCategoryBySlug(category);
   if (!cat) {
-    return { title: "Packages | RelaxCabs" };
+    return { title: "Packages | D&G Express Cabs" };
   }
 
   return {
@@ -46,9 +46,9 @@ export default async function PackageCategoryPage({ params }: Props) {
             <div>
               <div className="ey">{cat.category.toUpperCase()}</div>
               <h1>
-                Pick your hill
+                Explore
                 <br />
-                escape.
+                {cat.category}.
               </h1>
               <p>
                 {cat.description ||

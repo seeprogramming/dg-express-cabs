@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ImageWithFallback from "@/components/ImageWithFallback";
 
 interface PackageHeroProps {
   from: string;
@@ -6,6 +7,7 @@ interface PackageHeroProps {
   durationLabel: string;
   title: string;
   intro: string;
+  heroImage?: string;
 }
 
 export default function PackageHero({
@@ -14,12 +16,23 @@ export default function PackageHero({
   durationLabel,
   title,
   intro,
+  heroImage,
 }: PackageHeroProps) {
   return (
     <section className="pageHero">
       <div className="container">
-        <div className="wrap">
-          <div>
+        <div className="wrap relative overflow-hidden bg-[#0a3731] !bg-none">
+          {heroImage && (
+            <ImageWithFallback 
+              src={heroImage} 
+              alt={title}
+              className="absolute inset-0 w-full h-full object-cover z-0"
+              fallback="https://images.unsplash.com/photo-1595658658481-d53d3f999875?auto=format&fit=crop&w=1400&q=82"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a3731f5] to-[#0a373194] z-10" />
+          
+          <div className="relative z-20">
             <div className="ey">
               {from.toUpperCase()} → {destination.toUpperCase()} · {durationLabel}
             </div>
@@ -34,7 +47,6 @@ export default function PackageHero({
               </Link>
             </div>
           </div>
-          <div className="heroEmoji">🏞️</div>
         </div>
       </div>
     </section>
