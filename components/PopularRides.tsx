@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { formatINR } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 import type { RouteInfo } from "@/types";
@@ -34,8 +35,17 @@ export default function PopularRides({ rides, showViewAll }: PopularRidesProps) 
               <div className="card" key={`${r.from}-${r.to}`}>
                 <div
                   className="art"
-                  style={{ backgroundImage: `url(${getRouteImage(r)})` }}
-                />
+                  style={{ position: "relative", overflow: "hidden" }}
+                >
+                  <Image
+                    src={getRouteImage(r)}
+                    alt={`Cab route from ${r.from} to ${r.to}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    loading="lazy"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
                 <div className="body">
                   <h3>
                     {r.from} → {r.to}

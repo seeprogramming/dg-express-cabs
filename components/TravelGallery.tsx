@@ -7,7 +7,7 @@ export default function TravelGallery() {
             <div className="ey">ON THE ROAD</div>
             <h2>A glimpse of the journey.</h2>
           </div>
-          <p>A restrained visual strip inspired by the reference site&apos;s travel-gallery treatment.</p>
+          <p>Comfortable outstation rides, airport transfers and weekend escapes across Maharashtra.</p>
         </div>
         <div className="galleryGrid">
           <div className="galleryTile">

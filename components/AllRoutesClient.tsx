@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { formatINR } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 import type { RouteInfo } from "@/types";
@@ -156,11 +157,20 @@ export default function AllRoutesClient({
                       <div
                         className="art"
                         style={{
-                          backgroundImage: `url(${getRouteImage(r.to)})`,
+                          position: "relative",
+                          overflow: "hidden",
                         }}
                       >
+                        <Image
+                          src={getRouteImage(r.to)}
+                          alt={`Cab route from ${r.from} to ${r.to}`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                          loading="lazy"
+                          style={{ objectFit: "cover" }}
+                        />
                         <span
-                          className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg backdrop-blur-sm"
+                          className="absolute top-3 left-3 text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-lg backdrop-blur-sm z-10"
                           style={{
                             background:
                               mode === "round_trip"
@@ -223,19 +233,27 @@ export default function AllRoutesClient({
                   {v.plans.map((plan) => (
                     <div
                       key={plan.label}
-                      className="flex items-center justify-between p-3 rounded-xl bg-[#f7f5eb] border border-[#eef2eb] hover:border-[#62c33a] transition-colors"
+                      className="flex items-center justify-between p-3.5 rounded-2xl bg-white border border-[#dce5da] shadow-sm hover:border-[#62c33a] hover:shadow-md transition-all group"
                     >
-                      <div>
-                        <span className="text-sm font-extrabold text-[#123f38]">
-                          {plan.hours} hrs / {plan.km} km
-                        </span>
-                        <span className="text-[11px] text-[#a5b3ac] ml-2 font-bold">
-                          ({plan.label})
+                      <div className="flex items-center gap-3.5">
+                        <div className="bg-[#f0f7ec] border border-[#dce5da] group-hover:border-[#62c33a]/30 rounded-xl px-3 py-2 flex flex-col items-center justify-center transition-colors">
+                          <span className="text-sm font-extrabold text-[#123f38] leading-none">{plan.label}</span>
+                          <span className="text-[10px] text-[#62c33a] font-bold mt-1">PKG</span>
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-sm font-extrabold text-[#123f38]">
+                            {plan.km} km &amp; {plan.hours} hrs
+                          </span>
+                          <span className="text-xs text-[#a5b3ac] font-medium mt-0.5">
+                            City Limit
+                          </span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-lg font-extrabold text-[#123f38] block">
+                          {formatINR(plan.fare)}
                         </span>
                       </div>
-                      <span className="text-lg font-extrabold text-[#123f38]">
-                        {formatINR(plan.fare)}
-                      </span>
                     </div>
                   ))}
                 </div>

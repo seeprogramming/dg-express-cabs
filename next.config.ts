@@ -16,7 +16,24 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "api.qrserver.com",
       },
+      {
+        protocol: "https",
+        hostname: "commons.wikimedia.org",
+      },
+      {
+        protocol: "https",
+        hostname: "upload.wikimedia.org",
+      },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/booking",
+        destination: "/cabs/details",
+        permanent: true,
+      },
+    ];
   },
 };
 

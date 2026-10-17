@@ -6,7 +6,7 @@
     "bags": 2,
     "multiplier": 0.96,
     "icon": "🚗",
-    "image": "/images/waganr.avif"
+    "image": "/images/wagonr.png"
   },
   {
     "category": "Sedan",
@@ -15,7 +15,7 @@
     "bags": 2,
     "multiplier": 1.0,
     "icon": "🚘",
-    "image": "/images/dzire.webp"
+    "image": "/images/dzire.png"
   },
   {
     "category": "SUV",
@@ -24,7 +24,7 @@
     "bags": 3,
     "multiplier": 1.18,
     "icon": "🚙",
-    "image": "/images/ertiga.avif"
+    "image": "/images/ertiga.png"
   },
   {
     "category": "Innova / Kia Carens",
@@ -33,7 +33,7 @@
     "bags": 4,
     "multiplier": 1.5,
     "icon": "🚐",
-    "image": "/images/kia_carens.webp"
+    "image": "/images/kia_carens.png"
   },
   {
     "category": "Innova Crysta",
@@ -42,6 +42,6 @@
     "bags": 4,
     "multiplier": 1.78,
     "icon": "🚐",
-    "image": "/images/innova.webp"
+    "image": "/images/innova.png"
   }
 ]

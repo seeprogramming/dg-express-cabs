@@ -1,5 +1,11 @@
 import Link from "next/link";
-import ImageWithFallback from "@/components/ImageWithFallback";
+import Image from "next/image";
+import Breadcrumb from "@/components/Breadcrumb";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
 
 interface PackageHeroProps {
   from: string;
@@ -8,6 +14,7 @@ interface PackageHeroProps {
   title: string;
   intro: string;
   heroImage?: string;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
 export default function PackageHero({
@@ -17,22 +24,28 @@ export default function PackageHero({
   title,
   intro,
   heroImage,
+  breadcrumbs,
 }: PackageHeroProps) {
   return (
     <section className="pageHero">
       <div className="container">
         <div className="wrap relative overflow-hidden bg-[#0a3731] !bg-none">
           {heroImage && (
-            <ImageWithFallback 
-              src={heroImage} 
+            <Image
+              src={heroImage}
               alt={title}
-              className="absolute inset-0 w-full h-full object-cover z-0"
-              fallback="https://images.unsplash.com/photo-1595658658481-d53d3f999875?auto=format&fit=crop&w=1400&q=82"
+              fill
+              priority
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover z-0"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a3731f5] to-[#0a373194] z-10" />
-          
+
           <div className="relative z-20">
+            {breadcrumbs && breadcrumbs.length > 0 && (
+              <Breadcrumb items={breadcrumbs} />
+            )}
             <div className="ey">
               {from.toUpperCase()} → {destination.toUpperCase()} · {durationLabel}
             </div>

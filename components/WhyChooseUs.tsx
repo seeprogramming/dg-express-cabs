@@ -1,15 +1,16 @@
 import React from "react";
+import Image from "next/image";
 
 export default function WhyChooseUs() {
   const whyPoints = [
     { title: "2-Hour Advance Booking", desc: "Plan your trip with just a 2-hour notice. We are always ready for your last-minute plans.", icon: "⏱️" },
-    { title: "A Cab That Arrives", desc: "No last-minute cancellations from our end. When you book a cab, we guarantee we'll show up.", icon: "🚕" },
+    { title: "A Cab That Arrives", desc: "Reliable scheduling for your outstation travel. When you book a cab, we are dedicated to on-time arrival.", icon: "🚕" },
     { title: "Free Cancellation", desc: "Change in plans? No worries. Cancel your ride for free up to 2 hours before your scheduled pickup.", icon: "🆓" },
     { title: "Verified Chauffeurs", desc: "Travel with peace of mind. Our drivers are experienced, highly trained, and fully background-checked.", icon: "👨‍✈️" },
     { title: "Clean & Comfortable Cars", desc: "Enjoy a premium ride every time. Our vehicles are strictly maintained, sanitized, and fully air-conditioned.", icon: "✨" },
     { title: "Real-Time Ride Tracking", desc: "Safety first. Track your cab in real-time and share your live location with your loved ones.", icon: "📍" },
     { title: "24×7 Human Support", desc: "No frustrating bots. Talk or chat with our dedicated human support team anytime you need assistance.", icon: "🎧" },
-    { title: "Transparent GST Invoices", desc: "Clear billing with absolutely no hidden charges. Get perfect, compliant invoices for your corporate travel.", icon: "🧾" },
+    { title: "Transparent GST Invoices", desc: "Clear and transparent billing with itemized breakdowns. Get compliant invoices for your travel.", icon: "🧾" },
   ];
 
   return (
@@ -19,19 +20,22 @@ export default function WhyChooseUs() {
         <div className="container">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="w-full lg:w-1/2 relative rounded-[32px] overflow-hidden shadow-2xl h-[400px] lg:h-[540px] group">
-               <img 
+               <Image 
                  src="https://images.pexels.com/photos/4606402/pexels-photo-4606402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=900&dpr=2" 
                  alt="Comfortable intercity cab travel" 
-                 className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" 
+                 fill
+                 sizes="(max-width: 1024px) 100vw, 50vw"
+                 loading="lazy"
+                 className="object-cover transition-transform duration-700 group-hover:scale-105" 
                />
                <div className="absolute inset-0 bg-gradient-to-t from-[#123f38]/60 to-transparent pointer-events-none" />
                <div className="absolute bottom-8 left-8 text-white pr-8">
-                 <div className="text-2xl font-extrabold mb-1">D&G Express</div>
+                 <div className="text-2xl font-extrabold mb-1">D&G Express Cabs</div>
                  <div className="text-sm opacity-90">Premium outstation travel since 2018</div>
                </div>
             </div>
             <div className="w-full lg:w-1/2">
-              <div className="text-[13px] font-extrabold uppercase tracking-[2px] text-[var(--g)] mb-3">ABOUT D&G EXPRESS</div>
+              <div className="text-[13px] font-extrabold uppercase tracking-[2px] text-[var(--g)] mb-3">ABOUT D&G EXPRESS CABS</div>
               <h2 className="font-['Plus_Jakarta_Sans'] text-4xl lg:text-5xl font-extrabold leading-[1.15] tracking-[-1.5px] text-[var(--d)] mb-6">
                 Your reliable travel partner.
               </h2>

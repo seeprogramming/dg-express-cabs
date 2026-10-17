@@ -1,0 +1,731 @@
+================================================================================
+COMPLETE SEO READINESS AUDIT REPORT
+PROJECT: D&G Express Cabs (Next.js)
+DATE: October 14, 2026
+STATUS: INSPECTION & AUDIT ONLY (NO CODE OR DESIGN MODIFIED)
+================================================================================
+
+--------------------------------------------------------------------------------
+TABLE OF CONTENTS
+--------------------------------------------------------------------------------
+1.  Next.js Version & Router Architecture
+2.  Current Route & Page Structure
+3.  Current SEO Implementation Audit
+    - Metadata
+    - Page Titles
+    - Meta Descriptions
+    - Canonical URLs
+    - Open Graph & Twitter Cards
+    - robots.ts / robots.txt
+    - sitemap.ts / sitemap.xml
+    - JSON-LD / Structured Data
+    - Breadcrumbs
+    - Image Alt Text & Image Optimization
+    - Heading Structure (H1-H6)
+4.  Dynamic Pages Generation Analysis
+5.  Data Sources & Schema Inventory
+6.  Rendering Breakdown: Static vs Server vs Client
+7.  Initial Server-Rendered HTML vs Client-Side JavaScript
+8.  Duplicate & Thin Page Risks
+9.  Recommended Indexable Pages
+10. Recommended Noindex Pages
+11. Internal Linking Architecture Audit
+12. SEO Technical Issues Inventory
+13. Core Web Vitals & Performance SEO Audit
+14. SEO Keyword JSON Location
+15. Recommended Placement for seo-keywords.json
+16. Old / Incorrect Branding Audit
+17. Third-Party Cab Companies & Competitors Audit
+18. Data Truth Verification (Services vs SEO Keywords)
+---
+SECTION A: Current SEO Architecture
+SECTION B: What is Already Implemented Correctly
+SECTION C: What is Missing
+SECTION D: What Needs Improvement
+SECTION E: Files Recommended to Create
+SECTION F: Files Recommended to Modify
+SECTION G: Detailed List of Pages Needing SEO Work
+SECTION H: Duplicate & Thin-Content Risk Matrix
+SECTION I: Old Branding Inventory & File Locations
+SECTION J: Recommended Phased Implementation Order
+
+================================================================================
+1. NEXT.JS VERSION & ROUTER ARCHITECTURE
+================================================================================
+- Next.js Version: 16.3.5 (configured in package.json as "^16.3.5")
+- React Version: 19.3.0 ("react": "^19.3.0", "react-dom": "^19.3.0")
+- Router Type: Next.js App Router exclusively (located in `/app`).
+- There is NO Pages Router (`/pages` directory does not exist).
+- Note: Next.js 16 follows async route params conventions (e.g. `const { route } = await params;`), which is already respected in the current route code.
+
+================================================================================
+2. CURRENT ROUTE & PAGE STRUCTURE
+================================================================================
+The project currently exposes the following public URLs and pages:
+
+STATIC / DIRECTORY PAGES:
+1.  `/`
+    - File: `app/page.tsx`
+    - Purpose: Main homepage, cab search widget, why us, popular rides, airport transfers preview, package highlights, travel strip.
+2.  `/cabs`
+    - File: `app/cabs/page.tsx`
+    - Purpose: Directory of all one-way routes, round-trip routes, and hourly local rental options.
+3.  `/airports`
+    - File: `app/airports/page.tsx`
+    - Purpose: Airport transfer services hub (Pune PNQ, Mumbai BOM, Nashik ISK).
+4.  `/packages`
+    - File: `app/packages/page.tsx`
+    - Purpose: Complete tour package directory categorized by destination/theme.
+5.  `/cabs/details`
+    - File: `app/cabs/details/page.tsx`
+    - Purpose: Booking inquiry & cab details review (driven by query params).
+6.  `/booking`
+    - File: `app/booking/page.tsx`
+    - Purpose: Identical duplicate of `/cabs/details`.
+
+DYNAMIC ROUTE PAGES:
+7.  `/cabs/[route]`
+    - File: `app/cabs/[route]/page.tsx`
+    - Count: 32 pre-rendered routes generated via generateStaticParams().
+    - Example URLs:
+      - `/cabs/pune-to-mumbai`
+      - `/cabs/mumbai-to-pune`
+      - `/cabs/pune-to-nashik`
+      - `/cabs/nashik-to-pune`
+      - `/cabs/mumbai-to-nashik`
+      - `/cabs/nashik-to-mumbai`
+      - `/cabs/pune-to-lonavala`
+      - `/cabs/pune-to-mahabaleshwar`
+      - `/cabs/mumbai-to-mahabaleshwar`
+      - `/cabs/pune-to-kolhapur`
+      - `/cabs/mumbai-to-kolhapur`
+      - `/cabs/pune-to-satara`
+      - `/cabs/pune-to-sangli`
+      - `/cabs/pune-to-igatpuri`
+      - `/cabs/mumbai-to-igatpuri`
+8.  `/packages/[category]`
+    - File: `app/packages/[category]/page.tsx`
+    - Count: 5 pre-rendered category hubs generated via generateStaticParams():
+      - `/packages/mahabaleshwar`
+      - `/packages/goa`
+      - `/packages/konkan`
+      - `/packages/ashtavinayak`
+      - `/packages/jyotirlinga`
+9.  `/packages/[category]/[slug]`
+    - File: `app/packages/[category]/[slug]/page.tsx`
+    - Count: 47 pre-rendered individual tour package pages generated via generateStaticParams().
+    - Examples:
+      - `/packages/mahabaleshwar/grand-exploration-mahayatra`
+      - `/packages/ashtavinayak/ashtavinayak-ex-pune-2d`
+      - `/packages/goa/north-goa-highlights`
+      - `/packages/jyotirlinga/trimbakeshwar-bhimashankar-darshan`
+
+SPECIAL METADATA / SYSTEM ROUTES:
+10. `/robots.txt` generated dynamically via `app/robots.ts`
+11. `/sitemap.xml` generated dynamically via `app/sitemap.ts`
+
+================================================================================
+3. CURRENT SEO IMPLEMENTATION AUDIT
+================================================================================
+
+A. METADATA:
+- Root Layout (`app/layout.tsx`):
+  - Sets `metadataBase: new URL(siteConfig.url)`. PROBLEM: `siteConfig.url` is set to "https://relaxcabs.vercel.app" (legacy brand/staging URL).
+  - Title template: `%s | D&G Express Cabs`.
+  - Default title: "D&G Express Cabs — Rides, Airports & Tours".
+  - Default description: "Airport transfers, intercity cabs and weekend escapes — comfortable private cab booking with transparent pricing and WhatsApp assistance."
+  - Default keywords: ["cabs in pune", "pune to mumbai cab", "mahabaleshwar tour package", "airport taxi pune", "mumbai airport cab", "sedan ertiga crysta outstation"].
+  - Robots: `{ index: true, follow: true }`.
+- Homepage (`app/page.tsx`):
+  - Does NOT export any page-specific metadata. It blindly inherits root layout fallback.
+- Subpages:
+  - All subpages define static or dynamic metadata objects, but none utilize canonical links, keywords, or breadcrumb meta.
+
+B. PAGE TITLES:
+- `/` -> "D&G Express Cabs — Rides, Airports & Tours" (Generic, lacks targeted local outstation keywords).
+- `/cabs` -> "All Cab Routes — One Way, Round Trip & Local Rentals | D&G Express Cabs"
+- `/airports` -> "Airport Cabs & Transfers — Pune (PNQ), Mumbai (BOM), Nashik (ISK) | D&G Express Cabs"
+- `/packages` -> "Curated Tour Packages & Weekend Getaways | D&G Express Cabs"
+- `/cabs/[route]` -> `${from} to ${to} Cab Service | D&G Express Cabs`
+  - ERROR FALLBACK: Line 25 in `app/cabs/[route]/page.tsx` returns `title: "Cab Route | RelaxCabs"`.
+- `/packages/[category]` -> `${cat.category} — Cab Tour Packages | D&G Express Cabs`
+- `/packages/[category]/[slug]` -> `${pkg.route.from} to ${dest} Cab Package - ${durationStr} | D&G Express Cabs`
+- `/cabs/details` -> "Cab Details & Booking | D&G Express Cabs"
+- `/booking` -> "Online Cab Booking | D&G Express Cabs"
+
+C. META DESCRIPTIONS:
+- Descriptions exist on all pages, but are largely formulaic.
+- Route pages use: `Book reliable private AC cabs from ${parsed.from} to ${parsed.to}.${startingFare} Choose Sedan, Ertiga, or Crysta with professional drivers and doorstep pickup.`
+- None of the high-intent keywords from `data/seo/seo-keywords.json` are systematically targeted.
+
+D. CANONICAL URLS:
+- SEVERE ISSUE: Zero canonical tags are implemented across the entire project. Neither root `metadataBase` nor individual pages define `alternates: { canonical: "..." }`.
+- URLs with trailing slashes, uppercase parameters, or query strings risk duplicate content indexing.
+
+E. OPEN GRAPH:
+- Defined in root layout with `siteName: "D&G Express Cabs"`, `locale: "en_IN"`, and fallback hero image from Pexels.
+- Route pages (`/cabs/[route]`): Only define title and description; missing `url`, `type`, `images`.
+- Category pages (`/packages/[category]`): Only define title and description; missing `url`, `type`, `images`.
+- Package detail pages: Define title, description, and hero image. Missing canonical `url` and `type: "article"` or `"website"`.
+- `/cabs`, `/airports`, `/booking`, `/cabs/details`: No custom OG metadata.
+
+F. TWITTER METADATA:
+- Configured only in root layout with `card: "summary_large_image"`.
+- No page-level customization exists on any subpage.
+
+G. ROBOTS.TS / ROBOTS.TXT:
+- Implemented in `app/robots.ts`:
+  ```ts
+  rules: {
+    userAgent: "*",
+    allow: "/",
+    disallow: ["/api/"],
+  }
+  ```
+- FLAW: Does NOT disallow or noindex `/cabs/details`, `/booking`, or query-string URLs.
+- Points sitemap to `${siteConfig.url}/sitemap.xml` which resolves to the old domain `relaxcabs.vercel.app`.
+
+H. SITEMAP.TS / SITEMAP.XML:
+- Implemented in `app/sitemap.ts`.
+- CRITICAL FLAWS:
+  1. `/cabs` (the main catalog of all routes and local rentals) is COMPLETELY MISSING from the sitemap!
+  2. `/cabs/details` (a query-parameter booking step) IS included in the sitemap with priority 0.6!
+  3. Uses `siteConfig.url` which hardcodes `https://relaxcabs.vercel.app`.
+  4. Includes 32 route pages, 5 category pages, and 47 package pages.
+
+I. JSON-LD / STRUCTURED DATA:
+- Root Layout (`app/layout.tsx`):
+  - Embeds `@type: "AutoRental"` schema with name "D&G Express Cabs", phone "+917030813082", Lohgaon address, and areaServed.
+- Package Detail Pages (`app/packages/[category]/[slug]/page.tsx`):
+  - Embeds `@type: "TouristTrip"` schema with `offers` (Sedan, SUV, Crysta prices) and day-wise `itinerary` (`ItemList`).
+- MISSING STRUCTURED DATA:
+  - Route pages have NO `TaxiService` or `Service` or `FAQPage` schema.
+  - No `BreadcrumbList` schema on ANY page.
+  - No `FAQPage` schema on any page.
+  - Local rental and airport pages have no dedicated schema.
+
+J. BREADCRUMBS:
+- COMPLETELY ABSENT throughout the entire project.
+- No breadcrumb UI elements exist on route pages, category pages, or package detail pages.
+- No Schema.org `BreadcrumbList` exists.
+
+K. IMAGE ALT TEXT & OPTIMIZATION:
+- `next/image` `<Image />` is only used in 1 single component (`PackagePricing.tsx`).
+- Everywhere else uses native `<img>` or CSS `background-image: url(...)`.
+- `CabSearch.tsx`: `<img src={v.image} alt={v.category} />` (alt is just "Sedan", "SUV", lacking route/brand context).
+- `AllRoutesClient.tsx`, `AirportTransfers.tsx`, `PopularRides.tsx`: Use CSS `background-image`, rendering images invisible to Google Image Search with zero alt text.
+- External images are loaded directly from Unsplash and Pexels with uncompressed sizes.
+
+L. HEADING STRUCTURE (H1-H6):
+- Homepage (`/`):
+  - H1: "Journeys made easy & memorable." (In `Hero.tsx`). Extremely weak for SEO. Does not contain "cab", "outstation", "Pune", "Mumbai", or "taxi".
+  - H2s: "Your reliable travel partner.", "Routes people love.", "Flights are stressful...", "Turn the ride into a trip."
+- `/cabs`:
+  - H1: "Every route, one place." (Thin/generic).
+  - Skips H2 directly to H3 in route cards.
+- `/airports`:
+  - H1: "Flights are stressful. Your ride shouldn't be."
+  - H2: Identical text repeated in `AirportTransfers.tsx`!
+- `/cabs/[route]`:
+  - H1: "{from} to {to} cab service." (Good baseline, but missing primary vehicle keywords like Sedan, Ertiga, Crysta).
+  - H2: "Why book {from} to {to} with D&G Express Cabs?"
+- `/packages`:
+  - H1: "Pick your escape." (Creative slogan, not search-intent focused).
+  - H2s: Destination categories.
+- `/packages/[category]`:
+  - H1: "Explore {category}."
+  - H2: "Explore {category}." (Repeated heading text on the same page).
+- `/cabs/details` & `/booking`:
+  - H1: "{vehicle} — {model}" (e.g. "Sedan — Dzire / Aura").
+
+================================================================================
+4. DYNAMIC PAGES GENERATION ANALYSIS
+================================================================================
+A. CAB ROUTES:
+- Path: `app/cabs/[route]/page.tsx`
+- Generation Method: Next.js SSG via `export async function generateStaticParams()`.
+- Data function: Calls `getRoutes()` from `lib/routes.ts`.
+- Source Data: Reads `websiteRates.one_way` from `data/website-rates.json`.
+- Slugs Generated: 32 one-way routes (e.g., `pune-to-mumbai`, `mumbai-to-pune`).
+- GAP: The 8 round-trip routes in `websiteRates.round_trip` (e.g. Pune-Mumbai Round Trip, Pune-Nashik Round Trip) do NOT have dedicated static pages or distinct URLs.
+
+B. AIRPORT ROUTES:
+- Path: `app/airports/page.tsx`
+- Generation Method: Single static page.
+- Source Data: Reads `data/airports.json`.
+- GAP: NO dynamic airport route pages exist. Searches like "Pune to Mumbai Airport Cab" or "Pune Airport to Hinjewadi Taxi" have no dedicated landing pages; all 3 airports are merely presented as static cards on `/airports`.
+
+C. LOCAL RENTALS:
+- Path: `app/cabs/page.tsx` (nested inside `AllRoutesClient.tsx`)
+- Generation Method: Client-side state toggle (`mode === "local_rentals"`).
+- Source Data: Reads `websiteRates.local_rentals` from `data/website-rates.json`.
+- GAP: NO dedicated indexable pages or URLs exist for local rentals (e.g., no `/rentals` or `/cabs/pune-local-rental`). They cannot be indexed individually by search engines.
+
+D. TOUR PACKAGES:
+- Categories:
+  - Path: `app/packages/[category]/page.tsx`
+  - Generation: SSG via `generateStaticParams()` returning 5 categories (`mahabaleshwar`, `goa`, `konkan`, `ashtavinayak`, `jyotirlinga`).
+- Package Details:
+  - Path: `app/packages/[category]/[slug]/page.tsx`
+  - Generation: SSG via `generateStaticParams()` calling `getAllPackages()`.
+  - Generates 47 distinct static pages across the 5 categories.
+
+================================================================================
+5. DATA SOURCES & SCHEMA INVENTORY
+================================================================================
+1. `data/website-rates.json` (10,646 bytes):
+   - TRUE SOURCE OF TRUTH for cab pricing.
+   - Contains:
+     - `one_way`: 32 routes with tiered vehicle pricing (hatchback, sedan, suv, innova_kia_carens, innova_crysta).
+     - `round_trip`: 8 routes with tiered vehicle pricing.
+     - `local_rentals`: 3 vehicle types (Sedan, SUV, Crysta) with 4hr/40km, 8hr/80km, 12hr/120km packages.
+2. `data/routes.json` (2,208 bytes):
+   - Redundant legacy file containing 32 routes with only flat sedan fares.
+   - Currently NOT imported by `lib/routes.ts` (only referenced in old README.md).
+3. `data/vehicles.json` (905 bytes):
+   - 5 vehicle categories: Hatchback (WagonR), Sedan (Dzire/Aura), SUV (Ertiga/Rumion), Innova/Kia Carens, Innova Crysta.
+   - Contains seat counts, luggage capacity, multipliers, and local image paths.
+4. `data/airports.json` (818 bytes):
+   - 3 airports: Pune (PNQ, fare 899), Mumbai (BOM, fare 1199), Nashik (ISK, fare 799).
+5. `data/packages/`:
+   - `ashtavinayak.json` (17,811 bytes, 15 packages)
+   - `jyotirlinga.json` (12,114 bytes, 12 packages)
+   - `konkan.json` (15,756 bytes, 12 packages)
+   - `goa.json` (7,561 bytes, 4 packages)
+   - `mahabaleshwar.json` (7,065 bytes, 4 packages)
+   - Total packages: 47 packages with itineraries, stops, and vehicle rates.
+6. `config/site.ts` (1,748 bytes):
+   - Site configuration, phone numbers (+91 70308 13082, +91 70308 08151), WhatsApp, address, navigation links, and stock image URLs.
+7. `data/seo/seo-keywords.json` (62,003 bytes, 1,928 lines):
+   - Dedicated master SEO keyword database.
+   - Contains brand rules, search intent mapping, city clusters, route clusters, airport clusters, package clusters, vehicle keyword clusters, long-tail patterns, and page mapping rules.
+
+================================================================================
+6. RENDERING BREAKDOWN: STATIC VS SERVER VS CLIENT
+================================================================================
+- Static Pre-rendered Pages (SSG):
+  - `/` (Home)
+  - `/cabs` (All routes catalog)
+  - `/airports` (Airports hub)
+  - `/packages` (Packages hub)
+  - `/cabs/[route]` (32 routes generated at build time)
+  - `/packages/[category]` (5 category pages generated at build time)
+  - `/packages/[category]/[slug]` (47 package detail pages generated at build time)
+- Dynamic Server-Rendered (SSR on demand):
+  - None. All pages use static generation with JSON data.
+- Client-Rendered Components ("use client"):
+  - `components/CabSearch.tsx`: Search widget, tab switches, dynamic fare calculations, and results rendering.
+  - `components/CabDetails.tsx`: Reads URL query params, renders vehicle specs, booking form, WhatsApp link, QR code.
+  - `components/AllRoutesClient.tsx`: Client-side tabs (one-way vs round-trip vs local rentals) and live city search filter.
+  - `components/PackagePricing.tsx`: Client-side vehicle selector (Sedan/Ertiga/Crysta), WhatsApp booking link generator, booking modal.
+  - `components/ImageWithFallback.tsx`: Client-side image fallback handler.
+
+================================================================================
+7. SERVER-RENDERED HTML VS CLIENT-SIDE JAVASCRIPT
+================================================================================
+CRITICAL SEO DEFICIENCY:
+1. On `/cabs/[route]`:
+   - In `CabSearch.tsx`, `const [hasSearched, setHasSearched] = useState(false);`.
+   - The entire vehicle selection panel (`<section id="resSec">`), which contains all vehicle categories (Sedan, Ertiga, Innova, Crysta), seat capacity, luggage limits, and exact fares, is CONDITIONAL ON `hasSearched === true`.
+   - On initial server render, `hasSearched` is FALSE.
+   - Consequently, the initial HTML delivered to Googlebot and other web crawlers CONTAINS NO VEHICLE RATES, NO VEHICLE COMPARISONS, AND NO PRICING TABLE!
+   - Crawlers only see the hero text and a 2-sentence "Why book" blurb. This severely impairs rankings for searches like "Pune to Mumbai cab fare", "Innova Crysta Pune to Mumbai price", etc.
+2. On `/cabs`:
+   - Initial HTML only renders the 32 one-way routes.
+   - The 8 round-trip routes and 3 local rental plans are completely hidden until a user clicks client-side buttons. Search engine bots do not trigger these state changes.
+3. On `/cabs/details` & `/booking`:
+   - The entire page depends on `useSearchParams()`. Without JavaScript execution and active URL query params, the page defaults to blank/fallback dummy states.
+
+================================================================================
+8. DUPLICATE & THIN PAGE RISKS
+================================================================================
+1. Duplicate Page Pair: `/cabs/details` and `/booking`
+   - Both pages render the identical `<CabDetails />` component.
+   - Having two active URLs for the exact same function creates duplicate content and cannibalization.
+2. Query Parameter Pollution on `/cabs/details`:
+   - Every search interaction generates URLs like `/cabs/details?vehicle=Sedan&model=Dzire&seats=4&bags=2&from=Pune&to=Mumbai&price=2730`.
+   - Search engines crawling these URLs find identical thin content with minor parameter swaps.
+   - Currently, `/cabs/details` is in `sitemap.ts` and lacks a `noindex` tag.
+3. Thin Content on Route Pages (`/cabs/[route]`):
+   - All 32 route pages share identical boilerplate text ("Whether traveling for business, family vacation, or leisure...").
+   - There are no route-specific FAQs, no driving distance (km), no estimated travel duration (hours), no toll/expressway notes, and no unique destination landmarks.
+   - As noted in Section 7, the pricing table is not in the server-rendered HTML.
+4. Bidirectional Route Cannibalization:
+   - For example, `/cabs/pune-to-mumbai` and `/cabs/mumbai-to-pune` have identical templates and pricing. Without distinct location-specific context (e.g. Pune pickup hubs vs Mumbai drop points, Expressway tips), search engines may consider them duplicate thin variants.
+5. Tour Packages with Missing Itineraries:
+   - Several 1-day packages (e.g. single-day Ashtavinayak circuits) have no structured day-by-day itinerary, rendering only a route sequence and a 1-sentence description.
+
+================================================================================
+9. RECOMMENDED INDEXABLE PAGES
+================================================================================
+The following pages provide genuine search value and SHOULD be indexed:
+1.  `/` (Homepage - target: Outstation Cab Booking, Airport Cabs, Maharashtra)
+2.  `/cabs` (All Cab Routes Directory - target: Intercity Cabs, Local Rentals)
+3.  `/cabs/[route]` (All 32 verified routes - target: ${From} to ${To} Cab)
+4.  `/airports` (Airport Transfers Hub - target: Pune, Mumbai, Nashik Airport Cabs)
+5.  `/packages` (Tour Packages Hub - target: Outstation Cab Holiday Packages)
+6.  `/packages/[category]` (5 Category landing pages - target: Mahabaleshwar Packages, Ashtavinayak Darshan Cab, etc.)
+7.  `/packages/[category]/[slug]` (47 Individual package detail pages)
+
+Future recommended indexable pages:
+- Dedicated airport route pages (e.g., `/cabs/pune-to-mumbai-airport`)
+- Dedicated local rental pages (e.g., `/cabs/pune-local-cab-rental`)
+
+================================================================================
+10. RECOMMENDED NOINDEX PAGES
+================================================================================
+The following pages MUST be marked with `<meta name="robots" content="noindex, nofollow" />` and excluded from XML sitemaps:
+1.  `/cabs/details` (Booking transaction / query-parameter page)
+2.  `/booking` (Duplicate booking transaction page; or permanently 301 redirect to `/cabs/details`)
+3.  Any URLs containing search/filter query parameters (`?vehicle=`, `?price=`, `?from=`, `?to=`)
+4.  Any internal draft, test, or API endpoints
+
+================================================================================
+11. INTERNAL LINKING ARCHITECTURE AUDIT
+================================================================================
+A. HOMEPAGE LINKING:
+- Header links:
+  - "Rides" -> Points to `/#rides` (anchor on homepage). It does NOT link to the dedicated `/cabs` catalog!
+  - "Airports" -> Links to `/airports`.
+  - "Packages" -> Links to `/packages`.
+  - "Why Us" -> Points to `/#why`.
+- SEVERE HOMEPAGE 404 LINK:
+  - In `components/MumbaiOutstationPoster.tsx` (line 28):
+    `<Link href="/routes">Show all available cabs</Link>`
+    The route `/routes` DOES NOT EXIST! It returns a 404 error. It must point to `/cabs`.
+- In `components/RouteRibbon.tsx`:
+  - "Pune → Mahabaleshwar" links to `/packages/mahabaleshwar` instead of `/cabs/pune-to-mahabaleshwar`.
+- In `components/PopularRides.tsx`:
+  - Links to top 4 routes and has "View all routes →" linking to `/cabs`.
+
+B. ROUTE PAGES (`/cabs/[route]`):
+- Outbound links: Only links back to `/#rides` ("All popular rides").
+- MISSING:
+  - No link to reverse route (e.g. Pune to Mumbai does not link to Mumbai to Pune).
+  - No links to related nearby destinations (e.g. Lonavala, Mahabaleshwar).
+  - No links to relevant tour packages matching the destination (e.g., Pune to Mahabaleshwar cab page should link to Mahabaleshwar tour packages).
+  - No breadcrumbs linking back to `/` and `/cabs`.
+
+C. AIRPORT PAGES (`/airports`):
+- All airport cards in `AirportTransfers.tsx` are non-clickable static cards.
+- Does not link to specific cab routes connecting cities to airports (e.g., Pune to Mumbai Airport).
+- Only links to `/#rides`.
+
+D. PACKAGE CATEGORIES (`/packages/[category]`):
+- Cards link to individual packages `/packages/[category]/[slug]`.
+- MISSING:
+  - Does not link to cab routes for that destination (e.g., `/packages/goa` does not link to Goa outstation cabs).
+  - No breadcrumbs linking back to `/packages` and `/`.
+
+E. INDIVIDUAL PACKAGES (`/packages/[category]/[slug]`):
+- Links back to `/packages` ("All packages").
+- MISSING:
+  - Does NOT link back to its parent category `/packages/[category]`.
+  - Does NOT link to corresponding cab routes.
+  - No breadcrumbs.
+
+================================================================================
+12. SEO TECHNICAL ISSUES INVENTORY
+================================================================================
+1. Broken Internal Link (404 Error):
+   - `components/MumbaiOutstationPoster.tsx`: `<Link href="/routes">` creates a dead link on the live homepage.
+2. Inverted Sitemap Configuration:
+   - `app/sitemap.ts` OMITS `/cabs` (critical indexable hub).
+   - `app/sitemap.ts` INCLUDES `/cabs/details` (thin parameter booking utility).
+3. Legacy Staging URL in Metadata:
+   - `config/site.ts` hardcodes `url: "https://relaxcabs.vercel.app"`.
+   - Propagates into `metadataBase`, sitemap URLs, robots sitemap directive, and Open Graph URLs.
+4. Old Brand Name in Metadata Fallback:
+   - `app/cabs/[route]/page.tsx` (line 25): `title: "Cab Route | RelaxCabs"`.
+5. Missing Canonical Tags:
+   - 100% of pages lack canonical URL definitions.
+6. Server-Rendered Content Gaps:
+   - Vehicle rates, specifications, and pricing tables on `/cabs/[route]` are client-rendered only.
+   - Round-trip routes and local rentals on `/cabs` are client-rendered only.
+7. Duplicate Page Structure:
+   - `/booking` and `/cabs/details` duplicate each other.
+8. Duplicate & Weak Heading Tags:
+   - Homepage H1 lacks all primary service keywords.
+   - `/airports` repeats exact H1 text in H2.
+   - `/packages/[category]` repeats exact H1 text in H2.
+9. Missing Custom 404 Page:
+   - No `app/not-found.tsx` exists. Users and bots hitting 404s see generic unstyled Next.js error page.
+10. Developer / Placeholder Copy on Live Pages:
+    - `components/AirportTransfers.tsx` (line 39): Displays `<small>Dummy fare from</small>`.
+    - `components/Hero.tsx` (line 14): Displays "one comfortable booking experience with larger, clearer typography" (scaffolding note).
+    - `components/TravelGallery.tsx` (line 10): Displays "A restrained visual strip inspired by the reference site's travel-gallery treatment."
+11. Missing Structured Data:
+    - No `TaxiService`, `Service`, `BreadcrumbList`, or `FAQPage` schemas.
+
+================================================================================
+13. CORE WEB VITALS & PERFORMANCE SEO AUDIT
+================================================================================
+1. Lack of `next/image` Optimization:
+   - Only 1 image in the entire codebase uses `next/image` (`PackagePricing.tsx`).
+   - All other images use standard `<img>` or CSS `background-image`.
+   - No automatic AVIF/WebP conversion, no responsive `sizes`, no layout containment.
+2. LCP (Largest Contentful Paint) Risks:
+   - Hero sections on `/`, `/airports`, `/cabs`, and `/packages` rely on external images from Unsplash or Pexels loaded without `priority` or `fetchPriority="high"`.
+   - CSS background images cannot be discovered by the browser's preload scanner, delaying LCP.
+3. CLS (Cumulative Layout Shift) Risks:
+   - In `CabSearch.tsx`, clicking "Search rides" dynamically mounts a large DOM tree (`<section id="resSec">`) and executes `scrollIntoView()`. This causes layout shift unless container min-height is reserved.
+4. Unnecessary Client Component Wrappers:
+   - `AllRoutesClient.tsx` forces all route listings into client execution.
+   - SSR HTML should contain all one-way and round-trip route cards by default, with client JS progressively enhancing search filtering.
+5. Font Optimization:
+   - WELL IMPLEMENTED: `DM_Sans` and `Plus_Jakarta_Sans` in `app/layout.tsx` use `next/font/google` with `display: "swap"` and CSS variables, preventing FOIT/FOUT.
+
+================================================================================
+14. SEO KEYWORD JSON LOCATION
+================================================================================
+- Exact File Path:
+  `/Users/sagarshelke/Desktop/dg-express-cabs/data/seo/seo-keywords.json`
+- File Size: 62,003 bytes (1,928 lines)
+- Structure: Comprehensively covers brand rules, strategy, homepage keywords, service clusters, city pages, 32+ route pages, airport transfer clusters, tour package clusters, vehicle keyword clusters, long-tail patterns, and informational topics.
+
+================================================================================
+15. RECOMMENDED PLACEMENT FOR seo-keywords.json
+================================================================================
+- The existing location `/Users/sagarshelke/Desktop/dg-express-cabs/data/seo/seo-keywords.json` is IDEAL and RECOMMENDED.
+- Reasons:
+  1. Conforms to the project's existing data architecture (`data/website-rates.json`, `data/vehicles.json`, `data/airports.json`, `data/packages/`).
+  2. Keeps business data separated from presentation and routing logic.
+  3. Easy to import into server components and utility libraries (`import seoData from "@/data/seo/seo-keywords.json"`).
+- Architectural Recommendation:
+  - Keep `data/seo/seo-keywords.json` in place.
+  - Create a lightweight helper file `lib/seo.ts` to export type-safe functions (e.g., `getRouteSeo(from, to)`, `getCategorySeo(category)`, `getAirportSeo(airport)`, `getBreadcrumbSchema(items)`).
+
+================================================================================
+16. OLD / INCORRECT BRANDING AUDIT
+================================================================================
+The ONLY brand to be used going forward is:
+  "D&G Express Cabs"
+
+INCORRECT / OLD BRAND NAMES FOUND IN CODEBASE (DO NOT REPLACE YET):
+
+A. "RelaxCabs" / "relaxcabs":
+1. `package.json` (line 4):
+   `"description": "RelaxCabs - Outstation Cabs, Airport Transfers and Curated Holiday Packages"`
+2. `config/site.ts` (line 5):
+   `url: "https://relaxcabs.vercel.app"`
+3. `app/layout.tsx` (line 23):
+   `metadataBase: new URL(siteConfig.url)` (derives base domain from relaxcabs URL)
+4. `app/cabs/[route]/page.tsx` (line 25):
+   `return { title: "Cab Route | RelaxCabs" };`
+5. `README.md` (lines 1, 3, 8, 80):
+   Mentions "RelaxCabs — Next.js Outstation Cabs & Holiday Packages", "RelaxCabs static website", "RelaxCabs design tokens", "RelaxCabs color theme".
+6. `tsconfig.json` (line 40):
+   `"relaxcabs-select-cab-fixed"` excluded from TypeScript compilation.
+7. `relaxcabs-select-cab-fixed/` folder (entire legacy folder):
+   - Contains 5 files: `index.html`, `cab-details.html`, `package.html`, `packages.html`, `data-mahabaleshwar.json`.
+   - Mentions "RelaxCabs", "Hi RelaxCabs", "WHY RELAXCABS", dummy phone "+91 98765 43210".
+
+B. "D&G Express" (Incomplete Brand Name Missing "Cabs"):
+1. `components/WhyChooseUs.tsx` (line 29):
+   `<div className="text-2xl font-extrabold mb-1">D&G Express</div>`
+2. `components/WhyChooseUs.tsx` (line 34):
+   `<div className="text-[13px] font-extrabold uppercase tracking-[2px] text-[var(--g)] mb-3">ABOUT D&G EXPRESS</div>`
+
+================================================================================
+17. THIRD-PARTY CAB COMPANIES & COMPETITORS AUDIT
+================================================================================
+- Codebase Search Results:
+  - Ola: None found
+  - Uber: None found
+  - MakeMyTrip / MMT: None found
+  - Savaari: None found
+  - Gozo Cabs: None found
+  - RedBus / Zingbus / BlaBlaCar: None found
+- Finding: The project is clean of third-party competitor branding.
+- Directive: Keep this intact; do not introduce competitor brand names anywhere.
+
+================================================================================
+18. DATA TRUTH VERIFICATION (SERVICES VS SEO KEYWORDS)
+================================================================================
+- Rule: Do not assume a service exists simply because an SEO keyword exists in `seo-keywords.json`.
+- Ground Truth Inventory:
+  - Outstation Cab Routes: Exactly 32 one-way routes in `data/website-rates.json`. Fares are defined for Hatchback, Sedan, SUV, Innova/Carens, Innova Crysta.
+  - Round-Trip Routes: Exactly 8 routes in `data/website-rates.json`.
+  - Local Hourly Rentals: Exactly 3 vehicles (Sedan, SUV, Crysta) with 4/40, 8/80, 12/120 plans in `data/website-rates.json`.
+  - Airport Transfers: Exactly 3 airports (Pune PNQ, Mumbai BOM, Nashik ISK) in `data/airports.json`.
+  - Tour Packages: Exactly 47 packages in `data/packages/` across 5 categories.
+- Implementation Safeguard: All page generation and fare display must continue to bind directly to `website-rates.json`, `airports.json`, and `packages/*.json`.
+
+================================================================================
+SECTION A: CURRENT SEO ARCHITECTURE
+================================================================================
+- Framework: Next.js 16 App Router with React 19.
+- Architecture: Static Site Generation (SSG) for routes, categories, and packages using `generateStaticParams()`.
+- Metadata Layer: Native Next.js Metadata API in `layout.tsx` and individual `page.tsx` files.
+- Sitemap & Robots: Native Metadata Route handlers (`app/sitemap.ts`, `app/robots.ts`).
+- Schema Layer: Direct inline `<script type="application/ld+json">` tags in `app/layout.tsx` and `app/packages/[category]/[slug]/page.tsx`.
+- Styling: Tailwind CSS + CSS custom properties in `app/globals.css`.
+- Typography: Next/font Google fonts (`DM_Sans`, `Plus_Jakarta_Sans`).
+
+================================================================================
+SECTION B: WHAT IS ALREADY IMPLEMENTED CORRECTLY
+================================================================================
+1. SSG Routing: Clean dynamic segment architecture (`[route]`, `[category]`, `[slug]`) with `generateStaticParams()` pre-rendering pages at build time.
+2. Font Performance: Google Fonts loaded via `next/font/google` with zero layout shift and CSS variables.
+3. Package Schema: TouristTrip schema on package detail pages with structured offers (Sedan, Ertiga, Crysta) and day-wise itinerary list.
+4. Clean Route Slugs: Semantic lowercase URLs for routes (`pune-to-mumbai`) and packages (`ashtavinayak-ex-pune-2d`).
+5. Root LocalBusiness Schema: `AutoRental` schema present in root layout with address and phone.
+6. Responsive Layout: Mobile-friendly UI with fast loading base bundle.
+7. SEO Keywords Data Asset: Thorough, well-organized 1,928-line `seo-keywords.json` file already created in `data/seo/`.
+
+================================================================================
+SECTION C: WHAT IS MISSING
+================================================================================
+1. Canonical Strategy: Missing `<link rel="canonical">` on every single page.
+2. Missing Indexable Sitemap Entry: `/cabs` is missing from `app/sitemap.ts`.
+3. Custom 404 Handler: Missing `app/not-found.tsx`.
+4. Breadcrumb Navigation & Schema: Missing visual breadcrumbs and `BreadcrumbList` JSON-LD on all route, category, and package pages.
+5. Service / Taxi Schema: Missing `TaxiService` or `Service` structured data on cab route pages.
+6. FAQ Schema & Sections: Missing FAQ accordions with `FAQPage` schema on route and airport pages.
+7. Production Domain Configuration: No unified production base URL (currently points to `https://relaxcabs.vercel.app`).
+8. Dedicated Airport Landing Pages: Missing individual pages for airport transfers (e.g. Pune to Mumbai Airport).
+9. Dedicated Local Rental Hub: Missing dedicated crawlable page for local hourly rentals.
+10. Open Graph Completeness: Missing per-page OG images, types, and URLs on route and category pages.
+
+================================================================================
+SECTION D: WHAT NEEDS IMPROVEMENT
+================================================================================
+1. Server-Rendered Pricing Tables: On `/cabs/[route]`, vehicle pricing tables must be visible in the initial SSR HTML rather than hidden behind client search clicks.
+2. Heading Optimization:
+   - Replace poetic slogans ("Journeys made easy...", "Pick your escape", "Flights are stressful...") with search-intent H1s that incorporate "D&G Express Cabs", location, and service type.
+   - Fix duplicate H1/H2 text on `/airports` and `/packages/[category]`.
+3. Image Modernization:
+   - Migrate key images from unoptimized `<img>` and CSS background-images to `next/image` (`<Image />`) with explicit width/height and descriptive alt tags.
+4. Internal Cross-Linking:
+   - Fix broken `<Link href="/routes">` on homepage.
+   - Add cross-links between cab routes and matching holiday packages (e.g. Pune-Mahabaleshwar cab <-> Mahabaleshwar tour packages).
+   - Add links to reverse routes and parent hubs.
+5. Indexing Safeguards:
+   - Add `noindex, nofollow` to `/cabs/details` and `/booking`.
+   - Remove `/cabs/details` from `app/sitemap.ts`.
+6. Removal of Scaffolding / Developer Copy:
+   - Remove "Dummy fare from", "with larger, clearer typography", and "inspired by reference site's travel-gallery treatment".
+
+================================================================================
+SECTION E: FILES RECOMMENDED TO CREATE
+================================================================================
+1. `app/not-found.tsx`
+   - Custom, branded 404 page with navigation links to `/cabs`, `/airports`, `/packages`, and phone/WhatsApp assistance.
+2. `lib/seo.ts`
+   - Centralized SEO helper module to parse `data/seo/seo-keywords.json` and generate type-safe metadata, canonical URLs, Open Graph objects, and JSON-LD schemas (TaxiService, Breadcrumbs, FAQs).
+3. `components/Breadcrumbs.tsx`
+   - Visual breadcrumb navigation component with embedded `BreadcrumbList` JSON-LD schema.
+4. `components/RouteFaq.tsx`
+   - Structured FAQ accordion with embedded `FAQPage` JSON-LD schema for cab route pages.
+5. `components/RoutePricingTable.tsx`
+   - Server-rendered vehicle fare comparison table (Hatchback, Sedan, SUV, Innova, Crysta) ensuring rates are visible in initial SSR HTML.
+
+================================================================================
+SECTION F: FILES RECOMMENDED TO MODIFY
+================================================================================
+1. `config/site.ts`: Update production URL (remove `relaxcabs.vercel.app`), update canonical domain.
+2. `package.json`: Remove "RelaxCabs" from description.
+3. `app/layout.tsx`: Update `metadataBase`, add default canonical, enhance AutoRental schema.
+4. `app/robots.ts`: Add disallow for `/cabs/details`, `/booking`, and query parameters.
+5. `app/sitemap.ts`: Add `/cabs`, remove `/cabs/details`, update domain.
+6. `app/page.tsx`: Add targeted metadata, optimize Hero H1, fix placeholder copy.
+7. `app/cabs/page.tsx`: Enhance metadata, improve heading structure, render round-trip & rental info in SSR HTML.
+8. `app/cabs/[route]/page.tsx`: Remove "RelaxCabs" fallback, add canonical URL, add server-rendered pricing table, add FAQs with JSON-LD, add breadcrumbs.
+9. `app/cabs/details/page.tsx`: Add `robots: { index: false, follow: false }`.
+10. `app/booking/page.tsx`: Add `robots: { index: false, follow: false }` or redirect to `/cabs/details`.
+11. `app/airports/page.tsx`: Enhance metadata, fix duplicate H1/H2, add internal links.
+12. `app/packages/page.tsx`: Optimize H1 and metadata.
+13. `app/packages/[category]/page.tsx`: Fix duplicate H1/H2, add canonicals and breadcrumbs.
+14. `app/packages/[category]/[slug]/page.tsx`: Add canonicals, Twitter metadata, and breadcrumbs.
+15. `components/MumbaiOutstationPoster.tsx`: Fix broken `<Link href="/routes">` -> change to `/cabs`.
+16. `components/AirportTransfers.tsx`: Remove "Dummy fare from" text.
+17. `components/Hero.tsx`: Fix scaffolding text and optimize H1.
+18. `components/TravelGallery.tsx`: Fix scaffolding placeholder text.
+19. `components/WhyChooseUs.tsx`: Update "D&G Express" to "D&G Express Cabs".
+
+================================================================================
+SECTION G: PAGES NEEDING SEO WORK
+================================================================================
+1.  Homepage (`/`) -> High Priority (Targeted H1, metadata, fix broken `/routes` link, fix scaffolding copy).
+2.  All Cab Routes (`/cabs`) -> High Priority (Add to sitemap, optimize H1, SSR content for round trips/rentals).
+3.  Cab Route Pages (`/cabs/[route]`) -> Critical Priority (Remove "RelaxCabs", render pricing in SSR HTML, canonicals, FAQs, breadcrumbs).
+4.  Airport Transfers (`/airports`) -> High Priority (Fix duplicate H1/H2, remove "dummy fare", canonicals, link to cab routes).
+5.  Booking & Details (`/cabs/details`, `/booking`) -> Critical Priority (Add `noindex, nofollow`, remove from sitemap, resolve duplicate page).
+6.  Packages Hub (`/packages`) -> Medium Priority (Optimize H1, canonicals, metadata).
+7.  Package Categories (`/packages/[category]`) -> Medium Priority (Fix duplicate H1/H2, canonicals, breadcrumbs).
+8.  Package Details (`/packages/[category]/[slug]`) -> Medium Priority (Add canonicals, Twitter metadata, breadcrumbs).
+9.  404 Not Found Page -> High Priority (Create custom `app/not-found.tsx`).
+
+================================================================================
+SECTION H: DUPLICATE & THIN-CONTENT RISK MATRIX
+================================================================================
++-------------------------------+--------------------------+-----------------------+------------------------------------------+
+| URL / Pattern                 | Risk Type                | Severity              | Recommended Action                       |
++-------------------------------+--------------------------+-----------------------+------------------------------------------+
+| `/booking`                    | Exact Duplicate Page     | High                  | 301 redirect to `/cabs/details` or noindex|
+| `/cabs/details?vehicle=...`   | Parameter Query Flooding | High                  | Add `noindex, nofollow`, drop from sitemap|
+| `/cabs/[route]`               | Thin Content / SSR Gap   | High                  | Add SSR pricing table, FAQs, route notes |
+| `/cabs/pune-to-mumbai` vs rev | Reverse Route Overlap    | Medium                | Add direction-specific tips & pickup hubs|
+| 1-Day Ashtavinayak packages   | Thin Itinerary           | Medium                | Expand temple details & darshan sequences|
++-------------------------------+--------------------------+-----------------------+------------------------------------------+
+
+================================================================================
+SECTION I: OLD BRANDING INVENTORY & FILE LOCATIONS
+================================================================================
+1. File: `package.json`
+   - Line 4: "RelaxCabs - Outstation Cabs, Airport Transfers and Curated Holiday Packages"
+2. File: `config/site.ts`
+   - Line 5: `url: "https://relaxcabs.vercel.app"`
+3. File: `app/layout.tsx`
+   - Line 23: `metadataBase: new URL(siteConfig.url)` (points to relaxcabs domain)
+4. File: `app/cabs/[route]/page.tsx`
+   - Line 25: `title: "Cab Route | RelaxCabs"`
+5. File: `README.md`
+   - Lines 1, 3, 8, 80: Multiple references to "RelaxCabs"
+6. File: `tsconfig.json`
+   - Line 40: `"relaxcabs-select-cab-fixed"` in excludes
+7. Folder: `relaxcabs-select-cab-fixed/`
+   - Entire directory contains legacy prototype files referencing RelaxCabs.
+8. File: `components/WhyChooseUs.tsx`
+   - Lines 29, 34: Incomplete brand name "D&G Express" (missing "Cabs")
+
+================================================================================
+SECTION J: RECOMMENDED IMPLEMENTATION ORDER
+================================================================================
+Phase 1: Critical Bug Fixes & Technical SEO Foundation
+- Fix broken internal link in `MumbaiOutstationPoster.tsx` (`/routes` -> `/cabs`).
+- Create custom `app/not-found.tsx`.
+- Add `noindex, nofollow` to `/cabs/details` and `/booking`.
+- Fix `app/sitemap.ts` (add `/cabs`, remove `/cabs/details`, update base URL).
+- Fix `app/robots.ts` (disallow `/cabs/details` and query parameters).
+- Update `config/site.ts` with correct production canonical domain.
+
+Phase 2: Brand Sanitization & Metadata Architecture
+- Create `lib/seo.ts` helper linking to `data/seo/seo-keywords.json`.
+- Replace all instances of "RelaxCabs" across active project code.
+- Ensure 100% brand consistency: "D&G Express Cabs".
+- Implement robust canonical URL strategy across all pages.
+- Clean up developer placeholder copy in `AirportTransfers.tsx`, `Hero.tsx`, and `TravelGallery.tsx`.
+
+Phase 3: Server-Rendered Content & Route Page SEO
+- Create `components/RoutePricingTable.tsx` to render full vehicle fare comparisons in SSR HTML on `/cabs/[route]`.
+- Add route-specific travel information (driving duration, distance km, expressway tips).
+- Create `components/RouteFaq.tsx` with Schema.org `FAQPage` markup.
+- Create `components/Breadcrumbs.tsx` with Schema.org `BreadcrumbList` markup.
+- Implement `TaxiService` / `Service` schema for cab routes.
+
+Phase 4: Hub Pages & Internal Linking Network
+- Optimize H1s and metadata on `/`, `/cabs`, `/airports`, and `/packages` using keyword clusters.
+- Establish cross-linking between cab routes and tour packages.
+- Ensure round-trip routes and local rental options on `/cabs` are present in SSR HTML.
+- Add reverse-route links on cab route pages.
+
+Phase 5: Media, Performance & Core Web Vitals
+- Replace unoptimized `<img>` tags and CSS backgrounds with Next.js `<Image />` where appropriate.
+- Add explicit width, height, and keyword-rich alt attributes.
+- Ensure high-priority preloading for above-the-fold hero images.
+- Validate Core Web Vitals (LCP, CLS, INP) in mobile viewport.
+
+================================================================================
+END OF AUDIT REPORT
+================================================================================

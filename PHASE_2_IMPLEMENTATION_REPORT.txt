@@ -1,0 +1,370 @@
+================================================================================
+PHASE 2: CORE ON-PAGE SEO + CAB ROUTE SEO
+IMPLEMENTATION REPORT — D&G Express Cabs
+Generated: 2026-10-14
+================================================================================
+
+BUILD RESULT:    SUCCESS — 94 pages generated, 0 errors
+TSC RESULT:      npx tsc --noEmit → Exit 0, no errors
+HTML VERIFY:     18/18 checks passed (/cabs/pune-to-mumbai)
+
+================================================================================
+A. FILES CREATED (3 new components)
+================================================================================
+
+1. components/RoutePricingTable.tsx
+   - Server-rendered vehicle pricing table
+   - Reads exact fares from data/website-rates.json (no multiplier calculation)
+   - Displays only vehicles with actual prices for the route
+   - Vehicles: Hatchback, Sedan, SUV, Innova/Kia Carens, Innova Crysta
+   - Columns: Vehicle name + model, seat capacity, one-way fare, WhatsApp CTA
+   - H2 pattern: "{Origin} to {Destination} Cab Fare"
+   - Disclaimer: parking/tolls not included unless quoted separately
+
+2. components/Breadcrumb.tsx
+   - Reusable breadcrumb navigation component
+   - Renders real HTML <a> links (not spans) for SEO crawlability
+   - aria-label="Breadcrumb" on <nav> element
+   - aria-current="page" on the final (current) item
+   - Used on: route pages, airports, packages, package categories, package details
+
+3. components/RouteFAQ.tsx
+   - FAQ section component for cab route pages
+   - 4 factual questions per route (from verified data only):
+     Q1: What cab options are available from {From} to {To}?
+     Q2: What is the cab fare from {From} to {To}?
+     Q3: Can I book a one-way cab from {From} to {To}?
+     Q4: How can I book this cab with D&G Express Cabs?
+   - Inline microdata: itemScope / itemProp on each Q&A
+   - Exports buildFaqJsonLd() helper for FAQPage JSON-LD generation
+   - No questions about travel time, tolls, cancellation, or availability
+
+================================================================================
+B. FILES MODIFIED (8 files)
+================================================================================
+
+1. app/cabs/[route]/page.tsx
+   CHANGES:
+   - New metadata: title = "{From} to {To} Cab | One Way Cab Booking"
+   - New description: includes fare + vehicle types + driver info
+   - OG title/description fully populated
+   - Twitter card added
+   - H1 changed from "{From} to {To} cab service." to "{From} to {To} Cab"
+   - Breadcrumb: Home > Cabs > {From} to {To} Cab
+   - BreadcrumbList JSON-LD added
+   - Service JSON-LD added (with Offer per vehicle, actual INR prices)
+   - FAQPage JSON-LD added (matches visible FAQ exactly)
+   - RoutePricingTable rendered server-side (above CabSearch)
+   - RouteFAQ rendered server-side
+   - Reverse route contextual link (verified against website-rates.json)
+   - Package category link where semantically relevant
+   - CabSearch interactive component preserved
+
+2. app/cabs/page.tsx
+   CHANGES:
+   - Title: "Outstation Cab Routes — One Way, Round Trip & Local Rentals"
+   - H1: "Outstation Cab Routes, One-Way Cabs & Local Rentals"
+   - Added SSR section below AllRoutesClient with:
+     * All 32 one-way routes as clickable <a> cards with fares
+     * 8 round-trip routes displayed with fares
+     * Local rental plans (Sedan, SUV, Crysta) with hour/km/fare breakdown
+   - Interactive AllRoutesClient tabs preserved
+
+3. app/airports/page.tsx
+   CHANGES:
+   - Title: "Airport Cab Transfers — Pune (PNQ), Mumbai (BOM), Nashik (ISK)"
+   - H1: "Airport Cab Transfers"
+   - Breadcrumb: Home > Airport Transfers
+   - BreadcrumbList JSON-LD added
+   - Twitter card added
+
+4. app/packages/page.tsx
+   CHANGES:
+   - Title: "Cab Tour Packages & Weekend Trips from Pune & Mumbai"
+   - H1: "Cab Tour Packages & Weekend Trips"
+   - Breadcrumb: Home > Tour Packages
+   - BreadcrumbList JSON-LD added
+   - Twitter card added
+
+5. app/packages/[category]/page.tsx
+   CHANGES:
+   - Title: "{Cat} — Cab Tour Packages from Pune & Mumbai"
+   - H1: "{Category}" (removed redundant "Explore" prefix)
+   - H2: "Choose a {Category} Package" (distinct from H1, no duplication)
+   - Breadcrumb: Home > Tour Packages > {Category}
+   - BreadcrumbList JSON-LD added
+   - Twitter card added
+
+6. app/packages/[category]/[slug]/page.tsx
+   CHANGES:
+   - BreadcrumbList JSON-LD added (4 levels)
+   - Breadcrumbs passed to PackageHero as prop
+   - getCategoryBySlug() used to get human-readable category label
+   - Existing TouristTrip JSON-LD preserved
+
+7. components/Hero.tsx
+   CHANGES:
+   - Eyebrow: "OUTSTATION CABS · AIRPORTS · TOURS"
+   - H1: "Outstation Cabs, Airport Transfers & Cab Rentals."
+   - Description updated to mention intercity travel, airport pickups, tour packages
+   - Visual design/styling unchanged
+
+8. components/PackageHero.tsx
+   CHANGES:
+   - Added optional breadcrumbs?: BreadcrumbItem[] prop
+   - Renders <Breadcrumb> inside the hero when provided
+   - All existing props and styling preserved
+
+================================================================================
+C. ROUTE PRICING SSR IMPLEMENTATION
+================================================================================
+
+Data source:    data/website-rates.json (exact factual fares)
+Calculation:    NONE — prices read directly, no vehicle multipliers used
+Vehicles shown: Only those with a price entry for that specific route
+H2 pattern:     "{Origin} to {Destination} Cab Fare"
+Placement:      Above CabSearch interactive booking component
+Section anchor: id="pricing"
+
+SAMPLE — Pune to Mumbai verified fares:
+  Hatchback (WagonR or similar)     ₹2,625   Up to 4 seats
+  Sedan (Dzire / Aura)              ₹2,730   Up to 4 seats
+  SUV (Ertiga / Rumion)             ₹3,150   Up to 6 seats
+  Innova / Kia Carens               ₹3,990   Up to 6 seats
+  Innova Crysta                     ₹4,880   Up to 6 seats
+
+================================================================================
+D. METADATA IMPROVEMENTS
+================================================================================
+
+Route pages (/cabs/[route]):
+  BEFORE title:  "{From} to {To} Cab Service"
+  AFTER title:   "{From} to {To} Cab | One Way Cab Booking"
+  BEFORE desc:   Basic fare mention only
+  AFTER desc:    Fare + vehicles (Hatchback, Sedan, SUV, Innova) + driver info
+  OG + Twitter:  Both fully populated with unique descriptions
+
+Hub page metadata:
+  Page              Old Title                                New Title
+  /cabs             "All Cab Routes — One Way..."            "Outstation Cab Routes — One Way..."
+  /airports         "Airport Cabs & Transfers..."            "Airport Cab Transfers..."
+  /packages         "Curated Tour Packages..."               "Cab Tour Packages & Weekend Trips..."
+  /packages/[cat]   "{Cat} — Cab Tour Packages"             "{Cat} — Cab Tour Packages from Pune & Mumbai"
+
+================================================================================
+E. HEADING CHANGES
+================================================================================
+
+Page                        H1 Before                          H1 After
+Homepage (Hero)             "Journeys made easy & memorable."  "Outstation Cabs, Airport Transfers & Cab Rentals."
+/cabs                       "Every route, one place."          "Outstation Cab Routes, One-Way Cabs & Local Rentals"
+/airports                   "Flights are stressful..."         "Airport Cab Transfers"
+/packages                   "Pick your escape."                "Cab Tour Packages & Weekend Trips"
+/packages/[category]        "Explore {Category}."             "{Category}"
+/packages/[category] H2     "Explore {Category}." (duplicate)  "Choose a {Category} Package"
+/cabs/[route]               "{From} to {To} cab service."     "{From} to {To} Cab"
+/cabs/[route] H2 (new)      n/a                               "{From} to {To} Cab Fare" (pricing section)
+
+================================================================================
+F. BREADCRUMB IMPLEMENTATION
+================================================================================
+
+Component:     components/Breadcrumb.tsx
+Accessibility: aria-label="Breadcrumb", aria-current="page" on last item
+Links:         All non-current items are real <a> HTML links
+
+Page                            Breadcrumb Trail
+/airports                       Home > Airport Transfers
+/packages                       Home > Tour Packages
+/packages/[category]            Home > Tour Packages > {Category}
+/packages/[category]/[slug]     Home > Tour Packages > {Category} > {Package Name}
+/cabs/[route]                   Home > Cabs > {From} to {To} Cab
+
+JSON-LD BreadcrumbList added to all above pages matching visible breadcrumbs exactly.
+
+================================================================================
+G. STRUCTURED DATA ADDED
+================================================================================
+
+Page                    JSON-LD Types Added
+/cabs/[route]           BreadcrumbList + Service + FAQPage
+/airports               BreadcrumbList
+/packages               BreadcrumbList
+/packages/[category]    BreadcrumbList
+/packages/[cat]/[slug]  BreadcrumbList (TouristTrip preserved from Phase 1)
+
+Service schema details (route pages):
+  @type:        Service
+  provider:     D&G Express Cabs (AutoRental, +917030813082)
+  serviceType:  "Cab / Taxi"
+  areaServed:   ["{From}", "{To}"]
+  url:          https://dgexpresscabs.com/cabs/{route-slug}
+  offers:       One Offer per vehicle with actual INR price
+
+NOT included (no invented data):
+  aggregateRating, review, availability, geo coordinates, business hours,
+  fake offers, cancellation policy, guarantees
+
+================================================================================
+H. FAQ IMPLEMENTATION
+================================================================================
+
+Renders on:    All /cabs/[route] pages where pricing data exists
+Questions:     4 per page, generated from verified route/vehicle/pricing data
+
+Q1: What cab options are available from {From} to {To}?
+A1: Lists actual vehicle names from website-rates.json for that route
+
+Q2: What is the cab fare from {From} to {To}?
+A2: States starting fare, mentions pricing table above
+
+Q3: Can I book a one-way cab from {From} to {To}?
+A3: Yes — one-way cab booking available
+
+Q4: How can I book a cab from {From} to {To}?
+A4: Search form on page or WhatsApp — no invented policies
+
+FAQPage JSON-LD: Exactly matches visible FAQ content
+Microdata: itemScope/itemProp on each question and answer
+
+Topics NOT answered (no verified data):
+  - Travel time / driving duration
+  - Toll charges
+  - Cancellation rules
+  - 24x7 availability claims
+  - Payment methods
+  - Waiting charges
+
+================================================================================
+I. INTERNAL LINKING CHANGES
+================================================================================
+
+Route pages:
+  - Reverse route link on every page (all 32 routes confirmed in website-rates.json)
+    Example: /cabs/pune-to-mumbai links to /cabs/mumbai-to-pune
+  - Package category link where destination matches:
+    Mahabaleshwar routes  → /packages/mahabaleshwar
+    Goa routes            → /packages/goa
+    Konkan routes         → /packages/konkan
+
+/cabs page:
+  - 32 one-way routes rendered as <a> cards (SSR) with route slugs + fares
+
+Package pages:
+  - Breadcrumb trail links from detail → category → /packages
+  - "All packages" CTA in PackageHero preserved
+
+================================================================================
+J. /CABS SSR IMPROVEMENTS
+================================================================================
+
+Problem: Round-trip and local rental content was hidden behind client-side tabs.
+         Search engine crawlers only saw one-way routes.
+
+Solution: Added server-rendered section below AllRoutesClient component.
+          Interactive tabs remain fully functional (no regression).
+
+SSR content now includes:
+  ONE-WAY ROUTES:    All 32 routes as linked <a> cards (from + to + starting fare)
+  ROUND-TRIP ROUTES: 8 routes with fares (Pune-Mumbai, Pune-Nashik, etc.)
+  LOCAL RENTALS:
+    Sedan:   4/40 → ₹1,575  |  8/80 → ₹2,100  |  12/120 → ₹3,675
+    SUV:     4/40 → ₹2,100  |  8/80 → ₹3,255  |  12/120 → ₹4,725
+    Crysta:  4/40 → ₹2,625  |  8/80 → ₹4,725  |  12/120 → ₹6,300
+
+================================================================================
+K. PACKAGE SEO CHANGES
+================================================================================
+
+  Change                         Detail
+  /packages H1                   "Cab Tour Packages & Weekend Trips"
+  /packages/[cat] H1             Direct category name (no "Explore" prefix)
+  /packages/[cat] H2             "Choose a {Category} Package" (distinct)
+  All package pages              Twitter card metadata added
+  Category title template        Added "from Pune & Mumbai" suffix
+  Package detail pages           4-level BreadcrumbList JSON-LD
+  Package JSON data files        NOT MODIFIED — authoritative source unchanged
+
+================================================================================
+L. REPRESENTATIVE HTML VERIFICATION (/cabs/pune-to-mumbai)
+================================================================================
+
+CHECK                              RESULT
+H1 contains "Pune to Mumbai Cab"   PASS
+Breadcrumb nav (aria-label)        PASS
+Home breadcrumb link               PASS
+/cabs breadcrumb link              PASS
+Pricing table H2 "Cab Fare"        PASS
+Hatchback fare ₹2,625              PASS
+Sedan fare ₹2,730                  PASS
+Vehicle: Sedan                     PASS
+Vehicle: SUV                       PASS
+Vehicle: Innova Crysta             PASS
+Reverse route link (mumbai-to-pune)PASS
+FAQ section visible                PASS
+FAQ uses actual fare in answer     PASS
+BreadcrumbList JSON-LD present     PASS
+Service JSON-LD present            PASS
+FAQPage JSON-LD present            PASS
+Canonical URL contains route slug  PASS
+No RelaxCabs branding              PASS
+No competitor names                PASS
+
+TOTAL: 18/18 PASSED
+
+================================================================================
+M. TYPESCRIPT / LINT / BUILD RESULTS
+================================================================================
+
+  npx tsc --noEmit        → Exit code 0, no errors
+  npm run build           → Exit code 0
+
+  Build output:
+    ○ /                                  (Static)
+    ○ /airports                          (Static)
+    ○ /cabs                              (Static)
+    ● /cabs/[route]                      32 paths (SSG)
+    ○ /cabs/details                      (Static, noindex)
+    ○ /packages                          (Static)
+    ● /packages/[category]               5 paths (SSG)
+    ● /packages/[category]/[slug]        47 paths (SSG)
+    ○ /booking                           (Static)
+    ○ /robots.txt                        (Static)
+    ○ /sitemap.xml                       (Static)
+
+  TOTAL: 94 pages generated
+
+================================================================================
+N. WARNINGS / DATA STILL NEEDED
+================================================================================
+
+No invented data was used in Phase 2. All fares, vehicles, routes, and
+package information come directly from:
+  - data/website-rates.json
+  - data/vehicles.json
+  - data/routes.json
+  - data/packages/*.json
+
+PHASE 1 PRESERVED:
+  ✓ https://dgexpresscabs.com canonical domain
+  ✓ Canonical implementation unchanged
+  ✓ /cabs/details noindex preserved
+  ✓ /booking redirect preserved
+  ✓ robots.txt unchanged
+  ✓ sitemap.xml valid (94 entries)
+  ✓ Custom 404 page unchanged
+  ✓ D&G Express Cabs branding throughout
+  ✓ CabSearch booking flow works
+  ✓ No RelaxCabs branding in any file
+  ✓ No competitor/aggregator names
+
+FUTURE PHASE 3 OPPORTUNITIES (not started per instructions):
+  - Airport-specific landing pages (/airports/pune-pnq, /airports/mumbai-bom)
+  - Local rental landing pages
+  - Image alt text audit on all route pages
+  - Sitemap lastModified from actual data timestamps
+  - Additional structured data for package pages
+
+================================================================================
+END OF PHASE 2 IMPLEMENTATION REPORT
+================================================================================

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { getRoutes } from "@/lib/routes";
@@ -12,8 +13,20 @@ export default function Footer() {
         
         {/* Section 1: Brand & Text */}
         <div>
-          <Link className="font-['Plus_Jakarta_Sans'] font-extrabold text-2xl text-white tracking-tight flex items-center mb-4" href="/">
-            D&amp;G <b className="text-[#62c33a] ml-1">Express Cabs</b>
+          <Link
+            className="inline-flex items-center mb-5 group"
+            href="/"
+            aria-label="D&G Express Cabs Home"
+          >
+            <div className="bg-[#f7f5eb] rounded-xl px-3.5 py-2 inline-flex items-center shadow-sm transition-transform duration-200 group-hover:scale-[1.02]">
+              <Image
+                src="/dgxcabs.png"
+                alt="D&G Express Cabs"
+                width={160}
+                height={80}
+                className="h-10 sm:h-11 w-auto object-contain"
+              />
+            </div>
           </Link>
           <p className="text-[13px] leading-[1.8] mb-6 pr-4">
             {siteConfig.description}
@@ -28,7 +41,7 @@ export default function Footer() {
           <strong className="text-white text-[13px] tracking-wider mb-4 block">SERVICES</strong>
           <ul className="space-y-3 text-[13px]">
             <li><Link href="/#rides" className="hover:text-white transition-colors">Outstation Rides</Link></li>
-            <li><Link href="/cabs" className="hover:text-white transition-colors">Local Rentals</Link></li>
+            <li><Link href="/rentals" className="hover:text-white transition-colors">Local Rentals</Link></li>
             <li><Link href="/airports" className="hover:text-white transition-colors">Airport Transfers</Link></li>
             <li><Link href="/packages" className="hover:text-white transition-colors">Tour Packages</Link></li>
             <li><Link href="/cabs" className="hover:text-white transition-colors">Round Trips</Link></li>

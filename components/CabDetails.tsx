@@ -63,13 +63,33 @@ export default function CabDetails() {
           <div
             className="cabPhoto"
             style={{
-              backgroundImage: `url('${vehicleImage}')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundColor: "#f0f7ec",
+              position: "relative",
+              overflow: "hidden",
+              background: "linear-gradient(145deg, #f7faf5 0%, #edf5e8 100%)",
+              border: "1px solid #dce8d8",
             }}
           >
-            <span className="badge" id="photoBadge">
+            <Image
+              src={vehicleImage}
+              alt={`${vehicle} - ${model}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+              className="p-4 sm:p-6 md:p-8 object-contain"
+            />
+            <span
+              className="badge"
+              id="photoBadge"
+              style={{
+                position: "absolute",
+                left: "18px",
+                bottom: "18px",
+                zIndex: 10,
+                backgroundColor: "rgba(255, 255, 255, 0.96)",
+                boxShadow: "0 4px 14px rgba(0, 0, 0, 0.08)",
+                border: "1px solid #dbe6d6",
+              }}
+            >
               {vehicle} · {model}
             </span>
           </div>

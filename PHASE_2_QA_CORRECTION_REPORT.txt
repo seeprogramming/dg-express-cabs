@@ -1,0 +1,322 @@
+================================================================================
+PHASE 2 QA / CORRECTION PASS — REPORT
+D&G Express Cabs
+Generated: 2026-10-14
+================================================================================
+
+BUILD RESULT:    SUCCESS — 94 pages generated, 0 errors
+TSC RESULT:      npx tsc --noEmit → Exit 0, no errors
+SITEMAP COUNT:   88 URLs, 0 bad entries, 0 unencoded spaces
+
+================================================================================
+A. ACTUAL SITEMAP URL COUNT
+================================================================================
+
+CONFIRMED: 88 URLs
+
+Excluded (correctly absent from sitemap):
+  /booking              — NOT in sitemap ✓
+  /cabs/details         — NOT in sitemap ✓
+  /_not-found           — NOT in sitemap ✓
+  /robots.txt           — NOT in sitemap ✓
+  /sitemap.xml          — NOT in sitemap ✓
+  Query-parameter URLs  — NOT in sitemap ✓
+
+BUG FOUND AND FIXED:
+  "Navi Mumbai" route slugs had unencoded spaces in the sitemap.
+
+  BEFORE (broken):
+    https://dgexpresscabs.com/cabs/nashik-to-navi mumbai
+    https://dgexpresscabs.com/cabs/navi mumbai-to-nashik
+
+  AFTER (correct):
+    https://dgexpresscabs.com/cabs/nashik-to-navi-mumbai
+    https://dgexpresscabs.com/cabs/navi-mumbai-to-nashik
+
+  Fix applied to:
+    - app/sitemap.ts                      (route URL slug generation)
+    - lib/routes.ts / routeSlug()         (added .replace(/\s+/g, "-"))
+    - lib/routes.ts / parseRouteSlug()    (now matches against route data
+                                           for multi-word city restoration)
+    - app/cabs/[route]/page.tsx           (generateStaticParams slug)
+
+Full sitemap URL list (88 entries):
+  https://dgexpresscabs.com
+  https://dgexpresscabs.com/cabs
+  https://dgexpresscabs.com/packages
+  https://dgexpresscabs.com/airports
+  https://dgexpresscabs.com/cabs/pune-to-mumbai
+  https://dgexpresscabs.com/cabs/mumbai-to-pune
+  https://dgexpresscabs.com/cabs/pune-to-nashik
+  https://dgexpresscabs.com/cabs/nashik-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-nashik
+  https://dgexpresscabs.com/cabs/nashik-to-mumbai
+  https://dgexpresscabs.com/cabs/nashik-to-navi-mumbai
+  https://dgexpresscabs.com/cabs/navi-mumbai-to-nashik
+  https://dgexpresscabs.com/cabs/pune-to-kolhapur
+  https://dgexpresscabs.com/cabs/kolhapur-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-kolhapur
+  https://dgexpresscabs.com/cabs/kolhapur-to-mumbai
+  https://dgexpresscabs.com/cabs/pune-to-lonavala
+  https://dgexpresscabs.com/cabs/lonavala-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-lonavala
+  https://dgexpresscabs.com/cabs/lonavala-to-mumbai
+  https://dgexpresscabs.com/cabs/pune-to-mahabaleshwar
+  https://dgexpresscabs.com/cabs/mahabaleshwar-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-mahabaleshwar
+  https://dgexpresscabs.com/cabs/mahabaleshwar-to-mumbai
+  https://dgexpresscabs.com/cabs/pune-to-sangli
+  https://dgexpresscabs.com/cabs/sangli-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-sangli
+  https://dgexpresscabs.com/cabs/sangli-to-mumbai
+  https://dgexpresscabs.com/cabs/pune-to-satara
+  https://dgexpresscabs.com/cabs/satara-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-satara
+  https://dgexpresscabs.com/cabs/satara-to-mumbai
+  https://dgexpresscabs.com/cabs/pune-to-igatpuri
+  https://dgexpresscabs.com/cabs/igatpuri-to-pune
+  https://dgexpresscabs.com/cabs/mumbai-to-igatpuri
+  https://dgexpresscabs.com/cabs/igatpuri-to-mumbai
+  https://dgexpresscabs.com/packages/mahabaleshwar
+  https://dgexpresscabs.com/packages/goa
+  https://dgexpresscabs.com/packages/konkan
+  https://dgexpresscabs.com/packages/ashtavinayak
+  https://dgexpresscabs.com/packages/jyotirlinga
+  [47 individual package detail pages]
+
+================================================================================
+B. data/routes.json USAGE IN PHASE 2 LOGIC
+================================================================================
+
+FINDING: data/routes.json was NOT used by any Phase 2 code.
+
+Verified files (grep returned zero results):
+  - components/RoutePricingTable.tsx   — uses data/website-rates.json only
+  - components/RouteFAQ.tsx            — uses fares passed as props
+  - app/cabs/[route]/page.tsx          — uses data/website-rates.json only
+  - app/cabs/page.tsx                  — uses getRoutes() / website-rates.json
+
+All Phase 2 SEO/pricing logic reads exclusively from:
+  data/website-rates.json
+
+data/routes.json was referenced in the Phase 2 report text as a "data
+source" in error — it is only used internally by lib/routes.ts
+to provide the RouteInfo[] type (flat sedan fares), which was always
+the case and predates Phase 2.
+
+No code change required for this item.
+
+================================================================================
+C. CODE CHANGES MADE IN THIS QA PASS
+================================================================================
+
+4 files corrected:
+
+1. app/sitemap.ts
+   CHANGE: Added .replace(/\s+/g, "-") to route URL slug generation
+   REASON: Navi Mumbai produced URLs with literal space characters
+
+2. lib/routes.ts
+   CHANGE (routeSlug):
+     BEFORE: return `${from.toLowerCase()}-to-${to.toLowerCase()}`;
+     AFTER:  return `${from.toLowerCase().replace(/\s+/g, "-")}-to-...`;
+
+   CHANGE (parseRouteSlug):
+     Added route-data lookup before the capitalize fallback.
+     Now matches the slug against actual website-rates.json route entries
+     so multi-word cities (e.g. "navi-mumbai") resolve to "Navi Mumbai"
+     correctly rather than "Navi-mumbai" via naive capitalization.
+
+3. app/cabs/[route]/page.tsx
+   CHANGE 1: generateStaticParams slug now uses .replace(/\s+/g, "-")
+   CHANGE 2: Removed goa and konkan from DESTINATION_PACKAGE_MAP
+
+   REASON for removing goa/konkan:
+     No cab routes to Goa or Konkan destinations exist in
+     website-rates.json. Those map entries were misleading — they could
+     never produce a link on any actual route page since no matching
+     route exists. Only Mahabaleshwar remains (4 routes verified).
+
+4. components/RoutePricingTable.tsx
+   CHANGE: Replaced toll/parking/entry-fees disclaimer with neutral note.
+
+   BEFORE:
+     "* Parking, tolls, and entry fees are not included unless quoted
+      separately."
+
+   AFTER:
+     "* Fare shown is based on the current route pricing provided by
+      D&G Express Cabs."
+
+   REASON: No authoritative business data source in the project
+   explicitly documents the toll/parking exclusion policy.
+   InclusionExclusion.tsx contains similar text but is pre-Phase-2
+   content, not introduced by this work.
+
+================================================================================
+D. TOLL/PARKING DISCLAIMER RESULT
+================================================================================
+
+RoutePricingTable.tsx (Phase 2 component):
+  STATUS: FIXED
+  Now shows neutral fare note only. No inclusion/exclusion claims.
+
+InclusionExclusion.tsx (pre-Phase-2 component):
+  STATUS: OUT OF SCOPE — not introduced or modified by Phase 2
+  Contains: "× Parking, tolls and entry fees unless quoted"
+  This component existed before Phase 2 and was not changed by it.
+  Flagged here for awareness only.
+
+================================================================================
+E. STRUCTURED DATA VERIFICATION (/cabs/pune-to-mumbai)
+================================================================================
+
+JSON-LD blocks in HTML: 4
+  Block 1: @type = AutoRental    (from root layout — Phase 1, preserved)
+  Block 2: @type = BreadcrumbList
+  Block 3: @type = Service
+  Block 4: @type = FAQPage
+
+BreadcrumbList:
+  Items: Home > Cabs > Pune to Mumbai Cab    ✓
+
+Service schema:
+  provider.name:  D&G Express Cabs            ✓
+  serviceType:    Cab / Taxi                   ✓
+  areaServed:     [Pune, Mumbai]               ✓
+  offers count:   5                            ✓
+
+  Offer prices vs website-rates.json:
+    Hatchback          ₹2,625   matches ✓
+    Sedan              ₹2,730   matches ✓
+    SUV                ₹3,150   matches ✓
+    Innova/Kia Carens  ₹3,990   matches ✓
+    Innova Crysta      ₹4,880   matches ✓
+
+  Currency: INR                               ✓
+  Fake fields (aggregateRating/review/
+    availability/geo): NONE                   ✓
+
+FAQPage schema:
+  Questions: 4
+    Q1: What cab options are available from Pune to Mumbai?
+    Q2: What is the cab fare from Pune to Mumbai?
+    Q3: Can I book a one-way cab from Pune to Mumbai?
+    Q4: How can I book a cab from Pune to Mumbai with D&G Express Cabs?
+  Matches visible FAQ content: YES            ✓
+  Contains no unsupported claims: YES         ✓
+
+Canonical URL: https://dgexpresscabs.com/cabs/pune-to-mumbai   ✓
+No RelaxCabs branding: confirmed              ✓
+No competitor names: confirmed                ✓
+Toll/parking claim in RoutePricingTable: REMOVED ✓
+
+================================================================================
+F. DIRECTIONAL FARE VERIFICATION
+================================================================================
+
+Pune → Mahabaleshwar (from website-rates.json):
+  Hatchback:         ₹3,045
+  Sedan:             ₹3,150
+  SUV:               ₹3,675
+  Innova/Kia Carens: ₹4,550
+  Innova Crysta:     ₹6,090
+
+Mahabaleshwar → Pune (from website-rates.json):
+  Hatchback:         ₹3,250
+  Sedan:             ₹3,360
+  SUV:               ₹3,990
+  Innova/Kia Carens: ₹5,040
+  Innova Crysta:     ₹6,510
+
+Fares are directionally distinct: YES ✓
+Each page reads its OWN fares from website-rates.json: CONFIRMED ✓
+Prices are not shared or copied between directions: CONFIRMED ✓
+
+HTML verification:
+  pune-to-mahabaleshwar.html fares:       3,045 / 3,150 / 3,675 / 4,550 / 6,090 ✓
+  mahabaleshwar-to-pune.html fares:       3,250 / 3,360 / 3,990 / 5,040 / 6,510 ✓
+
+Package cross-link verification:
+  pune-to-mahabaleshwar links to /packages/mahabaleshwar:   YES ✓
+  mahabaleshwar-to-pune links to /packages/mahabaleshwar:   YES ✓
+  pune-to-mumbai links to /packages/goa:                     NO ✓ (correct — removed)
+  pune-to-mumbai links to /packages/konkan:                  NO ✓ (correct — removed)
+
+Navi Mumbai route pages:
+  nashik-to-navi-mumbai.html exists:      YES ✓
+  navi-mumbai-to-nashik.html exists:      YES ✓
+  Sitemap URLs valid (no spaces):         YES ✓
+
+================================================================================
+G. TYPESCRIPT RESULT
+================================================================================
+
+  Command: npx tsc --noEmit
+  Result:  Exit code 0
+  Errors:  0
+
+================================================================================
+H. BUILD RESULT
+================================================================================
+
+  Command: npm run build
+  Result:  Exit code 0
+  Pages:   94 generated (unchanged from Phase 2)
+
+  Route (app) output:
+    ○ /                        (Static)
+    ○ /airports                (Static)
+    ○ /cabs                    (Static)
+    ● /cabs/[route]            32 paths (SSG) — Navi Mumbai now correct
+    ○ /cabs/details            (Static, noindex)
+    ○ /packages                (Static)
+    ● /packages/[category]     5 paths (SSG)
+    ● /packages/[category]/[slug]  47 paths (SSG)
+    ○ /booking                 (Static, not in sitemap)
+    ○ /robots.txt              (Static)
+    ○ /sitemap.xml             (Static, 88 valid URLs)
+
+================================================================================
+SUMMARY OF ALL CORRECTIONS
+================================================================================
+
+Issue                       Finding              Action Taken
+--------------------------  -------------------  ----------------------------
+Sitemap URL count           88 (correct)         No change needed
+Sitemap bad URLs            0 found              No change needed
+Navi Mumbai URL spaces      2 broken URLs found  FIXED in 4 files
+data/routes.json in Phase 2 NOT used             No change needed
+Toll/parking disclaimer     Unsupported claim    FIXED — neutral note applied
+Goa/Konkan package links    No routes exist      FIXED — entries removed
+Service JSON-LD prices      All match rates.json Verified, no change needed
+FAQPage matches visible FAQ Exact match          Verified, no change needed
+Directional fare isolation  Each route distinct  Verified, no change needed
+RelaxCabs branding          None found           Verified clean
+Competitor names            None found           Verified clean
+
+================================================================================
+FILES MODIFIED IN THIS QA PASS (4 files)
+================================================================================
+
+  app/sitemap.ts
+  lib/routes.ts
+  app/cabs/[route]/page.tsx
+  components/RoutePricingTable.tsx
+
+================================================================================
+PHASE 1 STATUS (preserved)
+================================================================================
+
+  ✓ https://dgexpresscabs.com canonical domain
+  ✓ /cabs/details noindex
+  ✓ /booking redirect (not in sitemap)
+  ✓ robots.txt unchanged
+  ✓ Custom 404 unchanged
+  ✓ D&G Express Cabs branding throughout
+  ✓ CabSearch booking flow works
+  ✓ No RelaxCabs branding in any file
+
+================================================================================
+END OF PHASE 2 QA / CORRECTION PASS REPORT
+================================================================================

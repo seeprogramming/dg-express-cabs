@@ -1,7 +1,7 @@
 {
   "name": "dg-express-cabs",
   "version": "1.0.0",
-  "description": "RelaxCabs - Outstation Cabs, Airport Transfers and Curated Holiday Packages",
+  "description": "D&G Express Cabs - Outstation Cabs, Airport Transfers and Curated Holiday Packages",
   "private": true,
   "scripts": {
     "dev": "next dev",

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatINR, priceAmount, getPackageDestination } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 import type { TourPackage } from "@/types";
-import ImageWithFallback from "@/components/ImageWithFallback";
+import Image from "next/image";
 
 /* Category → stock image map */
 const categoryImageMap: Record<string, string> = {
@@ -42,11 +42,13 @@ export function PackageCard({ pkg }: PackageCardProps) {
     <div className="card">
       <div className="art relative overflow-hidden bg-[#e5ede8]">
         {bgImage && (
-          <ImageWithFallback 
-            src={bgImage} 
+          <Image
+            src={bgImage}
             alt={pkg.title}
-            className="absolute inset-0 w-full h-full object-cover"
-            fallback={categoryImageMap[categorySlug] || siteConfig.stockImages.road}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            loading="lazy"
+            className="object-cover"
           />
         )}
       </div>

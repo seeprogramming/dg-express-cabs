@@ -41,12 +41,30 @@ export function findRoute(from: string, to: string): RouteInfo | null {
   return routes.find((r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)) || null;
 }
 
+export function getRoutesFromCity(city: string): RouteInfo[] {
+  const norm = (v: string) => v.trim().toLowerCase();
+  return getRoutes().filter((r) => norm(r.from) === norm(city));
+}
+
 export function getVehicles(): VehicleInfo[] {
   return vehiclesData as VehicleInfo[];
 }
 
 export function getAirports(): AirportInfo[] {
   return airportsData as AirportInfo[];
+}
+
+export function airportSlug(city: string): string {
+  return `${city.toLowerCase()}-airport`;
+}
+
+export function findAirportBySlug(slug: string): AirportInfo | null {
+  const airports = getAirports();
+  return (
+    airports.find(
+      (a) => `${a.city.toLowerCase()}-airport` === slug.toLowerCase()
+    ) || null
+  );
 }
 
 // Map the vehicle info category to the key used in website-rates.json
@@ -63,13 +81,14 @@ export function getVehicleRateKey(category: string): string {
 
 export function getLocalRentalVehicleKey(category: string): string {
   const mapping: Record<string, string> = {
-    "Hatchback": "", // Typically not available in local
+    "Hatchback": "",
     "Sedan": "Sedan",
     "SUV": "SUV",
-    "Innova / Kia Carens": "Crysta", // Fallback or map Innova to Crysta if carens is missing
-    "Innova Crysta": "Crysta"
+    "Innova / Kia Carens": "",
+    "Innova Crysta": "Crysta",
+    "Crysta": "Crysta",
   };
-  return mapping[category] || category;
+  return mapping[category] ?? "";
 }
 
 export function getFareForMode(
@@ -123,12 +142,24 @@ export function getLocalRentals(): LocalRentalVehicle[] {
 }
 
 export function routeSlug(from: string, to: string): string {
-  return `${from.toLowerCase()}-to-${to.toLowerCase()}`;
+  return `${from.toLowerCase().replace(/\s+/g, "-")}-to-${to.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
 export function parseRouteSlug(slug: string): { from: string; to: string } | null {
   const parts = slug.split("-to-");
   if (parts.length !== 2) return null;
+
+  // Try to match against actual route data first (handles multi-word cities like 'Navi Mumbai')
+  const allRoutes = (websiteRates.one_way as WebsiteRateRoute[]);
+  const normalize = (s: string) => s.toLowerCase().replace(/\s+/g, "-");
+  const match = allRoutes.find(
+    (r) => normalize(r.from) === parts[0] && normalize(r.to) === parts[1]
+  );
+  if (match) {
+    return { from: match.from, to: match.to };
+  }
+
+  // Fallback: capitalize first letter of each part
   const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
   return {
     from: capitalize(parts[0]),

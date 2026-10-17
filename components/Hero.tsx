@@ -4,14 +4,16 @@ export default function Hero() {
       <div className="container">
         <div className="heroBox">
           <div className="heroText">
-            <div className="ey">TRAVEL, YOUR WAY</div>
+            <div className="ey">OUTSTATION CABS · AIRPORTS · TOURS</div>
             <h1>
-              Journeys made
+              Outstation Cabs, Airport Transfers
               <br />
-              <span>easy & memorable.</span>
+              <span>&amp; Cab Rentals.</span>
             </h1>
             <p>
-              Airport transfers, intercity cabs and weekend escapes — one comfortable booking experience with larger, clearer typography.
+              Private AC cabs for intercity travel, airport pickups, and weekend
+              tour packages — transparent pricing, WhatsApp booking, and
+              professional chauffeurs.
             </p>
           </div>
         </div>

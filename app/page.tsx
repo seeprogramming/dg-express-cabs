@@ -1,4 +1,19 @@
+import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
 import Hero from "@/components/Hero";
+
+export const metadata: Metadata = {
+  title: "D&G Express Cabs — Rides, Airports & Tours",
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    url: siteConfig.url,
+    title: "D&G Express Cabs — Rides, Airports & Tours",
+    description: siteConfig.description,
+  },
+};
 import CabSearch from "@/components/CabSearch";
 import PopularRides from "@/components/PopularRides";
 import AirportTransfers from "@/components/AirportTransfers";

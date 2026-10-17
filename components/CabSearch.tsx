@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { getFareForMode, getLocalRentalPlans } from "@/lib/routes";
 import { formatINR } from "@/lib/packages";
 import type { VehicleInfo } from "@/types";
@@ -10,6 +11,7 @@ interface CabSearchProps {
   vehicles: VehicleInfo[];
   initialFrom?: string;
   initialTo?: string;
+  initialMode?: TripMode;
 }
 
 export type TripMode = "one" | "round" | "airport" | "local";
@@ -18,9 +20,10 @@ export default function CabSearch({
   vehicles,
   initialFrom = "Pune",
   initialTo = "Mumbai",
+  initialMode = "one",
 }: CabSearchProps) {
   const router = useRouter();
-  const [mode, setMode] = useState<TripMode>("one");
+  const [mode, setMode] = useState<TripMode>(initialMode);
   const [fromLocation, setFromLocation] = useState(initialFrom);
   const [toLocation, setToLocation] = useState(initialTo);
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
@@ -164,6 +167,7 @@ export default function CabSearch({
                 onClick={handleSwapLocations}
                 className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
                 title="Swap Locations"
+                aria-label="Swap pickup and drop locations"
               >
                 ⇄
               </button>
@@ -273,8 +277,8 @@ export default function CabSearch({
               <div className="flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-base">🔒</span>
                 <div>
-                  <span className="text-[13px] font-extrabold text-[#123f38]">No Hidden Charges</span>
-                  <span className="text-[11px] text-[#718079] ml-1">transparent GST billing</span>
+                  <span className="text-[13px] font-extrabold text-[#123f38]">Transparent Billing</span>
+                  <span className="text-[11px] text-[#718079] ml-1">itemized GST breakdown</span>
                 </div>
               </div>
             </div>
@@ -299,7 +303,7 @@ export default function CabSearch({
                     <div className="result" key={v.category}>
                       <div className="rart">
                         {v.image ? (
-                          <img src={v.image} alt={v.category} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                          <Image src={v.image} alt={v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
                         ) : (
                           v.icon
                         )}
@@ -314,18 +318,32 @@ export default function CabSearch({
                           <span>🧳 {v.bags} bags</span>
                         </div>
                       </div>
-                      <div className="flex flex-col gap-2 w-full justify-center">
+                      <div className="flex flex-col gap-3 w-full justify-center mt-3 pt-3 border-t border-[#eef2eb]" style={{ gridColumn: "1 / -1" }}>
                         {plans.map((plan) => (
-                          <div key={plan.label} className="flex items-center justify-between gap-2 border border-[#dce5da] p-2 rounded-lg hover:border-[#62c33a] transition-colors bg-white hover:shadow-sm">
-                            <div className="text-[11px] font-extrabold text-[#718079] w-12">{plan.label}</div>
-                            <div className="text-sm font-extrabold text-[#123f38]">{formatINR(plan.fare)}</div>
-                            <button
-                              type="button"
-                              className="btn green !min-h-[32px] px-3 py-1 text-[11px]"
-                              onClick={() => handleSelectCab(v, plan.fare, plan.label)}
-                            >
-                              Select
-                            </button>
+                          <div key={plan.label} className="flex items-center justify-between gap-2 border border-[#dce5da] p-3 rounded-xl hover:border-[#62c33a] transition-all bg-white hover:shadow-md group">
+                            <div className="flex items-center gap-3">
+                              <div className="bg-[#f0f7ec] border border-[#dce5da] group-hover:border-[#62c33a]/30 rounded-lg px-2.5 py-1.5 flex flex-col items-center justify-center transition-colors">
+                                <span className="text-xs font-extrabold text-[#123f38] leading-none">{plan.label}</span>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[13px] font-extrabold text-[#123f38]">
+                                  {plan.km} km &amp; {plan.hours} hrs
+                                </span>
+                                <span className="text-[11px] text-[#a5b3ac] font-medium mt-0.5">
+                                  City Limit
+                                </span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <span className="text-sm font-extrabold text-[#123f38]">{formatINR(plan.fare)}</span>
+                              <button
+                                type="button"
+                                className="btn green !min-h-[36px] px-4 py-1.5 text-xs shadow-sm"
+                                onClick={() => handleSelectCab(v, plan.fare, plan.label)}
+                              >
+                                Select
+                              </button>
+                            </div>
                           </div>
                         ))}
                       </div>
@@ -343,7 +361,7 @@ export default function CabSearch({
                     <div className="result" key={v.category}>
                       <div className="rart">
                         {v.image ? (
-                          <img src={v.image} alt={v.category} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                          <Image src={v.image} alt={v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
                         ) : (
                           v.icon
                         )}

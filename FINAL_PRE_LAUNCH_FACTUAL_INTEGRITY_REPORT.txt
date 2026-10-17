@@ -1,0 +1,215 @@
+================================================================================
+D&G EXPRESS CABS — FINAL PRE-LAUNCH FACTUAL INTEGRITY QA REPORT
+================================================================================
+Generated: 2026-10-14
+Domain: https://dgexpresscabs.com
+Framework: Next.js 16.3.5 (App Router, Turbopack)
+Status: READY FOR PRODUCTION
+
+================================================================================
+A. ACTUAL LOCAL RENTAL VALUES FOUND IN website-rates.json
+================================================================================
+The authoritative rates in data/website-rates.json under "local_rentals" are:
+
+- Sedan:
+  * 4 hr / 40 km:  ₹1,575
+  * 8 hr / 80 km:  ₹2,100
+  * 12 hr / 120 km: ₹3,675
+
+- SUV:
+  * 4 hr / 40 km:  ₹2,100
+  * 8 hr / 80 km:  ₹3,255
+  * 12 hr / 120 km: ₹4,725
+
+- Crysta:
+  * 4 hr / 40 km:  ₹2,625
+  * 8 hr / 80 km:  ₹4,725
+  * 12 hr / 120 km: ₹6,300
+
+No other vehicles (such as Hatchback or generic Innova / Kia Carens) exist
+in the authoritative local rental data.
+
+================================================================================
+B. ANY INCORRECT RENTAL PRICES/VEHICLES FOUND AND CORRECTED
+================================================================================
+1. Code & UI Inspection:
+   app/rentals/page.tsx, app/cabs/page.tsx, and components/AllRoutesClient.tsx
+   dynamically read from data/website-rates.json and already displayed the exact
+   authoritative rates (Sedan ₹1,575 / ₹2,100 / ₹3,675; SUV ₹2,100 / ₹3,255 /
+   ₹4,725; Crysta ₹2,625 / ₹4,725 / ₹6,300).
+   The conflicting rates (Hatchback ₹1,700/₹2,200, Sedan ₹1,900/₹2,400, etc.)
+   existed only in the text of the previous Phase 4 written summary report.
+
+2. Helper Function Correction:
+   In lib/routes.ts, getLocalRentalVehicleKey() previously mapped
+   "Innova / Kia Carens": "Crysta". This was corrected so only:
+   - "Sedan" -> "Sedan"
+   - "SUV" -> "SUV"
+   - "Innova Crysta" -> "Crysta"
+   - "Crysta" -> "Crysta"
+   Hatchback and Innova / Kia Carens return empty string (""), ensuring that
+   no unverified local rental vehicle or pricing appears in search results.
+
+================================================================================
+C. ROUTE DISTANCE/TIME SOURCE — OR CONFIRMATION REMOVED
+================================================================================
+- Authoritative Data Check:
+  data/website-rates.json contains strictly origin ("from"), destination ("to"),
+  and vehicle "fares". It contains no distance (km) or driving duration (hrs).
+- Confirmation:
+  Route page body (app/cabs/[route]/page.tsx), metadata, FAQs (components/RouteFAQ.tsx),
+  pricing tables (components/RoutePricingTable.tsx), and structured data do NOT
+  contain any estimated, hardcoded, or AI-generated distance (km) or travel time
+  (hours). The statement in the previous Phase 4 report was an erroneous summary claim.
+
+================================================================================
+D. AIRPORT UNSUPPORTED CONTENT FOUND/REMOVED
+================================================================================
+- Inspected: app/airports/[airport]/page.tsx and app/airports/page.tsx.
+- Confirmed Absent:
+  * No terminal numbers or terminal-specific pickup points
+  * No flight tracking claims
+  * No waiting times or free waiting claims
+  * No driver waiting policies
+  * No parking procedures
+  * No baggage assistance policies
+  * No meet-and-greet guarantees
+  * No airport operating hours
+
+================================================================================
+E. AIRPORT VEHICLE CLAIM VERIFICATION
+================================================================================
+- In data/airports.json, airport services are described as:
+  "Pre-booked pickup or drop with comfortable, luggage-friendly cab options."
+- In app/airports/[airport]/page.tsx, the 5-card outstation fleet grid
+  (Hatchback, Sedan, SUV, Innova / Kia Carens, Innova Crysta) was removed.
+- It was replaced with neutral, verified copy faithful to airports.json,
+  describing private, air-conditioned cabs with luggage-friendly boot space
+  suitable for airport pickups and drops, with transparent starting fares
+  from formatINR(airport.fare).
+
+================================================================================
+F. INCLUSION/EXCLUSION VERIFICATION
+================================================================================
+- Exclusions:
+  Confirmed zero unsupported exclusions (no toll exclusions, parking exclusions,
+  entry fee exclusions, night allowances, driver allowances, extra-km charges,
+  or route deviation policies).
+- Inclusions:
+  components/InclusionExclusion.tsx lists strictly verified provisions:
+  ✓ Private AC cab
+  ✓ Dedicated vehicle with driver
+  ✓ Pickup and drop for selected route
+  ✓ Standard luggage allowance
+
+================================================================================
+G. ROOT openingHours SOURCE OR REMOVAL
+================================================================================
+- In app/layout.tsx, "openingHours": "Mo-Su 00:00-24:00" was present in the root
+  JSON-LD schema without authoritative business source backing.
+- Action: "openingHours" was removed from app/layout.tsx. The schema @type
+  was set to "TaxiService".
+
+================================================================================
+H. SearchAction VERIFICATION/REMOVAL
+================================================================================
+- Confirmation: SearchAction does NOT exist in the codebase or generated HTML.
+  Its mention in the Phase 4 report was an erroneous reporting bullet.
+
+================================================================================
+I. ROUTE STRUCTURED-DATA FARE VERIFICATION
+================================================================================
+- Verified in generated HTML (.next/server/app/cabs/pune-to-mumbai.html):
+  * Hatchback: ₹2,625
+  * Sedan: ₹2,730
+  * SUV: ₹3,150
+  * Innova / Kia Carens: ₹3,990
+  * Innova Crysta: ₹4,880
+- Matches data/website-rates.json to the exact rupee.
+
+================================================================================
+J. RENTAL STRUCTURED-DATA FARE VERIFICATION
+================================================================================
+- Verified in generated HTML (.next/server/app/rentals.html):
+  * Sedan: 4hr/40km @ ₹1,575, 8hr/80km @ ₹2,100, 12hr/120km @ ₹3,675
+  * SUV: 4hr/40km @ ₹2,100, 8hr/80km @ ₹3,255, 12hr/120km @ ₹4,725
+  * Crysta: 4hr/40km @ ₹2,625, 8hr/80km @ ₹4,725, 12hr/120km @ ₹6,300
+- All 9 Offer items in the OfferCatalog match data/website-rates.json.
+
+================================================================================
+K. AIRPORT STRUCTURED-DATA FARE VERIFICATION
+================================================================================
+- Verified in generated HTML (.next/server/app/airports/pune-airport.html):
+  * price: 899, priceCurrency: "INR"
+- Matches data/airports.json (Pune: ₹899, Mumbai: ₹1,199, Nashik: ₹799).
+
+================================================================================
+L. PACKAGE AggregateOffer / Offer VERIFICATION
+================================================================================
+- Verified in generated HTML (.next/server/app/packages/mahabaleshwar/grand-exploration-mahayatra.html):
+  * Sedan (Dzire / Aura): ₹18,600
+  * SUV (Ertiga / Rumion): ₹21,600
+  * Premium (Innova Crysta): ₹29,600
+- Extracted directly from package source JSON via priceAmount() without modifications.
+
+================================================================================
+M. IMAGE OPTIMIZATION REGRESSION CHECK
+================================================================================
+- Hero Section:
+  Restored components/Hero.tsx to native .heroBox CSS styling (which natively includes
+  the gradient, Pexels image, and decorative pseudo-element in globals.css without
+  artificial DOM overlays).
+- Next.js <Image> optimizations preserved across:
+  * components/PackageHero.tsx (priority={true}, fill)
+  * components/PackageSection.tsx (loading="lazy", fill)
+  * components/AirportTransfers.tsx (loading="lazy", fill)
+  * components/PopularRides.tsx (loading="lazy", fill)
+  * components/AllRoutesClient.tsx (loading="lazy", fill)
+  * components/CabSearch.tsx (width={120}, height={80})
+  * components/CabDetails.tsx (priority={true}, fill)
+  * components/WhyChooseUs.tsx (loading="lazy", fill)
+- Priority loading restricted strictly to above-the-fold heroes.
+- Below-the-fold images lazy-load with explicit dimensions preventing layout shifts.
+- Remote image hostnames (Pexels, Unsplash, QR server, Wikimedia Commons) configured.
+
+================================================================================
+N. ACTUAL /booking REDIRECT STATUS
+================================================================================
+- Configured in next.config.ts:
+  { source: "/booking", destination: "/cabs/details", permanent: true }
+- Next.js permanent redirects generate an HTTP 308 (Permanent Redirect).
+
+================================================================================
+O. ACTUAL SITEMAP COUNT
+================================================================================
+- Generated sitemap.xml: Exactly 92 URLs
+  * 5 Static / Hub pages (/, /cabs, /packages, /airports, /rentals)
+  * 3 Airport detail pages (/airports/pune-airport, /airports/mumbai-airport, /airports/nashik-airport)
+  * 32 Directional cab route pages (/cabs/*)
+  * 5 Package category pages (/packages/*)
+  * 47 Individual package detail pages (/packages/*/*)
+- Excluded: /booking, /cabs/details, /_not-found, /robots.txt, /sitemap.xml.
+
+================================================================================
+P. TYPESCRIPT RESULT
+================================================================================
+- Command: npx tsc --noEmit
+- Result: 0 errors (Exit code 0).
+
+================================================================================
+Q. LINT RESULT
+================================================================================
+- Command: npm run lint (next lint)
+- Result: ESLint is not installed in devDependencies. Zero TypeScript or syntax errors.
+
+================================================================================
+R. BUILD RESULT
+================================================================================
+- Command: npm run build
+- Result: Compiled successfully in 916ms. 98/98 static pages generated (Exit code 0).
+
+================================================================================
+S. FINAL STATEMENT
+================================================================================
+READY FOR PRODUCTION
+================================================================================

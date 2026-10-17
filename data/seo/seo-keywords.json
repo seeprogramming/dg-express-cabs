@@ -1,0 +1,1928 @@
+{
+  "schema_version": "1.0",
+  "brand": {
+    "name": "D&G Express Cabs",
+    "brand_keywords": [
+      "D&G Express Cabs",
+      "D&G Express Cabs cab booking",
+      "D&G Express Cabs taxi service",
+      "D&G Express Cabs outstation cabs"
+    ],
+    "rule": "Use only the D&G Express Cabs brand name. Do not add third-party cab, taxi, travel agency, aggregator, or competitor brand names."
+  },
+  "strategy": {
+    "market": "Maharashtra and connected outstation routes",
+    "primary_locations": [
+      "Pune",
+      "Mumbai",
+      "Nashik"
+    ],
+    "search_intents": [
+      "transactional",
+      "commercial",
+      "local",
+      "informational"
+    ],
+    "keyword_usage_note": "Use this file for page targeting, titles, descriptions, headings, useful body copy, FAQs, internal links and structured data. Do not keyword-stuff.",
+    "meta_keywords_note": "Do not rely on the HTML meta keywords tag for rankings.",
+    "avoid_unverified_claims": [
+      "cheapest",
+      "lowest price guaranteed",
+      "best",
+      "24x7",
+      "no hidden charges",
+      "toll included",
+      "pay after ride",
+      "no advance payment"
+    ],
+    "avoid_irrelevant_locations": [
+      "Delhi",
+      "Bangalore",
+      "Hyderabad",
+      "Indore",
+      "Bhopal",
+      "Patna",
+      "Ahmedabad",
+      "Chennai",
+      "Jaipur",
+      "Nagpur"
+    ],
+    "spelling_policy": {
+      "preferred": [
+        "Konkan",
+        "Ahilyanagar",
+        "Chhatrapati Sambhajinagar"
+      ],
+      "legacy_search_variants": [
+        "Kokan",
+        "Ahmednagar",
+        "Aurangabad"
+      ],
+      "usage": "Use preferred current names in visible content. Legacy names may be used only as natural search variants when genuinely useful."
+    }
+  },
+  "homepage": {
+    "primary_keyword": "outstation cab booking",
+    "secondary_keywords": [
+      "cab booking",
+      "online cab booking",
+      "taxi booking",
+      "online taxi booking",
+      "outstation cabs",
+      "outstation taxi service",
+      "intercity cab service",
+      "intercity cabs",
+      "one way cab",
+      "one way taxi",
+      "one way cab booking",
+      "round trip cab",
+      "round trip taxi",
+      "private taxi service",
+      "cab service",
+      "taxi service",
+      "car rental with driver",
+      "car booking with driver",
+      "airport cab",
+      "airport cab booking",
+      "airport taxi booking",
+      "airport cab service",
+      "local cab service",
+      "cab rental",
+      "taxi rental",
+      "travel car booking"
+    ],
+    "local_modifiers": [
+      "Pune",
+      "Mumbai",
+      "Nashik",
+      "Maharashtra"
+    ],
+    "title": "Outstation Cabs, Airport Transfers & Cab Rentals | D&G Express Cabs",
+    "h1": "Outstation Cabs, Airport Transfers & Cab Rentals"
+  },
+  "service_clusters": {
+    "outstation": {
+      "primary_keyword": "outstation cab booking",
+      "secondary_keywords": [
+        "outstation cabs",
+        "outstation taxi",
+        "outstation taxi service",
+        "outstation cab service",
+        "outstation car rental",
+        "car booking for outstation",
+        "private outstation cab",
+        "one way outstation cab",
+        "round trip outstation cab",
+        "intercity cab service",
+        "intercity taxi service"
+      ]
+    },
+    "one_way": {
+      "primary_keyword": "one way cab booking",
+      "secondary_keywords": [
+        "one way cab",
+        "one way taxi",
+        "one way taxi service",
+        "one way trip taxi",
+        "one way outstation cab",
+        "drop taxi",
+        "intercity one way cab"
+      ]
+    },
+    "round_trip": {
+      "primary_keyword": "round trip cab booking",
+      "secondary_keywords": [
+        "round trip taxi",
+        "round trip car rental",
+        "outstation round trip cab",
+        "return cab booking",
+        "private round trip taxi"
+      ]
+    },
+    "airport": {
+      "primary_keyword": "airport cab booking",
+      "secondary_keywords": [
+        "airport cab",
+        "airport taxi booking",
+        "airport taxi service",
+        "airport cab service",
+        "airport pickup cab",
+        "airport drop taxi",
+        "pre book airport taxi",
+        "cab to airport",
+        "taxi to airport",
+        "airport transfer cab"
+      ]
+    },
+    "local_rental": {
+      "primary_keyword": "local cab rental",
+      "secondary_keywords": [
+        "local taxi service",
+        "local cab service",
+        "cab rental with driver",
+        "car rental with driver",
+        "4 hour cab rental",
+        "8 hour cab rental",
+        "12 hour cab rental",
+        "full day cab rental",
+        "local sightseeing cab",
+        "private car with driver",
+        "hourly cab rental"
+      ],
+      "location_variants": [
+        "local cab rental Pune",
+        "local taxi service Pune",
+        "local cab rental Mumbai",
+        "local taxi service Mumbai",
+        "local cab rental Nashik",
+        "local taxi service Nashik"
+      ],
+      "slug": "/rentals"
+    }
+  },
+  "city_pages": {
+    "pune": [
+      "cab service in pune",
+      "taxi service in pune",
+      "cab booking in pune",
+      "cabs in pune",
+      "outstation cabs pune",
+      "car rental pune with driver",
+      "one way cab pune",
+      "airport cab service pune",
+      "local cab service pune",
+      "private cab service pune"
+    ],
+    "mumbai": [
+      "cab service mumbai",
+      "mumbai taxi service",
+      "cab booking mumbai",
+      "cabs in mumbai",
+      "taxi in mumbai",
+      "outstation cabs mumbai",
+      "car rental mumbai with driver",
+      "airport cab service mumbai",
+      "private cab service mumbai"
+    ],
+    "nashik": [
+      "taxi service in nashik",
+      "cab service in nashik",
+      "cab booking nashik",
+      "outstation cab nashik",
+      "private taxi nashik",
+      "car rental with driver nashik"
+    ]
+  },
+  "route_pages": {
+    "pune-to-mumbai": {
+      "primary_keyword": "Pune to Mumbai cab",
+      "secondary_keywords": [
+        "Pune to Mumbai taxi",
+        "Pune to Mumbai cab booking",
+        "Pune to Mumbai cab service",
+        "Pune to Mumbai taxi service",
+        "Pune to Mumbai one way cab",
+        "Pune to Mumbai one way taxi",
+        "Pune to Mumbai outstation cab",
+        "Pune to Mumbai private taxi",
+        "Pune to Mumbai car rental",
+        "Pune to Mumbai cab fare",
+        "Pune to Mumbai taxi fare",
+        "Pune to Mumbai cab price",
+        "Pune to Mumbai round trip cab",
+        "Pune to Mumbai round trip taxi",
+        "book cab Pune to Mumbai",
+        "Pune to Mumbai AC cab",
+        "Pune to Mumbai sedan cab",
+        "Pune to Mumbai SUV cab",
+        "Pune to Mumbai cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-mumbai",
+      "title_template": "Pune to Mumbai Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Mumbai Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-pune": {
+      "primary_keyword": "Mumbai to Pune cab",
+      "secondary_keywords": [
+        "Mumbai to Pune taxi",
+        "Mumbai to Pune cab booking",
+        "Mumbai to Pune cab service",
+        "Mumbai to Pune taxi service",
+        "Mumbai to Pune one way cab",
+        "Mumbai to Pune one way taxi",
+        "Mumbai to Pune outstation cab",
+        "Mumbai to Pune private taxi",
+        "Mumbai to Pune car rental",
+        "Mumbai to Pune cab fare",
+        "Mumbai to Pune taxi fare",
+        "Mumbai to Pune cab price",
+        "Mumbai to Pune round trip cab",
+        "Mumbai to Pune round trip taxi",
+        "book cab Mumbai to Pune",
+        "Mumbai to Pune AC cab",
+        "Mumbai to Pune sedan cab",
+        "Mumbai to Pune SUV cab",
+        "Mumbai to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-pune",
+      "title_template": "Mumbai to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-shirdi": {
+      "primary_keyword": "Pune to Shirdi cab",
+      "secondary_keywords": [
+        "Pune to Shirdi taxi",
+        "Pune to Shirdi cab booking",
+        "Pune to Shirdi cab service",
+        "Pune to Shirdi taxi service",
+        "Pune to Shirdi one way cab",
+        "Pune to Shirdi one way taxi",
+        "Pune to Shirdi outstation cab",
+        "Pune to Shirdi private taxi",
+        "Pune to Shirdi car rental",
+        "Pune to Shirdi cab fare",
+        "Pune to Shirdi taxi fare",
+        "Pune to Shirdi cab price",
+        "Pune to Shirdi round trip cab",
+        "Pune to Shirdi round trip taxi",
+        "book cab Pune to Shirdi",
+        "Pune to Shirdi AC cab",
+        "Pune to Shirdi sedan cab",
+        "Pune to Shirdi SUV cab",
+        "Pune to Shirdi cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-shirdi",
+      "title_template": "Pune to Shirdi Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Shirdi Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "shirdi-to-pune": {
+      "primary_keyword": "Shirdi to Pune cab",
+      "secondary_keywords": [
+        "Shirdi to Pune taxi",
+        "Shirdi to Pune cab booking",
+        "Shirdi to Pune cab service",
+        "Shirdi to Pune taxi service",
+        "Shirdi to Pune one way cab",
+        "Shirdi to Pune one way taxi",
+        "Shirdi to Pune outstation cab",
+        "Shirdi to Pune private taxi",
+        "Shirdi to Pune car rental",
+        "Shirdi to Pune cab fare",
+        "Shirdi to Pune taxi fare",
+        "Shirdi to Pune cab price",
+        "Shirdi to Pune round trip cab",
+        "Shirdi to Pune round trip taxi",
+        "book cab Shirdi to Pune",
+        "Shirdi to Pune AC cab",
+        "Shirdi to Pune sedan cab",
+        "Shirdi to Pune SUV cab",
+        "Shirdi to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/shirdi-to-pune",
+      "title_template": "Shirdi to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Shirdi to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-nashik": {
+      "primary_keyword": "Pune to Nashik cab",
+      "secondary_keywords": [
+        "Pune to Nashik taxi",
+        "Pune to Nashik cab booking",
+        "Pune to Nashik cab service",
+        "Pune to Nashik taxi service",
+        "Pune to Nashik one way cab",
+        "Pune to Nashik one way taxi",
+        "Pune to Nashik outstation cab",
+        "Pune to Nashik private taxi",
+        "Pune to Nashik car rental",
+        "Pune to Nashik cab fare",
+        "Pune to Nashik taxi fare",
+        "Pune to Nashik cab price",
+        "Pune to Nashik round trip cab",
+        "Pune to Nashik round trip taxi",
+        "book cab Pune to Nashik",
+        "Pune to Nashik AC cab",
+        "Pune to Nashik sedan cab",
+        "Pune to Nashik SUV cab",
+        "Pune to Nashik cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-nashik",
+      "title_template": "Pune to Nashik Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Nashik Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "nashik-to-pune": {
+      "primary_keyword": "Nashik to Pune cab",
+      "secondary_keywords": [
+        "Nashik to Pune taxi",
+        "Nashik to Pune cab booking",
+        "Nashik to Pune cab service",
+        "Nashik to Pune taxi service",
+        "Nashik to Pune one way cab",
+        "Nashik to Pune one way taxi",
+        "Nashik to Pune outstation cab",
+        "Nashik to Pune private taxi",
+        "Nashik to Pune car rental",
+        "Nashik to Pune cab fare",
+        "Nashik to Pune taxi fare",
+        "Nashik to Pune cab price",
+        "Nashik to Pune round trip cab",
+        "Nashik to Pune round trip taxi",
+        "book cab Nashik to Pune",
+        "Nashik to Pune AC cab",
+        "Nashik to Pune sedan cab",
+        "Nashik to Pune SUV cab",
+        "Nashik to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/nashik-to-pune",
+      "title_template": "Nashik to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Nashik to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-nashik": {
+      "primary_keyword": "Mumbai to Nashik cab",
+      "secondary_keywords": [
+        "Mumbai to Nashik taxi",
+        "Mumbai to Nashik cab booking",
+        "Mumbai to Nashik cab service",
+        "Mumbai to Nashik taxi service",
+        "Mumbai to Nashik one way cab",
+        "Mumbai to Nashik one way taxi",
+        "Mumbai to Nashik outstation cab",
+        "Mumbai to Nashik private taxi",
+        "Mumbai to Nashik car rental",
+        "Mumbai to Nashik cab fare",
+        "Mumbai to Nashik taxi fare",
+        "Mumbai to Nashik cab price",
+        "Mumbai to Nashik round trip cab",
+        "Mumbai to Nashik round trip taxi",
+        "book cab Mumbai to Nashik",
+        "Mumbai to Nashik AC cab",
+        "Mumbai to Nashik sedan cab",
+        "Mumbai to Nashik SUV cab",
+        "Mumbai to Nashik cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-nashik",
+      "title_template": "Mumbai to Nashik Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Nashik Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "nashik-to-mumbai": {
+      "primary_keyword": "Nashik to Mumbai cab",
+      "secondary_keywords": [
+        "Nashik to Mumbai taxi",
+        "Nashik to Mumbai cab booking",
+        "Nashik to Mumbai cab service",
+        "Nashik to Mumbai taxi service",
+        "Nashik to Mumbai one way cab",
+        "Nashik to Mumbai one way taxi",
+        "Nashik to Mumbai outstation cab",
+        "Nashik to Mumbai private taxi",
+        "Nashik to Mumbai car rental",
+        "Nashik to Mumbai cab fare",
+        "Nashik to Mumbai taxi fare",
+        "Nashik to Mumbai cab price",
+        "Nashik to Mumbai round trip cab",
+        "Nashik to Mumbai round trip taxi",
+        "book cab Nashik to Mumbai",
+        "Nashik to Mumbai AC cab",
+        "Nashik to Mumbai sedan cab",
+        "Nashik to Mumbai SUV cab",
+        "Nashik to Mumbai cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/nashik-to-mumbai",
+      "title_template": "Nashik to Mumbai Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Nashik to Mumbai Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-mahabaleshwar": {
+      "primary_keyword": "Pune to Mahabaleshwar cab",
+      "secondary_keywords": [
+        "Pune to Mahabaleshwar taxi",
+        "Pune to Mahabaleshwar cab booking",
+        "Pune to Mahabaleshwar cab service",
+        "Pune to Mahabaleshwar taxi service",
+        "Pune to Mahabaleshwar one way cab",
+        "Pune to Mahabaleshwar one way taxi",
+        "Pune to Mahabaleshwar outstation cab",
+        "Pune to Mahabaleshwar private taxi",
+        "Pune to Mahabaleshwar car rental",
+        "Pune to Mahabaleshwar cab fare",
+        "Pune to Mahabaleshwar taxi fare",
+        "Pune to Mahabaleshwar cab price",
+        "Pune to Mahabaleshwar round trip cab",
+        "Pune to Mahabaleshwar round trip taxi",
+        "book cab Pune to Mahabaleshwar",
+        "Pune to Mahabaleshwar AC cab",
+        "Pune to Mahabaleshwar sedan cab",
+        "Pune to Mahabaleshwar SUV cab",
+        "Pune to Mahabaleshwar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-mahabaleshwar",
+      "title_template": "Pune to Mahabaleshwar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Mahabaleshwar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mahabaleshwar-to-pune": {
+      "primary_keyword": "Mahabaleshwar to Pune cab",
+      "secondary_keywords": [
+        "Mahabaleshwar to Pune taxi",
+        "Mahabaleshwar to Pune cab booking",
+        "Mahabaleshwar to Pune cab service",
+        "Mahabaleshwar to Pune taxi service",
+        "Mahabaleshwar to Pune one way cab",
+        "Mahabaleshwar to Pune one way taxi",
+        "Mahabaleshwar to Pune outstation cab",
+        "Mahabaleshwar to Pune private taxi",
+        "Mahabaleshwar to Pune car rental",
+        "Mahabaleshwar to Pune cab fare",
+        "Mahabaleshwar to Pune taxi fare",
+        "Mahabaleshwar to Pune cab price",
+        "Mahabaleshwar to Pune round trip cab",
+        "Mahabaleshwar to Pune round trip taxi",
+        "book cab Mahabaleshwar to Pune",
+        "Mahabaleshwar to Pune AC cab",
+        "Mahabaleshwar to Pune sedan cab",
+        "Mahabaleshwar to Pune SUV cab",
+        "Mahabaleshwar to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mahabaleshwar-to-pune",
+      "title_template": "Mahabaleshwar to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mahabaleshwar to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-mahabaleshwar": {
+      "primary_keyword": "Mumbai to Mahabaleshwar cab",
+      "secondary_keywords": [
+        "Mumbai to Mahabaleshwar taxi",
+        "Mumbai to Mahabaleshwar cab booking",
+        "Mumbai to Mahabaleshwar cab service",
+        "Mumbai to Mahabaleshwar taxi service",
+        "Mumbai to Mahabaleshwar one way cab",
+        "Mumbai to Mahabaleshwar one way taxi",
+        "Mumbai to Mahabaleshwar outstation cab",
+        "Mumbai to Mahabaleshwar private taxi",
+        "Mumbai to Mahabaleshwar car rental",
+        "Mumbai to Mahabaleshwar cab fare",
+        "Mumbai to Mahabaleshwar taxi fare",
+        "Mumbai to Mahabaleshwar cab price",
+        "Mumbai to Mahabaleshwar round trip cab",
+        "Mumbai to Mahabaleshwar round trip taxi",
+        "book cab Mumbai to Mahabaleshwar",
+        "Mumbai to Mahabaleshwar AC cab",
+        "Mumbai to Mahabaleshwar sedan cab",
+        "Mumbai to Mahabaleshwar SUV cab",
+        "Mumbai to Mahabaleshwar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-mahabaleshwar",
+      "title_template": "Mumbai to Mahabaleshwar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Mahabaleshwar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-lonavala": {
+      "primary_keyword": "Pune to Lonavala cab",
+      "secondary_keywords": [
+        "Pune to Lonavala taxi",
+        "Pune to Lonavala cab booking",
+        "Pune to Lonavala cab service",
+        "Pune to Lonavala taxi service",
+        "Pune to Lonavala one way cab",
+        "Pune to Lonavala one way taxi",
+        "Pune to Lonavala outstation cab",
+        "Pune to Lonavala private taxi",
+        "Pune to Lonavala car rental",
+        "Pune to Lonavala cab fare",
+        "Pune to Lonavala taxi fare",
+        "Pune to Lonavala cab price",
+        "Pune to Lonavala round trip cab",
+        "Pune to Lonavala round trip taxi",
+        "book cab Pune to Lonavala",
+        "Pune to Lonavala AC cab",
+        "Pune to Lonavala sedan cab",
+        "Pune to Lonavala SUV cab",
+        "Pune to Lonavala cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-lonavala",
+      "title_template": "Pune to Lonavala Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Lonavala Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "lonavala-to-pune": {
+      "primary_keyword": "Lonavala to Pune cab",
+      "secondary_keywords": [
+        "Lonavala to Pune taxi",
+        "Lonavala to Pune cab booking",
+        "Lonavala to Pune cab service",
+        "Lonavala to Pune taxi service",
+        "Lonavala to Pune one way cab",
+        "Lonavala to Pune one way taxi",
+        "Lonavala to Pune outstation cab",
+        "Lonavala to Pune private taxi",
+        "Lonavala to Pune car rental",
+        "Lonavala to Pune cab fare",
+        "Lonavala to Pune taxi fare",
+        "Lonavala to Pune cab price",
+        "Lonavala to Pune round trip cab",
+        "Lonavala to Pune round trip taxi",
+        "book cab Lonavala to Pune",
+        "Lonavala to Pune AC cab",
+        "Lonavala to Pune sedan cab",
+        "Lonavala to Pune SUV cab",
+        "Lonavala to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/lonavala-to-pune",
+      "title_template": "Lonavala to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Lonavala to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-kolhapur": {
+      "primary_keyword": "Pune to Kolhapur cab",
+      "secondary_keywords": [
+        "Pune to Kolhapur taxi",
+        "Pune to Kolhapur cab booking",
+        "Pune to Kolhapur cab service",
+        "Pune to Kolhapur taxi service",
+        "Pune to Kolhapur one way cab",
+        "Pune to Kolhapur one way taxi",
+        "Pune to Kolhapur outstation cab",
+        "Pune to Kolhapur private taxi",
+        "Pune to Kolhapur car rental",
+        "Pune to Kolhapur cab fare",
+        "Pune to Kolhapur taxi fare",
+        "Pune to Kolhapur cab price",
+        "Pune to Kolhapur round trip cab",
+        "Pune to Kolhapur round trip taxi",
+        "book cab Pune to Kolhapur",
+        "Pune to Kolhapur AC cab",
+        "Pune to Kolhapur sedan cab",
+        "Pune to Kolhapur SUV cab",
+        "Pune to Kolhapur cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-kolhapur",
+      "title_template": "Pune to Kolhapur Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Kolhapur Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "kolhapur-to-pune": {
+      "primary_keyword": "Kolhapur to Pune cab",
+      "secondary_keywords": [
+        "Kolhapur to Pune taxi",
+        "Kolhapur to Pune cab booking",
+        "Kolhapur to Pune cab service",
+        "Kolhapur to Pune taxi service",
+        "Kolhapur to Pune one way cab",
+        "Kolhapur to Pune one way taxi",
+        "Kolhapur to Pune outstation cab",
+        "Kolhapur to Pune private taxi",
+        "Kolhapur to Pune car rental",
+        "Kolhapur to Pune cab fare",
+        "Kolhapur to Pune taxi fare",
+        "Kolhapur to Pune cab price",
+        "Kolhapur to Pune round trip cab",
+        "Kolhapur to Pune round trip taxi",
+        "book cab Kolhapur to Pune",
+        "Kolhapur to Pune AC cab",
+        "Kolhapur to Pune sedan cab",
+        "Kolhapur to Pune SUV cab",
+        "Kolhapur to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/kolhapur-to-pune",
+      "title_template": "Kolhapur to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Kolhapur to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-kolhapur": {
+      "primary_keyword": "Mumbai to Kolhapur cab",
+      "secondary_keywords": [
+        "Mumbai to Kolhapur taxi",
+        "Mumbai to Kolhapur cab booking",
+        "Mumbai to Kolhapur cab service",
+        "Mumbai to Kolhapur taxi service",
+        "Mumbai to Kolhapur one way cab",
+        "Mumbai to Kolhapur one way taxi",
+        "Mumbai to Kolhapur outstation cab",
+        "Mumbai to Kolhapur private taxi",
+        "Mumbai to Kolhapur car rental",
+        "Mumbai to Kolhapur cab fare",
+        "Mumbai to Kolhapur taxi fare",
+        "Mumbai to Kolhapur cab price",
+        "Mumbai to Kolhapur round trip cab",
+        "Mumbai to Kolhapur round trip taxi",
+        "book cab Mumbai to Kolhapur",
+        "Mumbai to Kolhapur AC cab",
+        "Mumbai to Kolhapur sedan cab",
+        "Mumbai to Kolhapur SUV cab",
+        "Mumbai to Kolhapur cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-kolhapur",
+      "title_template": "Mumbai to Kolhapur Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Kolhapur Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "kolhapur-to-mumbai": {
+      "primary_keyword": "Kolhapur to Mumbai cab",
+      "secondary_keywords": [
+        "Kolhapur to Mumbai taxi",
+        "Kolhapur to Mumbai cab booking",
+        "Kolhapur to Mumbai cab service",
+        "Kolhapur to Mumbai taxi service",
+        "Kolhapur to Mumbai one way cab",
+        "Kolhapur to Mumbai one way taxi",
+        "Kolhapur to Mumbai outstation cab",
+        "Kolhapur to Mumbai private taxi",
+        "Kolhapur to Mumbai car rental",
+        "Kolhapur to Mumbai cab fare",
+        "Kolhapur to Mumbai taxi fare",
+        "Kolhapur to Mumbai cab price",
+        "Kolhapur to Mumbai round trip cab",
+        "Kolhapur to Mumbai round trip taxi",
+        "book cab Kolhapur to Mumbai",
+        "Kolhapur to Mumbai AC cab",
+        "Kolhapur to Mumbai sedan cab",
+        "Kolhapur to Mumbai SUV cab",
+        "Kolhapur to Mumbai cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/kolhapur-to-mumbai",
+      "title_template": "Kolhapur to Mumbai Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Kolhapur to Mumbai Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-goa": {
+      "primary_keyword": "Pune to Goa cab",
+      "secondary_keywords": [
+        "Pune to Goa taxi",
+        "Pune to Goa cab booking",
+        "Pune to Goa cab service",
+        "Pune to Goa taxi service",
+        "Pune to Goa one way cab",
+        "Pune to Goa one way taxi",
+        "Pune to Goa outstation cab",
+        "Pune to Goa private taxi",
+        "Pune to Goa car rental",
+        "Pune to Goa cab fare",
+        "Pune to Goa taxi fare",
+        "Pune to Goa cab price",
+        "Pune to Goa round trip cab",
+        "Pune to Goa round trip taxi",
+        "book cab Pune to Goa",
+        "Pune to Goa AC cab",
+        "Pune to Goa sedan cab",
+        "Pune to Goa SUV cab",
+        "Pune to Goa cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-goa",
+      "title_template": "Pune to Goa Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Goa Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "goa-to-pune": {
+      "primary_keyword": "Goa to Pune cab",
+      "secondary_keywords": [
+        "Goa to Pune taxi",
+        "Goa to Pune cab booking",
+        "Goa to Pune cab service",
+        "Goa to Pune taxi service",
+        "Goa to Pune one way cab",
+        "Goa to Pune one way taxi",
+        "Goa to Pune outstation cab",
+        "Goa to Pune private taxi",
+        "Goa to Pune car rental",
+        "Goa to Pune cab fare",
+        "Goa to Pune taxi fare",
+        "Goa to Pune cab price",
+        "Goa to Pune round trip cab",
+        "Goa to Pune round trip taxi",
+        "book cab Goa to Pune",
+        "Goa to Pune AC cab",
+        "Goa to Pune sedan cab",
+        "Goa to Pune SUV cab",
+        "Goa to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/goa-to-pune",
+      "title_template": "Goa to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Goa to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-goa": {
+      "primary_keyword": "Mumbai to Goa cab",
+      "secondary_keywords": [
+        "Mumbai to Goa taxi",
+        "Mumbai to Goa cab booking",
+        "Mumbai to Goa cab service",
+        "Mumbai to Goa taxi service",
+        "Mumbai to Goa one way cab",
+        "Mumbai to Goa one way taxi",
+        "Mumbai to Goa outstation cab",
+        "Mumbai to Goa private taxi",
+        "Mumbai to Goa car rental",
+        "Mumbai to Goa cab fare",
+        "Mumbai to Goa taxi fare",
+        "Mumbai to Goa cab price",
+        "Mumbai to Goa round trip cab",
+        "Mumbai to Goa round trip taxi",
+        "book cab Mumbai to Goa",
+        "Mumbai to Goa AC cab",
+        "Mumbai to Goa sedan cab",
+        "Mumbai to Goa SUV cab",
+        "Mumbai to Goa cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-goa",
+      "title_template": "Mumbai to Goa Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Goa Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "goa-to-mumbai": {
+      "primary_keyword": "Goa to Mumbai cab",
+      "secondary_keywords": [
+        "Goa to Mumbai taxi",
+        "Goa to Mumbai cab booking",
+        "Goa to Mumbai cab service",
+        "Goa to Mumbai taxi service",
+        "Goa to Mumbai one way cab",
+        "Goa to Mumbai one way taxi",
+        "Goa to Mumbai outstation cab",
+        "Goa to Mumbai private taxi",
+        "Goa to Mumbai car rental",
+        "Goa to Mumbai cab fare",
+        "Goa to Mumbai taxi fare",
+        "Goa to Mumbai cab price",
+        "Goa to Mumbai round trip cab",
+        "Goa to Mumbai round trip taxi",
+        "book cab Goa to Mumbai",
+        "Goa to Mumbai AC cab",
+        "Goa to Mumbai sedan cab",
+        "Goa to Mumbai SUV cab",
+        "Goa to Mumbai cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/goa-to-mumbai",
+      "title_template": "Goa to Mumbai Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Goa to Mumbai Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-satara": {
+      "primary_keyword": "Pune to Satara cab",
+      "secondary_keywords": [
+        "Pune to Satara taxi",
+        "Pune to Satara cab booking",
+        "Pune to Satara cab service",
+        "Pune to Satara taxi service",
+        "Pune to Satara one way cab",
+        "Pune to Satara one way taxi",
+        "Pune to Satara outstation cab",
+        "Pune to Satara private taxi",
+        "Pune to Satara car rental",
+        "Pune to Satara cab fare",
+        "Pune to Satara taxi fare",
+        "Pune to Satara cab price",
+        "Pune to Satara round trip cab",
+        "Pune to Satara round trip taxi",
+        "book cab Pune to Satara",
+        "Pune to Satara AC cab",
+        "Pune to Satara sedan cab",
+        "Pune to Satara SUV cab",
+        "Pune to Satara cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-satara",
+      "title_template": "Pune to Satara Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Satara Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "satara-to-pune": {
+      "primary_keyword": "Satara to Pune cab",
+      "secondary_keywords": [
+        "Satara to Pune taxi",
+        "Satara to Pune cab booking",
+        "Satara to Pune cab service",
+        "Satara to Pune taxi service",
+        "Satara to Pune one way cab",
+        "Satara to Pune one way taxi",
+        "Satara to Pune outstation cab",
+        "Satara to Pune private taxi",
+        "Satara to Pune car rental",
+        "Satara to Pune cab fare",
+        "Satara to Pune taxi fare",
+        "Satara to Pune cab price",
+        "Satara to Pune round trip cab",
+        "Satara to Pune round trip taxi",
+        "book cab Satara to Pune",
+        "Satara to Pune AC cab",
+        "Satara to Pune sedan cab",
+        "Satara to Pune SUV cab",
+        "Satara to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/satara-to-pune",
+      "title_template": "Satara to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Satara to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-satara": {
+      "primary_keyword": "Mumbai to Satara cab",
+      "secondary_keywords": [
+        "Mumbai to Satara taxi",
+        "Mumbai to Satara cab booking",
+        "Mumbai to Satara cab service",
+        "Mumbai to Satara taxi service",
+        "Mumbai to Satara one way cab",
+        "Mumbai to Satara one way taxi",
+        "Mumbai to Satara outstation cab",
+        "Mumbai to Satara private taxi",
+        "Mumbai to Satara car rental",
+        "Mumbai to Satara cab fare",
+        "Mumbai to Satara taxi fare",
+        "Mumbai to Satara cab price",
+        "Mumbai to Satara round trip cab",
+        "Mumbai to Satara round trip taxi",
+        "book cab Mumbai to Satara",
+        "Mumbai to Satara AC cab",
+        "Mumbai to Satara sedan cab",
+        "Mumbai to Satara SUV cab",
+        "Mumbai to Satara cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-satara",
+      "title_template": "Mumbai to Satara Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Satara Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-ahilyanagar": {
+      "primary_keyword": "Pune to Ahilyanagar cab",
+      "secondary_keywords": [
+        "Pune to Ahilyanagar taxi",
+        "Pune to Ahilyanagar cab booking",
+        "Pune to Ahilyanagar cab service",
+        "Pune to Ahilyanagar taxi service",
+        "Pune to Ahilyanagar one way cab",
+        "Pune to Ahilyanagar one way taxi",
+        "Pune to Ahilyanagar outstation cab",
+        "Pune to Ahilyanagar private taxi",
+        "Pune to Ahilyanagar car rental",
+        "Pune to Ahilyanagar cab fare",
+        "Pune to Ahilyanagar taxi fare",
+        "Pune to Ahilyanagar cab price",
+        "Pune to Ahilyanagar round trip cab",
+        "Pune to Ahilyanagar round trip taxi",
+        "book cab Pune to Ahilyanagar",
+        "Pune to Ahilyanagar AC cab",
+        "Pune to Ahilyanagar sedan cab",
+        "Pune to Ahilyanagar SUV cab",
+        "Pune to Ahilyanagar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-ahilyanagar",
+      "title_template": "Pune to Ahilyanagar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Ahilyanagar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "ahilyanagar-to-pune": {
+      "primary_keyword": "Ahilyanagar to Pune cab",
+      "secondary_keywords": [
+        "Ahilyanagar to Pune taxi",
+        "Ahilyanagar to Pune cab booking",
+        "Ahilyanagar to Pune cab service",
+        "Ahilyanagar to Pune taxi service",
+        "Ahilyanagar to Pune one way cab",
+        "Ahilyanagar to Pune one way taxi",
+        "Ahilyanagar to Pune outstation cab",
+        "Ahilyanagar to Pune private taxi",
+        "Ahilyanagar to Pune car rental",
+        "Ahilyanagar to Pune cab fare",
+        "Ahilyanagar to Pune taxi fare",
+        "Ahilyanagar to Pune cab price",
+        "Ahilyanagar to Pune round trip cab",
+        "Ahilyanagar to Pune round trip taxi",
+        "book cab Ahilyanagar to Pune",
+        "Ahilyanagar to Pune AC cab",
+        "Ahilyanagar to Pune sedan cab",
+        "Ahilyanagar to Pune SUV cab",
+        "Ahilyanagar to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/ahilyanagar-to-pune",
+      "title_template": "Ahilyanagar to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Ahilyanagar to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-ahilyanagar": {
+      "primary_keyword": "Mumbai to Ahilyanagar cab",
+      "secondary_keywords": [
+        "Mumbai to Ahilyanagar taxi",
+        "Mumbai to Ahilyanagar cab booking",
+        "Mumbai to Ahilyanagar cab service",
+        "Mumbai to Ahilyanagar taxi service",
+        "Mumbai to Ahilyanagar one way cab",
+        "Mumbai to Ahilyanagar one way taxi",
+        "Mumbai to Ahilyanagar outstation cab",
+        "Mumbai to Ahilyanagar private taxi",
+        "Mumbai to Ahilyanagar car rental",
+        "Mumbai to Ahilyanagar cab fare",
+        "Mumbai to Ahilyanagar taxi fare",
+        "Mumbai to Ahilyanagar cab price",
+        "Mumbai to Ahilyanagar round trip cab",
+        "Mumbai to Ahilyanagar round trip taxi",
+        "book cab Mumbai to Ahilyanagar",
+        "Mumbai to Ahilyanagar AC cab",
+        "Mumbai to Ahilyanagar sedan cab",
+        "Mumbai to Ahilyanagar SUV cab",
+        "Mumbai to Ahilyanagar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-ahilyanagar",
+      "title_template": "Mumbai to Ahilyanagar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Ahilyanagar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-chhatrapati-sambhajinagar": {
+      "primary_keyword": "Pune to Chhatrapati Sambhajinagar cab",
+      "secondary_keywords": [
+        "Pune to Chhatrapati Sambhajinagar taxi",
+        "Pune to Chhatrapati Sambhajinagar cab booking",
+        "Pune to Chhatrapati Sambhajinagar cab service",
+        "Pune to Chhatrapati Sambhajinagar taxi service",
+        "Pune to Chhatrapati Sambhajinagar one way cab",
+        "Pune to Chhatrapati Sambhajinagar one way taxi",
+        "Pune to Chhatrapati Sambhajinagar outstation cab",
+        "Pune to Chhatrapati Sambhajinagar private taxi",
+        "Pune to Chhatrapati Sambhajinagar car rental",
+        "Pune to Chhatrapati Sambhajinagar cab fare",
+        "Pune to Chhatrapati Sambhajinagar taxi fare",
+        "Pune to Chhatrapati Sambhajinagar cab price",
+        "Pune to Chhatrapati Sambhajinagar round trip cab",
+        "Pune to Chhatrapati Sambhajinagar round trip taxi",
+        "book cab Pune to Chhatrapati Sambhajinagar",
+        "Pune to Chhatrapati Sambhajinagar AC cab",
+        "Pune to Chhatrapati Sambhajinagar sedan cab",
+        "Pune to Chhatrapati Sambhajinagar SUV cab",
+        "Pune to Chhatrapati Sambhajinagar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-chhatrapati-sambhajinagar",
+      "title_template": "Pune to Chhatrapati Sambhajinagar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Chhatrapati Sambhajinagar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "chhatrapati-sambhajinagar-to-pune": {
+      "primary_keyword": "Chhatrapati Sambhajinagar to Pune cab",
+      "secondary_keywords": [
+        "Chhatrapati Sambhajinagar to Pune taxi",
+        "Chhatrapati Sambhajinagar to Pune cab booking",
+        "Chhatrapati Sambhajinagar to Pune cab service",
+        "Chhatrapati Sambhajinagar to Pune taxi service",
+        "Chhatrapati Sambhajinagar to Pune one way cab",
+        "Chhatrapati Sambhajinagar to Pune one way taxi",
+        "Chhatrapati Sambhajinagar to Pune outstation cab",
+        "Chhatrapati Sambhajinagar to Pune private taxi",
+        "Chhatrapati Sambhajinagar to Pune car rental",
+        "Chhatrapati Sambhajinagar to Pune cab fare",
+        "Chhatrapati Sambhajinagar to Pune taxi fare",
+        "Chhatrapati Sambhajinagar to Pune cab price",
+        "Chhatrapati Sambhajinagar to Pune round trip cab",
+        "Chhatrapati Sambhajinagar to Pune round trip taxi",
+        "book cab Chhatrapati Sambhajinagar to Pune",
+        "Chhatrapati Sambhajinagar to Pune AC cab",
+        "Chhatrapati Sambhajinagar to Pune sedan cab",
+        "Chhatrapati Sambhajinagar to Pune SUV cab",
+        "Chhatrapati Sambhajinagar to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/chhatrapati-sambhajinagar-to-pune",
+      "title_template": "Chhatrapati Sambhajinagar to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Chhatrapati Sambhajinagar to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-chhatrapati-sambhajinagar": {
+      "primary_keyword": "Mumbai to Chhatrapati Sambhajinagar cab",
+      "secondary_keywords": [
+        "Mumbai to Chhatrapati Sambhajinagar taxi",
+        "Mumbai to Chhatrapati Sambhajinagar cab booking",
+        "Mumbai to Chhatrapati Sambhajinagar cab service",
+        "Mumbai to Chhatrapati Sambhajinagar taxi service",
+        "Mumbai to Chhatrapati Sambhajinagar one way cab",
+        "Mumbai to Chhatrapati Sambhajinagar one way taxi",
+        "Mumbai to Chhatrapati Sambhajinagar outstation cab",
+        "Mumbai to Chhatrapati Sambhajinagar private taxi",
+        "Mumbai to Chhatrapati Sambhajinagar car rental",
+        "Mumbai to Chhatrapati Sambhajinagar cab fare",
+        "Mumbai to Chhatrapati Sambhajinagar taxi fare",
+        "Mumbai to Chhatrapati Sambhajinagar cab price",
+        "Mumbai to Chhatrapati Sambhajinagar round trip cab",
+        "Mumbai to Chhatrapati Sambhajinagar round trip taxi",
+        "book cab Mumbai to Chhatrapati Sambhajinagar",
+        "Mumbai to Chhatrapati Sambhajinagar AC cab",
+        "Mumbai to Chhatrapati Sambhajinagar sedan cab",
+        "Mumbai to Chhatrapati Sambhajinagar SUV cab",
+        "Mumbai to Chhatrapati Sambhajinagar cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-chhatrapati-sambhajinagar",
+      "title_template": "Mumbai to Chhatrapati Sambhajinagar Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Chhatrapati Sambhajinagar Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "pune-to-konkan": {
+      "primary_keyword": "Pune to Konkan cab",
+      "secondary_keywords": [
+        "Pune to Konkan taxi",
+        "Pune to Konkan cab booking",
+        "Pune to Konkan cab service",
+        "Pune to Konkan taxi service",
+        "Pune to Konkan one way cab",
+        "Pune to Konkan one way taxi",
+        "Pune to Konkan outstation cab",
+        "Pune to Konkan private taxi",
+        "Pune to Konkan car rental",
+        "Pune to Konkan cab fare",
+        "Pune to Konkan taxi fare",
+        "Pune to Konkan cab price",
+        "Pune to Konkan round trip cab",
+        "Pune to Konkan round trip taxi",
+        "book cab Pune to Konkan",
+        "Pune to Konkan AC cab",
+        "Pune to Konkan sedan cab",
+        "Pune to Konkan SUV cab",
+        "Pune to Konkan cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/pune-to-konkan",
+      "title_template": "Pune to Konkan Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Pune to Konkan Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "konkan-to-pune": {
+      "primary_keyword": "Konkan to Pune cab",
+      "secondary_keywords": [
+        "Konkan to Pune taxi",
+        "Konkan to Pune cab booking",
+        "Konkan to Pune cab service",
+        "Konkan to Pune taxi service",
+        "Konkan to Pune one way cab",
+        "Konkan to Pune one way taxi",
+        "Konkan to Pune outstation cab",
+        "Konkan to Pune private taxi",
+        "Konkan to Pune car rental",
+        "Konkan to Pune cab fare",
+        "Konkan to Pune taxi fare",
+        "Konkan to Pune cab price",
+        "Konkan to Pune round trip cab",
+        "Konkan to Pune round trip taxi",
+        "book cab Konkan to Pune",
+        "Konkan to Pune AC cab",
+        "Konkan to Pune sedan cab",
+        "Konkan to Pune SUV cab",
+        "Konkan to Pune cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/konkan-to-pune",
+      "title_template": "Konkan to Pune Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Konkan to Pune Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "mumbai-to-konkan": {
+      "primary_keyword": "Mumbai to Konkan cab",
+      "secondary_keywords": [
+        "Mumbai to Konkan taxi",
+        "Mumbai to Konkan cab booking",
+        "Mumbai to Konkan cab service",
+        "Mumbai to Konkan taxi service",
+        "Mumbai to Konkan one way cab",
+        "Mumbai to Konkan one way taxi",
+        "Mumbai to Konkan outstation cab",
+        "Mumbai to Konkan private taxi",
+        "Mumbai to Konkan car rental",
+        "Mumbai to Konkan cab fare",
+        "Mumbai to Konkan taxi fare",
+        "Mumbai to Konkan cab price",
+        "Mumbai to Konkan round trip cab",
+        "Mumbai to Konkan round trip taxi",
+        "book cab Mumbai to Konkan",
+        "Mumbai to Konkan AC cab",
+        "Mumbai to Konkan sedan cab",
+        "Mumbai to Konkan SUV cab",
+        "Mumbai to Konkan cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/mumbai-to-konkan",
+      "title_template": "Mumbai to Konkan Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Mumbai to Konkan Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    },
+    "konkan-to-mumbai": {
+      "primary_keyword": "Konkan to Mumbai cab",
+      "secondary_keywords": [
+        "Konkan to Mumbai taxi",
+        "Konkan to Mumbai cab booking",
+        "Konkan to Mumbai cab service",
+        "Konkan to Mumbai taxi service",
+        "Konkan to Mumbai one way cab",
+        "Konkan to Mumbai one way taxi",
+        "Konkan to Mumbai outstation cab",
+        "Konkan to Mumbai private taxi",
+        "Konkan to Mumbai car rental",
+        "Konkan to Mumbai cab fare",
+        "Konkan to Mumbai taxi fare",
+        "Konkan to Mumbai cab price",
+        "Konkan to Mumbai round trip cab",
+        "Konkan to Mumbai round trip taxi",
+        "book cab Konkan to Mumbai",
+        "Konkan to Mumbai AC cab",
+        "Konkan to Mumbai sedan cab",
+        "Konkan to Mumbai SUV cab",
+        "Konkan to Mumbai cab with driver"
+      ],
+      "search_intent": [
+        "transactional",
+        "commercial",
+        "local"
+      ],
+      "recommended_slug": "/cabs/konkan-to-mumbai",
+      "title_template": "Konkan to Mumbai Cab Booking | One Way & Round Trip | D&G Express Cabs",
+      "h1": "Konkan to Mumbai Cab Booking",
+      "content_topics": [
+        "fare",
+        "distance",
+        "travel time",
+        "pickup",
+        "drop",
+        "one way",
+        "round trip",
+        "vehicle options",
+        "booking"
+      ]
+    }
+  },
+  "airport_pages": {
+    "pune-airport": {
+      "primary_keyword": "Pune airport cab",
+      "secondary_keywords": [
+        "Pune airport taxi",
+        "Pune airport cab booking",
+        "Pune airport pickup cab",
+        "Pune airport drop taxi",
+        "cab to Pune airport",
+        "taxi to Pune airport",
+        "Pune airport outstation cab",
+        "Pune airport transfer",
+        "pre book Pune airport taxi"
+      ],
+      "slug": "/airport/pune"
+    },
+    "mumbai-airport": {
+      "primary_keyword": "Mumbai airport cab",
+      "secondary_keywords": [
+        "Mumbai airport taxi",
+        "Mumbai airport cab booking",
+        "Mumbai airport pickup cab",
+        "Mumbai airport drop taxi",
+        "cab to Mumbai airport",
+        "taxi to Mumbai airport",
+        "Mumbai airport outstation cab",
+        "Mumbai airport transfer",
+        "pre book Mumbai airport taxi"
+      ],
+      "slug": "/airport/mumbai"
+    },
+    "mumbai-airport-to-pune": {
+      "primary_keyword": "Mumbai airport to Pune cab",
+      "secondary_keywords": [
+        "Mumbai airport to Pune taxi",
+        "Mumbai airport to Pune cab booking",
+        "Mumbai airport to Pune one way cab",
+        "Mumbai airport to Pune taxi service",
+        "Mumbai airport to Pune private cab",
+        "Mumbai airport to Pune cab fare"
+      ],
+      "slug": "/airport/mumbai-to-pune"
+    },
+    "pune-to-mumbai-airport": {
+      "primary_keyword": "Pune to Mumbai airport cab",
+      "secondary_keywords": [
+        "Pune to Mumbai airport taxi",
+        "Pune to Mumbai airport cab booking",
+        "Pune to Mumbai airport one way cab",
+        "Pune to Mumbai airport cab fare",
+        "Pune to Mumbai airport taxi fare",
+        "Pune to Mumbai airport drop cab"
+      ],
+      "slug": "/airport/pune-to-mumbai"
+    },
+    "mumbai-airport-to-nashik": {
+      "primary_keyword": "Mumbai airport to Nashik cab",
+      "secondary_keywords": [
+        "Mumbai airport to Nashik taxi",
+        "Mumbai airport to Nashik cab booking",
+        "Mumbai airport to Nashik one way cab",
+        "Mumbai airport to Nashik private taxi"
+      ],
+      "slug": "/airport/mumbai-to-nashik"
+    },
+    "mumbai-airport-outstation": {
+      "primary_keyword": "Mumbai airport outstation cab",
+      "secondary_keywords": [
+        "outstation cab from Mumbai airport",
+        "Mumbai airport outstation taxi",
+        "Mumbai airport intercity cab",
+        "private cab from Mumbai airport",
+        "Mumbai airport to outstation taxi"
+      ],
+      "slug": "/airport/mumbai/outstation"
+    }
+  },
+  "package_pages": {
+    "mahabaleshwar": {
+      "primary_keyword": "Mahabaleshwar cab tour package",
+      "secondary_keywords": [
+        "Mahabaleshwar tour package by cab",
+        "Mahabaleshwar taxi package",
+        "Pune to Mahabaleshwar tour package",
+        "Mumbai to Mahabaleshwar tour package",
+        "Mahabaleshwar sightseeing cab",
+        "Mahabaleshwar family cab package",
+        "Mahabaleshwar private cab package"
+      ],
+      "slug": "/packages/mahabaleshwar"
+    },
+    "jyotirlinga": {
+      "primary_keyword": "Jyotirlinga tour package by cab",
+      "secondary_keywords": [
+        "Jyotirlinga cab package Maharashtra",
+        "Jyotirlinga taxi package",
+        "Pune Jyotirlinga tour by cab",
+        "Mumbai Jyotirlinga tour by cab",
+        "Nashik Jyotirlinga tour by cab",
+        "5 Jyotirlinga tour package Maharashtra",
+        "Bhimashankar Trimbakeshwar Ghrishneshwar cab package",
+        "Jyotirlinga pilgrimage cab"
+      ],
+      "slug": "/packages/jyotirlinga"
+    },
+    "ashtavinayak": {
+      "primary_keyword": "Ashtavinayak tour package by cab",
+      "secondary_keywords": [
+        "Ashtavinayak cab package",
+        "Ashtavinayak taxi package",
+        "Ashtavinayak darshan by cab",
+        "Pune Ashtavinayak tour package",
+        "Mumbai Ashtavinayak tour package",
+        "Ashtavinayak 2 day cab package",
+        "Ashtavinayak pilgrimage cab"
+      ],
+      "slug": "/packages/ashtavinayak"
+    },
+    "konkan": {
+      "primary_keyword": "Konkan tour package by cab",
+      "secondary_keywords": [
+        "Konkan cab package",
+        "Konkan taxi package",
+        "Pune to Konkan tour package",
+        "Mumbai to Konkan tour package",
+        "Konkan beach tour by cab",
+        "Alibaug cab package",
+        "Diveagar cab package",
+        "Tarkarli Malvan cab package",
+        "Murud Janjira cab package"
+      ],
+      "slug": "/packages/konkan"
+    },
+    "goa": {
+      "primary_keyword": "Goa tour package by cab",
+      "secondary_keywords": [
+        "Goa cab tour package",
+        "Goa taxi package",
+        "Pune to Goa cab package",
+        "Mumbai to Goa cab package",
+        "North Goa cab package",
+        "South Goa cab package",
+        "Goa sightseeing cab",
+        "private cab for Goa tour"
+      ],
+      "slug": "/packages/goa"
+    }
+  },
+  "vehicle_keyword_clusters": {
+    "sedan": [
+      "sedan cab booking",
+      "sedan taxi service",
+      "sedan cab for outstation",
+      "sedan cab with driver"
+    ],
+    "suv": [
+      "SUV cab booking",
+      "SUV taxi service",
+      "SUV cab for outstation",
+      "6 seater cab with driver"
+    ],
+    "innova": [
+      "Innova cab rental",
+      "Innova taxi booking",
+      "Innova cab for outstation",
+      "Innova with driver"
+    ],
+    "tempo_traveller": [
+      "tempo traveller booking",
+      "tempo traveller for outstation",
+      "tempo traveller with driver",
+      "group travel cab booking"
+    ]
+  },
+  "long_tail_patterns": [
+    "{origin} to {destination} cab",
+    "{origin} to {destination} taxi",
+    "{origin} to {destination} cab booking",
+    "{origin} to {destination} cab service",
+    "{origin} to {destination} one way cab",
+    "{origin} to {destination} round trip cab",
+    "{origin} to {destination} outstation cab",
+    "{origin} to {destination} private taxi",
+    "{origin} to {destination} cab fare",
+    "{origin} to {destination} taxi fare",
+    "{origin} to {destination} sedan cab",
+    "{origin} to {destination} SUV cab",
+    "{origin} to {destination} cab with driver",
+    "book cab from {origin} to {destination}",
+    "{origin} airport to {destination} cab",
+    "{origin} to {destination} airport cab"
+  ],
+  "informational_content_clusters": {
+    "route_guides": [
+      "distance",
+      "travel time",
+      "best route",
+      "tolls",
+      "pickup options",
+      "drop options",
+      "vehicle options",
+      "one way vs round trip",
+      "booking process"
+    ],
+    "airport_guides": [
+      "terminal pickup",
+      "airport pickup process",
+      "flight delay handling",
+      "luggage capacity",
+      "outstation transfer",
+      "pre-booking"
+    ],
+    "package_guides": [
+      "day-wise itinerary",
+      "places covered",
+      "trip duration",
+      "vehicle options",
+      "inclusions",
+      "exclusions",
+      "pickup city",
+      "booking process"
+    ],
+    "faq_intents": [
+      "cab fare",
+      "one way availability",
+      "round trip availability",
+      "vehicle capacity",
+      "luggage",
+      "pickup timing",
+      "cancellation",
+      "payment",
+      "driver details"
+    ]
+  },
+  "page_mapping_rules": {
+    "route_page": "Target one directional origin-to-destination cluster per page.",
+    "reverse_route": "Use a separate reverse-direction page only when it is a real service and has useful unique content.",
+    "airport_page": "Keep airport-intent pages distinct from generic city-to-city pages.",
+    "package_page": "Target itinerary and tour-package intent rather than generic route intent.",
+    "canonicalization": "Each indexable page should have one canonical URL and avoid duplicate parameter pages.",
+    "thin_content": "Do not publish route pages that only swap city names; include useful route-specific information."
+  },
+  "excluded_keyword_rules": {
+    "competitor_or_agency_names": "Exclude all third-party agency, aggregator, taxi company and travel-company names.",
+    "self_drive": "Exclude self-drive intent unless the service is actually offered.",
+    "unsupported_locations": "Exclude cities and routes not actually served.",
+    "unsupported_claims": "Exclude price, availability, service-hour or inclusion claims not verified by business data."
+  }
+}

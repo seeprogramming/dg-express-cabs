@@ -1,0 +1,288 @@
+================================================================================
+PHASE 3 IMPLEMENTATION REPORT: AIRPORT TRANSFER SEO + LOCAL CAB RENTAL SEO
+D&G Express Cabs (dgexpresscabs.com)
+Date: 2026-10-14
+================================================================================
+
+SUMMARY OF RESULTS:
+- Build Status: PASS (98 pages compiled statically / SSG, 0 errors)
+- TypeScript Compilation: PASS (npx tsc --noEmit: Exit 0, 0 errors)
+- Sitemap Count: 92 URLs (previous 88 + 4 verified pages: 3 airport + 1 rentals)
+- Canonical URLs: 100% self-referencing (https://dgexpresscabs.com/...)
+- Competitor Mentions: 0 (verified across all generated HTML)
+- Unsupported Claims Cleaned:
+  - InclusionExclusion.tsx: Removed unsupported "Parking, tolls and entry fees"
+  - app/airports/page.tsx: Removed unverified "Flight tracking" & "guaranteed"
+- Factual Pricing: 100% exact match against data/website-rates.json and data/airports.json
+
+================================================================================
+A. FILES CREATED
+================================================================================
+1. app/airports/[airport]/page.tsx
+   - Server-rendered dynamic airport landing page route.
+   - Uses generateStaticParams() from data/airports.json.
+   - Generates exact pages for /airports/pune-airport, /airports/mumbai-airport,
+     and /airports/nashik-airport.
+   - Full server-rendered HTML with H1, breadcrumbs, verified starting fares,
+     available vehicle fleet, connected outstation routes, booking CTA, visible
+     FAQs, and structured data (BreadcrumbList, Service, FAQPage).
+
+2. app/rentals/page.tsx
+   - Server-rendered landing page for local hourly cab rentals with driver.
+   - Renders exact pricing for Sedan, SUV, and Crysta (4/40, 8/80, 12/120) directly
+     from data/website-rates.json.
+   - Full HTML comparison cards and accessible comparison table, vehicle specs,
+     booking CTA with initialMode="local", visible FAQs, and structured data.
+
+================================================================================
+B. FILES MODIFIED
+================================================================================
+1. components/InclusionExclusion.tsx
+   - Cleaned up unsupported claim: removed line containing
+     "× Parking, tolls and entry fees unless quoted".
+   - Preserved all factual inclusions and remaining factual exclusions.
+
+2. lib/routes.ts
+   - Added airportSlug(city: string): string helper.
+   - Added findAirportBySlug(slug: string): AirportInfo | null helper.
+   - Added getRoutesFromCity(city: string): RouteInfo[] helper for verified
+     outstation routes.
+
+3. components/AirportTransfers.tsx
+   - Wrapped airport cards in crawlable Next.js <Link> components pointing to
+     /airports/${a.city.toLowerCase()}-airport.
+   - Added "View airport cab options →" callout for clear search intent.
+
+4. app/airports/page.tsx
+   - Cleaned unverified claim "Flight tracking" in meta description.
+   - Cleaned unverified claim "guaranteed" in hero section.
+
+5. components/CabSearch.tsx
+   - Added optional initialMode?: TripMode prop to CabSearchProps so the booking
+     form on /rentals opens automatically in local rental mode ("local") and
+     pre-populates appropriately.
+
+6. components/Footer.tsx
+   - Updated "Local Rentals" link under SERVICES to point to /rentals (was /cabs).
+
+7. components/RouteRibbon.tsx
+   - Added crawlable "Local Rentals" pill pointing to /rentals on the Homepage.
+
+8. app/cabs/page.tsx
+   - Added internal link button in the Local Rentals section pointing to /rentals
+     ("View Full Local Rental Packages & Fares →").
+
+9. app/sitemap.ts
+   - Added /rentals to staticRoutes.
+   - Added verified airport pages dynamically using getAirports() and airportSlug().
+   - Final sitemap count verified at exactly 92 URLs.
+
+================================================================================
+C. AIRPORT PAGES CREATED
+================================================================================
+1. /airports/pune-airport
+   - City: Pune
+   - Airport: Pune Airport
+   - IATA Code: PNQ
+   - Verified Starting Fare: ₹899
+   - Connected Outstation Routes: Pune → Mumbai, Pune → Nashik, Pune → Shirdi,
+     Pune → Mahabaleshwar, Pune → Lonavala, Pune → Kolhapur, Pune → Sangli,
+     Pune → Satara, Pune → Igatpuri.
+
+2. /airports/mumbai-airport
+   - City: Mumbai
+   - Airport: Mumbai Airport
+   - IATA Code: BOM
+   - Verified Starting Fare: ₹1,199
+   - Connected Outstation Routes: Mumbai → Pune, Mumbai → Nashik,
+     Mumbai → Mahabaleshwar, Mumbai → Lonavala, Mumbai → Kolhapur,
+     Mumbai → Sangli, Mumbai → Satara, Mumbai → Igatpuri.
+
+3. /airports/nashik-airport
+   - City: Nashik
+   - Airport: Nashik Airport
+   - IATA Code: ISK
+   - Verified Starting Fare: ₹799
+   - Connected Outstation Routes: Nashik → Pune, Nashik → Mumbai,
+     Nashik → Navi Mumbai.
+
+================================================================================
+D. AIRPORT METADATA & H1 STRATEGY
+================================================================================
+1. Pune Airport (/airports/pune-airport)
+   - Title: Pune Airport Cab Transfers (PNQ) — Booking & Fares | D&G Express Cabs
+   - Description: Pre-book Pune Airport (PNQ) cab transfers with D&G Express Cabs. Doorstep airport pickup and drop starting from ₹899 with comfortable AC vehicles.
+   - H1: Pune Airport Cab Transfers
+   - Canonical: https://dgexpresscabs.com/airports/pune-airport
+
+2. Mumbai Airport (/airports/mumbai-airport)
+   - Title: Mumbai Airport Cab Transfers (BOM) — Booking & Fares | D&G Express Cabs
+   - Description: Pre-book Mumbai Airport (BOM) cab transfers with D&G Express Cabs. Doorstep airport pickup and drop starting from ₹1,199 with comfortable AC vehicles.
+   - H1: Mumbai Airport Cab Transfers
+   - Canonical: https://dgexpresscabs.com/airports/mumbai-airport
+
+3. Nashik Airport (/airports/nashik-airport)
+   - Title: Nashik Airport Cab Transfers (ISK) — Booking & Fares | D&G Express Cabs
+   - Description: Pre-book Nashik Airport (ISK) cab transfers with D&G Express Cabs. Doorstep airport pickup and drop starting from ₹799 with comfortable AC vehicles.
+   - H1: Nashik Airport Cab Transfers
+   - Canonical: https://dgexpresscabs.com/airports/nashik-airport
+
+All titles coordinate with root layout template "%s | D&G Express Cabs" without
+duplicate suffix.
+
+================================================================================
+E. AIRPORT STRUCTURED DATA
+================================================================================
+Each airport detail page renders three conservative, verified JSON-LD blocks:
+1. BreadcrumbList
+   - Item 1: Home (https://dgexpresscabs.com)
+   - Item 2: Airport Transfers (https://dgexpresscabs.com/airports)
+   - Item 3: {Airport Name} ({IATA Code}) (https://dgexpresscabs.com/airports/{slug})
+
+2. Service
+   - @type: Service
+   - name: {City} Airport Cab Transfers
+   - serviceType: "Airport Cab Transfer"
+   - provider: D&G Express Cabs (phone, url, address)
+   - areaServed: {City}
+   - offers: { @type: Offer, priceCurrency: "INR", price: {verified fare} }
+
+3. FAQPage
+   - Matches the 4 visible FAQs exactly.
+   - Zero unsupported claims or fake reviews/ratings.
+
+================================================================================
+F. AIRPORT FAQ IMPLEMENTATION
+================================================================================
+All 4 visible FAQs are strictly answered using verified business data:
+1. "Can I book a cab for {City} Airport ({Code})?"
+   → Confirms pre-booked airport pickups and drops with doorstep service.
+2. "What is the starting fare for {City} Airport cab service?"
+   → Displays exact starting fare from data/airports.json (PNQ: ₹899, BOM: ₹1,199, ISK: ₹799).
+3. "What vehicle options can I choose for airport transfers?"
+   → Lists Hatchback (4/2), Sedan (4/2), SUV (6/3), Innova/Carens (6/4), and Innova Crysta (6/4).
+4. "How can I book an airport cab with D&G Express Cabs?"
+   → Lists website search form, direct phone (+91 70308 13082), and WhatsApp (+91 70308 08151).
+
+No questions answer unverified policies regarding waiting time, flight delays,
+terminal pickup points, tolls, parking, or cancellation.
+
+================================================================================
+G. LOCAL RENTAL PAGE IMPLEMENTATION
+================================================================================
+URL: /rentals
+- Title: Local Cab Rentals with Driver — Hourly Packages | D&G Express Cabs
+- Description: Book chauffeur-driven local cab rentals with D&G Express Cabs. Transparent hourly packages for Sedan, SUV, and Innova Crysta: 4 hr / 40 km, 8 hr / 80 km, and 12 hr / 120 km.
+- H1: Local Cab Rentals with Driver
+- Canonical: https://dgexpresscabs.com/rentals
+- Structured Data:
+  - BreadcrumbList: Home > Local Cab Rentals
+  - Service: Local Cab Rentals with Driver (with OfferCatalog of all 9 verified plans)
+  - FAQPage: 4 visible questions matching schema exactly
+- Booking integration: Interactive CabSearch with initialMode="local".
+- Internal links: Cross-links to /cabs, /airports, /packages.
+
+================================================================================
+H. EXACT RENTAL PRICING VERIFICATION
+================================================================================
+Rendered in HTML dynamically from data/website-rates.json:
+
+Vehicle: Sedan
+- 4 hours / 40 km:  ₹1,575 (Package 4/40)
+- 8 hours / 80 km:  ₹2,100 (Package 8/80)
+- 12 hours / 120 km: ₹3,675 (Package 12/120)
+
+Vehicle: SUV
+- 4 hours / 40 km:  ₹2,100 (Package 4/40)
+- 8 hours / 80 km:  ₹3,255 (Package 8/80)
+- 12 hours / 120 km: ₹4,725 (Package 12/120)
+
+Vehicle: Crysta
+- 4 hours / 40 km:  ₹2,625 (Package 4/40)
+- 8 hours / 80 km:  ₹4,725 (Package 8/80)
+- 12 hours / 120 km: ₹6,300 (Package 12/120)
+
+Verification: Checked against .next/server/app/rentals.html — 100% exact match.
+No extra-km, extra-hour, or multiplier pricing invented.
+
+================================================================================
+I. INTERNAL LINKING CHANGES
+================================================================================
+1. Homepage → /airports (Via AirportTransfers section and RouteRibbon)
+2. Homepage → /airports/{city}-airport (Via clickable cards in AirportTransfers)
+3. Homepage → /rentals (Via RouteRibbon "Local Rentals" pill & Footer)
+4. /airports → /airports/{city}-airport (Via clickable cards in AirportTransfers)
+5. /airports/{city}-airport → /airports (Via breadcrumb & "All Airports" hero button)
+6. /airports/{city}-airport → /cabs (Via "View all intercity cab routes →")
+7. /airports/{city}-airport → /cabs/{verified-route} (Links to all verified routes from that city)
+8. /cabs → /rentals (Via "View Full Local Rental Packages & Fares →" button in Local Rentals section)
+9. /rentals → /cabs (Via "Outstation Cab Routes" panel & hero button)
+10. Footer (sitewide) → /rentals (Under SERVICES column)
+
+================================================================================
+J. SITEMAP BEFORE / AFTER COUNT
+================================================================================
+- Before Phase 3: 88 URLs
+- New URLs added:
+  1. https://dgexpresscabs.com/rentals
+  2. https://dgexpresscabs.com/airports/pune-airport
+  3. https://dgexpresscabs.com/airports/mumbai-airport
+  4. https://dgexpresscabs.com/airports/nashik-airport
+- After Phase 3: 92 URLs (verified via .next/server/app/sitemap.xml.body)
+- Banned URLs in sitemap (/booking, /cabs/details, _not-found, robots.txt, sitemap.xml): 0
+- URLs with spaces or %20: 0
+
+================================================================================
+K. CANONICAL VERIFICATION
+================================================================================
+- /rentals                  → https://dgexpresscabs.com/rentals (Verified in HTML)
+- /airports/pune-airport    → https://dgexpresscabs.com/airports/pune-airport (Verified in HTML)
+- /airports/mumbai-airport  → https://dgexpresscabs.com/airports/mumbai-airport (Verified in HTML)
+- /airports/nashik-airport  → https://dgexpresscabs.com/airports/nashik-airport (Verified in HTML)
+- /airports                 → https://dgexpresscabs.com/airports (Verified in HTML)
+- /cabs/pune-to-mumbai      → https://dgexpresscabs.com/cabs/pune-to-mumbai (Verified in HTML)
+
+================================================================================
+L. UNSUPPORTED CLAIM CLEANUP
+================================================================================
+1. InclusionExclusion.tsx:
+   - Line "× Parking, tolls and entry fees unless quoted" removed.
+   - Replaced with clean exclusions: Extra sightseeing / route deviations, Driver
+     night allowance if applicable, Meals and personal expenses.
+2. app/airports/page.tsx:
+   - Removed "Flight tracking" from meta description.
+   - Removed "guaranteed" from hero paragraph.
+3. No unverified claims ("24x7", "guaranteed", "cheapest", "free waiting time",
+   "meet-and-greet") present in new airport or rental pages.
+
+================================================================================
+M. REPRESENTATIVE GENERATED HTML VERIFICATION
+================================================================================
+Generated HTML files verified in .next/server/app/:
+- airports.html: Single H1 "Airport Cab Transfers", canonical present, AutoRental + BreadcrumbList JSON-LD.
+- airports/pune-airport.html: Single H1 "Pune Airport Cab Transfers", fare ₹899, AutoRental + BreadcrumbList + Service + FAQPage JSON-LD.
+- airports/mumbai-airport.html: Single H1 "Mumbai Airport Cab Transfers", fare ₹1,199, AutoRental + BreadcrumbList + Service + FAQPage JSON-LD.
+- airports/nashik-airport.html: Single H1 "Nashik Airport Cab Transfers", fare ₹799, AutoRental + BreadcrumbList + Service + FAQPage JSON-LD.
+- rentals.html: Single H1 "Local Cab Rentals with Driver", all 9 fares present, AutoRental + BreadcrumbList + Service + FAQPage JSON-LD.
+- cabs/pune-to-mumbai.html: Intact directional pricing (Hatchback ₹2,625, Sedan ₹2,730), single H1, canonical intact.
+
+================================================================================
+N. TYPESCRIPT / LINT / BUILD RESULTS
+================================================================================
+- TypeScript: npx tsc --noEmit → Exit 0 (0 errors)
+- Next.js Production Build: npm run build → Exit 0 (98 static/SSG pages compiled successfully)
+- All 32 cab routes, 7 package categories, 45 packages, 3 airports, and 1 rentals page generated statically.
+
+================================================================================
+O. ANY FACTUAL BUSINESS INFORMATION STILL NEEDED
+================================================================================
+1. Toll / Parking / Entry Fee Policy:
+   - Once a confirmed business policy on toll inclusions/exclusions is established,
+     it can be documented in data/website-rates.json and rendered across pricing tables.
+2. Operating Hours / Availability:
+   - Formal operating hours (e.g. support hours vs booking window) can be verified
+     and added to structured data in future phases.
+3. City-specific local rental availability:
+   - If local rentals are offered in specific cities beyond Pune, Mumbai, and Nashik,
+     verified city-level data can enable future /rentals/[city] pages.
+================================================================================

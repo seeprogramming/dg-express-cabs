@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     template: "%s | D&G Express Cabs",
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "cabs in pune",
     "pune to mumbai cab",
@@ -70,11 +73,12 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "AutoRental",
+    "@type": "TaxiService",
     "name": "D&G Express Cabs",
     "description": siteConfig.description,
     "telephone": "+917030813082",
     "url": siteConfig.url,
+    "logo": `${siteConfig.url}/dgxcabs.png`,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Sant Nagar, Lohgaon, Near Pune International Airport",
@@ -83,8 +87,6 @@ export default function RootLayout({
       "addressCountry": "IN",
     },
     "areaServed": ["Pune", "Mumbai", "Mahabaleshwar", "Nashik", "Lonavala"],
-    "priceRange": "₹₹",
-    "openingHours": "Mo-Su 00:00-24:00",
   };
 
   return (

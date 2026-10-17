@@ -1,8 +1,10 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
 import PackageHero from "@/components/PackageHero";
 import PackageItinerary from "@/components/PackageItinerary";
 import PackagePricing from "@/components/PackagePricing";
+import { getCategoryBySlug } from "@/lib/packages";
 import {
   getAllPackages,
   getPackageBySlugAndCategory,
@@ -40,7 +42,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const pkg = getPackageBySlugAndCategory(category, slug);
   if (!pkg) {
-    return { title: "Tour Package | D&G Express Cabs" };
+    return {
+      title: "Tour Package | D&G Express Cabs",
+      robots: { index: false, follow: true },
+    };
   }
 
   const dest = getPackageDestination(pkg);
@@ -52,11 +57,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   )} for Sedan. Ertiga and Crysta available.`;
 
   const heroImg = categoryHeroImage[category] || siteConfig.stockImages.road;
+  const canonicalPath = `/packages/${category.toLowerCase()}/${slug}`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalPath,
+    },
     openGraph: {
+      url: `${siteConfig.url}${canonicalPath}`,
       title: `${pkg.title} | D&G Express Cabs`,
       description,
       images: [
@@ -67,6 +77,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           alt: pkg.title,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${pkg.title} | D&G Express Cabs`,
+      description,
+      images: [heroImg],
     },
   };
 }
@@ -81,6 +97,20 @@ export default async function PackageDetailPage({ params }: Props) {
   const dest = getPackageDestination(pkg);
   const intro = pkg.description || pkg.best_for || pkg.route_sequence || `${dest} cab package`;
   const heroImage = pkg.image || categoryHeroImage[category] || siteConfig.stockImages.road;
+  const canonicalPath = `/packages/${category.toLowerCase()}/${slug}`;
+  const cat = getCategoryBySlug(category);
+  const catLabel = cat?.category || category;
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+      { "@type": "ListItem", position: 2, name: "Tour Packages", item: `${siteConfig.url}/packages` },
+      { "@type": "ListItem", position: 3, name: catLabel, item: `${siteConfig.url}/packages/${category.toLowerCase()}` },
+      { "@type": "ListItem", position: 4, name: pkg.title, item: `${siteConfig.url}${canonicalPath}` },
+    ],
+  };
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -128,9 +158,19 @@ export default async function PackageDetailPage({ params }: Props) {
     <main>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <PackageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Tour Packages", href: "/packages" },
+          { label: catLabel, href: `/packages/${category.toLowerCase()}` },
+          { label: pkg.title },
+        ]}
         from={pkg.route.from}
         destination={dest}
         durationLabel={pkg.duration.label}

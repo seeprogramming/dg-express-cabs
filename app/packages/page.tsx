@@ -1,12 +1,42 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PackageCard } from "@/components/PackageSection";
-import { getAllPackages, getAllCategories } from "@/lib/packages";
+import Breadcrumb from "@/components/Breadcrumb";
+import { getAllCategories } from "@/lib/packages";
+import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Curated Tour Packages & Weekend Getaways",
+  title: "Cab Tour Packages & Weekend Trips from Pune & Mumbai",
   description:
     "Explore complete outstation tour packages from Pune and Mumbai — Goa, Konkan, Mahabaleshwar, Ashtavinayak darshan, Jyotirlinga yatra and more. Sedan, Ertiga, and Crysta options with complete itineraries.",
+  alternates: {
+    canonical: "/packages",
+  },
+  openGraph: {
+    url: "https://dgexpresscabs.com/packages",
+    title: "Cab Tour Packages & Weekend Trips | D&G Express Cabs",
+    description:
+      "Explore complete outstation tour packages from Pune and Mumbai with verified day-wise itineraries and transparent vehicle pricing.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cab Tour Packages & Weekend Trips | D&G Express Cabs",
+    description:
+      "Curated tour packages from Pune and Mumbai — Mahabaleshwar, Goa, Konkan, Ashtavinayak and more.",
+  },
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Tour Packages",
+      item: `${siteConfig.url}/packages`,
+    },
+  ],
 };
 
 /* Category emoji + color map */
@@ -23,16 +53,23 @@ export default function PackagesDirectoryPage() {
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+
       <section className="pageHero">
         <div className="container">
           <div className="wrap">
             <div>
+              <Breadcrumb
+                items={[
+                  { label: "Home", href: "/" },
+                  { label: "Tour Packages" },
+                ]}
+              />
               <div className="ey">CURATED GETAWAYS</div>
-              <h1>
-                Pick your
-                <br />
-                escape.
-              </h1>
+              <h1>Cab Tour Packages &amp; Weekend Trips</h1>
               <p>
                 Complete Pune and Mumbai packages with full day-wise itineraries and
                 vehicle-specific pricing for Sedan, Ertiga, and Crysta.

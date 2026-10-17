@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
@@ -35,8 +36,15 @@ export default function Header() {
 
       <header>
         <nav className="container">
-          <Link className="logo" href="/">
-            D&amp;G <b>Express Cabs</b>
+          <Link className="logo flex items-center shrink-0" href="/" aria-label="D&G Express Cabs">
+            <Image
+              src="/dgxcabs.png"
+              alt="D&G Express Cabs"
+              width={170}
+              height={85}
+              priority
+              className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-200 hover:scale-[1.02]"
+            />
           </Link>
           {siteConfig.nav.map((item) => (
             <Link key={item.label} href={item.href}>
@@ -48,6 +56,7 @@ export default function Header() {
             {/* Quick Call Button */}
             <a
               href={siteConfig.phoneCallUrl}
+              aria-label={`Call ${siteConfig.phonePrimary}`}
               className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#cbd8cc] text-xs font-extrabold text-[#123f38] hover:bg-[#edf5e7] transition-all"
             >
               <span>📞</span>
@@ -59,6 +68,7 @@ export default function Header() {
               href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent("Hi D&G Express Cabs, I'd like to enquire about a cab booking.")}`}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Chat with D&G Express Cabs on WhatsApp"
               className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#25D366] text-[#083d20] text-xs font-extrabold hover:bg-[#20ba5a] transition-all shadow-sm"
               title="Chat on WhatsApp"
             >

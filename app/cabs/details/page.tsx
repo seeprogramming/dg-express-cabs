@@ -3,9 +3,13 @@ import type { Metadata } from "next";
 import CabDetails from "@/components/CabDetails";
 
 export const metadata: Metadata = {
-  title: "Cab Details & Booking",
+  title: "Cab Details & Booking | D&G Express Cabs",
   description:
     "View selected cab specifications, inclusions, transparent fare breakdown and request booking directly via WhatsApp.",
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function CabDetailsPage() {

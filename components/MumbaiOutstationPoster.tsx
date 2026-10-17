@@ -25,7 +25,7 @@ export default function MumbaiOutstationPoster() {
 
           <div className="relative z-10 shrink-0">
             <Link 
-              href="/routes" 
+              href="/cabs" 
               className="inline-flex min-h-[52px] items-center justify-center rounded-[12px] bg-[var(--g)] px-7 py-3 text-[15px] font-extrabold text-white transition-all hover:bg-[#56b231] hover:scale-105 whitespace-nowrap shadow-lg shadow-[#62c33a40]"
             >
               Show all available cabs

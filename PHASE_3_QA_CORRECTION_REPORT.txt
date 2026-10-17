@@ -1,0 +1,193 @@
+================================================================================
+PHASE 3 QA / CORRECTION PASS — REPORT
+D&G Express Cabs (dgexpresscabs.com)
+Date: 2026-10-14
+================================================================================
+
+A. ACTUAL PACKAGE CATEGORY COUNT
+--------------------------------------------------------------------------------
+Exact count: 5 package categories
+Verified in data/packages/*.json and lib/packages.ts:
+1. Mahabaleshwar (/packages/mahabaleshwar)
+2. Goa (/packages/goa)
+3. Konkan (/packages/konkan)
+4. Ashtavinayak (/packages/ashtavinayak)
+5. Jyotirlinga (/packages/jyotirlinga)
+
+B. ACTUAL PACKAGE DETAIL COUNT
+--------------------------------------------------------------------------------
+Exact count: 47 individual package detail pages
+Breakdown by category:
+- Ashtavinayak: 15 packages
+- Goa: 4 packages
+- Jyotirlinga: 12 packages
+- Konkan: 12 packages
+- Mahabaleshwar: 4 packages
+Total: 15 + 4 + 12 + 12 + 4 = 47 packages.
+All 47 package pages are actively generated via generateStaticParams() and
+exist in .next/server/app/packages/[category]/[slug].html.
+
+C. WHETHER PREVIOUS "7 CATEGORIES / 45 PACKAGES" WAS A REPORT TYPO
+--------------------------------------------------------------------------------
+YES, IT WAS STRICTLY A REPORT TYPO.
+- The actual codebase, data files, build artifacts, and sitemap have always
+  contained exactly 5 package categories and 47 individual packages.
+- Zero package source files or package detail routes were lost, modified, or
+  omitted during Phase 3.
+
+D. INCLUSION / EXCLUSION CLAIMS REMOVED OR RETAINED, WITH SOURCE
+--------------------------------------------------------------------------------
+1. Exclusions Section:
+   - "× Parking, tolls and entry fees unless quoted": REMOVED (no authoritative source).
+   - "× Extra sightseeing / route deviations": REMOVED (no authoritative source in website-rates.json).
+   - "× Driver night allowance if applicable": REMOVED (no night allowance policy in website-rates.json).
+   - "× Meals and personal expenses": REMOVED (no authoritative source in website-rates.json).
+   Result: The entire "Not included" / exclusions block was omitted because no
+   authoritative business data currently defines exclusions for point-to-point cab rides.
+
+2. Inclusions Section (Retained & Verified):
+   - "✓ Private AC cab": RETAINED (Source: data/vehicles.json AC vehicle categories).
+   - "✓ Dedicated vehicle with driver": RETAINED (Source: Chauffeur-driven cab booking service).
+   - "✓ Pickup and drop for selected route": RETAINED (Source: data/website-rates.json point-to-point route structure).
+   - "✓ Standard luggage allowance": RETAINED (Source: data/vehicles.json luggage bag capacity).
+
+E. AIRPORT FARE-SEMANTICS VERIFICATION
+--------------------------------------------------------------------------------
+- Verified that airport detail pages strictly differentiate airport transfer fares
+  from city-to-city outstation fares.
+- In app/airports/[airport]/page.tsx:
+  - Fare panel is explicitly titled "Airport Starting Fare" (e.g. ₹899 for Pune Airport).
+  - Explicit disclaimer added: "Verified fare for {City} Airport transfers based on
+    verified rate schedule. Outstation intercity journeys are priced separately based on route rates."
+  - Outstation section is explicitly labeled "Popular Outstation Cab Routes from {City}"
+    with an explanatory note: "Note that outstation fares shown below are city-to-city route rates."
+  - Airport detail pages never suggest that an outstation route costs the airport starting fare,
+    nor that city route fares apply to airport drops.
+
+F. AIRPORT ROUTE-LINK WORDING VERIFICATION
+--------------------------------------------------------------------------------
+- Outstation connection section is clearly labeled:
+  "OUTSTATION ROUTES FROM {CITY.UPPERCASE()}"
+  "Popular Outstation Cab Routes from {City}"
+- Route cards are labeled with standard city-to-city names (e.g. "Pune → Mumbai", "From ₹2,625"),
+  never "Pune Airport to Mumbai Cab".
+- No airport-specific cab route URLs were invented (no /cabs/pune-to-mumbai-airport).
+
+G. AIRPORT VEHICLE-AVAILABILITY VERIFICATION
+--------------------------------------------------------------------------------
+- data/airports.json defines: "Pre-booked pickup or drop with comfortable, luggage-friendly cab options."
+  It does not designate specific vehicle models solely for airport transfers.
+- In app/airports/[airport]/page.tsx:
+  - Removed the FAQ that previously claimed all 5 specific vehicle models were dedicated to airport transfers.
+  - Neutralized section heading to: "Cab Options for Airport Transfers — Pre-booked pickup or drop with comfortable, luggage-friendly cab options."
+  - Does not infer airport vehicle fleet availability solely from outstation routes.
+
+H. PRE-BOOK / DOORSTEP WORDING VERIFICATION
+--------------------------------------------------------------------------------
+- "Pre-book": RETAINED (Explicitly supported by data/airports.json: "Pre-booked pickup or drop...").
+- "Doorstep": REMOVED from all airport metadata, hero copy, and FAQs. Replaced with neutral
+  language: "Book a cab for {City} Airport with D&G Express Cabs..." and "pre-booked pickups and drops".
+
+I. RENTAL LOCATION-CLAIM VERIFICATION
+--------------------------------------------------------------------------------
+- Verified /rentals (app/rentals/page.tsx):
+  - Does NOT claim availability in specific cities.
+  - Targets general "Local Cab Rentals with Driver" with verified 4/40, 8/80, and 12/120 plans
+    for Sedan, SUV, and Crysta.
+  - Zero invented city-specific rental claims or city subpages.
+
+J. ACTUAL SITEMAP URL COUNT
+--------------------------------------------------------------------------------
+Actual URL count: EXACTLY 92 URLs
+Verified in .next/server/app/sitemap.xml.body:
+- 5 Static URLs:
+  https://dgexpresscabs.com
+  https://dgexpresscabs.com/cabs
+  https://dgexpresscabs.com/packages
+  https://dgexpresscabs.com/airports
+  https://dgexpresscabs.com/rentals
+- 3 Airport Detail URLs:
+  https://dgexpresscabs.com/airports/pune-airport
+  https://dgexpresscabs.com/airports/mumbai-airport
+  https://dgexpresscabs.com/airports/nashik-airport
+- 32 Cab Route URLs:
+  https://dgexpresscabs.com/cabs/[from]-to-[to]
+- 5 Package Category URLs:
+  https://dgexpresscabs.com/packages/mahabaleshwar
+  https://dgexpresscabs.com/packages/goa
+  https://dgexpresscabs.com/packages/konkan
+  https://dgexpresscabs.com/packages/ashtavinayak
+  https://dgexpresscabs.com/packages/jyotirlinga
+- 47 Individual Package Detail URLs:
+  https://dgexpresscabs.com/packages/[category]/[slug]
+Total: 5 + 3 + 32 + 5 + 47 = 92 URLs.
+- Banned URLs (/booking, /cabs/details, _not-found, robots.txt, sitemap.xml, query URLs): 0
+- URLs containing spaces or %20: 0
+
+K. REPRESENTATIVE HTML VERIFICATION
+--------------------------------------------------------------------------------
+1. /airports/pune-airport
+   - Exactly 1 H1: "Pune Airport Cab Transfers"
+   - Canonical: https://dgexpresscabs.com/airports/pune-airport
+   - Breadcrumbs: Home › Airport Transfers › Pune Airport (PNQ)
+   - Starting Fare: ₹899
+   - JSON-LD Blocks: 4 (AutoRental, BreadcrumbList, Service, FAQPage)
+   - Competitor Mentions: CLEAN (None)
+   - Unsupported Claims: CLEAN (None)
+
+2. /airports/mumbai-airport
+   - Exactly 1 H1: "Mumbai Airport Cab Transfers"
+   - Canonical: https://dgexpresscabs.com/airports/mumbai-airport
+   - Breadcrumbs: Home › Airport Transfers › Mumbai Airport (BOM)
+   - Starting Fare: ₹1,199
+   - JSON-LD Blocks: 4 (AutoRental, BreadcrumbList, Service, FAQPage)
+   - Competitor Mentions: CLEAN (None)
+   - Unsupported Claims: CLEAN (None)
+
+3. /rentals
+   - Exactly 1 H1: "Local Cab Rentals with Driver"
+   - Canonical: https://dgexpresscabs.com/rentals
+   - Breadcrumbs: Home › Local Cab Rentals
+   - Fares: All 9 plans from website-rates.json (Sedan: 1575/2100/3675, SUV: 2100/3255/4725, Crysta: 2625/4725/6300)
+   - JSON-LD Blocks: 4 (AutoRental, BreadcrumbList, Service with OfferCatalog, FAQPage)
+   - Competitor Mentions: CLEAN (None)
+   - Unsupported Claims: CLEAN (None)
+
+4. /packages/mahabaleshwar
+   - Exactly 1 H1: "Mahabaleshwar Packages"
+   - Canonical: https://dgexpresscabs.com/packages/mahabaleshwar
+   - Breadcrumbs: Home › Tour Packages › Mahabaleshwar Packages
+   - JSON-LD Blocks: 2 (AutoRental, BreadcrumbList)
+   - Competitor Mentions: CLEAN (None)
+   - Unsupported Claims: CLEAN (None)
+
+5. /packages/mahabaleshwar/grand-exploration-mahayatra
+   - Exactly 1 H1: "The Grand Exploration Mahayatra"
+   - Canonical: https://dgexpresscabs.com/packages/mahabaleshwar/grand-exploration-mahayatra
+   - Breadcrumbs: Home › Tour Packages › Mahabaleshwar Packages › The Grand Exploration Mahayatra
+   - JSON-LD Blocks: 3 (AutoRental, BreadcrumbList, TouristTrip)
+   - Competitor Mentions: CLEAN (None - verified that tourist location "Tapola" contains letters "ola" but no standalone brand)
+   - Unsupported Claims: CLEAN (None)
+
+6. /cabs/pune-to-mumbai
+   - Exactly 1 H1: "Pune to Mumbai Cab"
+   - Canonical: https://dgexpresscabs.com/cabs/pune-to-mumbai
+   - Breadcrumbs: Home › Cabs › Pune to Mumbai Cab
+   - Fares: Directional rates intact (Hatchback ₹2,625, Sedan ₹2,730, SUV ₹3,150, Innova ₹3,990, Crysta ₹4,880)
+   - JSON-LD Blocks: 4 (AutoRental, BreadcrumbList, Service, FAQPage)
+   - Competitor Mentions: CLEAN (None)
+   - Unsupported Claims: CLEAN (None)
+
+L. TYPESCRIPT RESULT
+--------------------------------------------------------------------------------
+npx tsc --noEmit
+→ Exit 0 (PASS, 0 errors)
+
+M. BUILD RESULT
+--------------------------------------------------------------------------------
+npm run build
+→ Exit 0 (PASS)
+✓ Compiled successfully in 868ms
+✓ Generating static pages (98/98) in 896ms
+Final total pages generated: 98
+================================================================================

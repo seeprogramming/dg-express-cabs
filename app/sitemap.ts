@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { getRoutes } from "@/lib/routes";
+import { getRoutes, getAirports, airportSlug } from "@/lib/routes";
 import { getAllCategories, getAllPackages } from "@/lib/packages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     {
+      url: `${baseUrl}/cabs`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/packages`,
       lastModified: new Date(),
       changeFrequency: "weekly",
@@ -27,17 +33,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/cabs/details`,
+      url: `${baseUrl}/rentals`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
+      changeFrequency: "weekly",
+      priority: 0.8,
     },
   ];
 
-  // Route pages
+  // Airport landing pages — derived from verified airports in data/airports.json
+  const airports = getAirports();
+  const airportUrls: MetadataRoute.Sitemap = airports.map((a) => ({
+    url: `${baseUrl}/airports/${airportSlug(a.city)}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  // Route pages — normalize spaces to hyphens for valid URL slugs
   const routes = getRoutes();
   const routeUrls: MetadataRoute.Sitemap = routes.map((r) => ({
-    url: `${baseUrl}/cabs/${r.from.toLowerCase()}-to-${r.to.toLowerCase()}`,
+    url: `${baseUrl}/cabs/${r.from.toLowerCase().replace(/\s+/g, "-")}-to-${r.to.toLowerCase().replace(/\s+/g, "-")}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.8,
@@ -61,5 +76,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...routeUrls, ...categoryUrls, ...packageUrls];
+  return [
+    ...staticRoutes,
+    ...airportUrls,
+    ...routeUrls,
+    ...categoryUrls,
+    ...packageUrls,
+  ];
 }
