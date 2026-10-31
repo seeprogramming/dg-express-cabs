@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CabSearch from "@/components/CabSearch";
 import InclusionExclusion from "@/components/InclusionExclusion";
-import RoutePricingTable from "@/components/RoutePricingTable";
 import Breadcrumb from "@/components/Breadcrumb";
 import RouteFAQ, { buildFaqJsonLd } from "@/components/RouteFAQ";
 import { getRoutes, getVehicles, findRoute, parseRouteSlug, routeSlug } from "@/lib/routes";
@@ -231,12 +230,12 @@ export default async function RoutePage({ params }: Props) {
                   : `Book private AC cabs with instant pricing and WhatsApp booking.`}
               </p>
               <div style={{ display: "flex", gap: "10px", marginTop: "16px", flexWrap: "wrap" }}>
-                <a className="btn green" href="#pricing">
-                  View Cab Fares
+                <a className="btn green" href="#booking">
+                  Select Cab
                 </a>
-                <a className="btn outline" href="#booking">
-                  Book a Cab
-                </a>
+                <Link className="btn outline" href="/cabs">
+                  All Routes
+                </Link>
               </div>
             </div>
             <div className="heroEmoji">🚖</div>
@@ -244,15 +243,13 @@ export default async function RoutePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Server-rendered Pricing Table */}
-      <RoutePricingTable from={from} to={to} />
-
-      {/* Pre-filled Cab Search */}
+      {/* Pre-filled Cab Search with instant results */}
       <section id="booking">
         <CabSearch
           vehicles={vehicles}
           initialFrom={from}
           initialTo={to}
+          initialSearched={true}
         />
       </section>
 

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
@@ -36,15 +35,8 @@ export default function Header() {
 
       <header>
         <nav className="container">
-          <Link className="logo flex items-center shrink-0" href="/" aria-label="D&G Express Cabs">
-            <Image
-              src="/dgxcabs.png"
-              alt="D&G Express Cabs"
-              width={170}
-              height={85}
-              priority
-              className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-200 hover:scale-[1.02]"
-            />
+          <Link className="logo" href="/">
+            D&amp;G <b>Express Cabs</b>
           </Link>
           {siteConfig.nav.map((item) => (
             <Link key={item.label} href={item.href}>

@@ -12,6 +12,7 @@ interface CabSearchProps {
   initialFrom?: string;
   initialTo?: string;
   initialMode?: TripMode;
+  initialSearched?: boolean;
 }
 
 export type TripMode = "one" | "round" | "airport" | "local";
@@ -21,6 +22,7 @@ export default function CabSearch({
   initialFrom = "Pune",
   initialTo = "Mumbai",
   initialMode = "one",
+  initialSearched = false,
 }: CabSearchProps) {
   const router = useRouter();
   const [mode, setMode] = useState<TripMode>(initialMode);
@@ -28,7 +30,7 @@ export default function CabSearch({
   const [toLocation, setToLocation] = useState(initialTo);
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [travelTime, setTravelTime] = useState("09:00");
-  const [hasSearched, setHasSearched] = useState(false);
+  const [hasSearched, setHasSearched] = useState(initialSearched);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
