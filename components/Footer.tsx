@@ -29,7 +29,6 @@ export default function Footer() {
           <ul className="space-y-3 text-[13px]">
             <li><Link href="/#rides" className="hover:text-white transition-colors">Outstation Rides</Link></li>
             <li><Link href="/rentals" className="hover:text-white transition-colors">Local Rentals</Link></li>
-            <li><Link href="/airports" className="hover:text-white transition-colors">Airport Transfers</Link></li>
             <li><Link href="/packages" className="hover:text-white transition-colors">Tour Packages</Link></li>
             <li><Link href="/cabs" className="hover:text-white transition-colors">Round Trips</Link></li>
           </ul>

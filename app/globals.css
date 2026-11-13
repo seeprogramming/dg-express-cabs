@@ -765,7 +765,7 @@ nav a:hover {
 
 .galleryGrid {
   display: grid;
-  grid-template-columns: 1.3fr 0.8fr 0.8fr 1fr;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
   gap: 10px;
 }
 
@@ -788,9 +788,6 @@ nav a:hover {
   background-image: url("https://images.pexels.com/photos/9420512/pexels-photo-9420512.jpeg?auto=compress&cs=tinysrgb&w=1400");
 }
 .galleryTile:nth-child(3) {
-  background-image: url("https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=82");
-}
-.galleryTile:nth-child(4) {
   background-image: url("https://images.pexels.com/photos/30317431/pexels-photo-30317431.jpeg?auto=compress&cs=tinysrgb&w=1600");
 }
 

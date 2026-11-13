@@ -15,7 +15,7 @@ export default function NotFound() {
                 <span>We&apos;ll get you back on track.</span>
               </h1>
               <p>
-                The page you are looking for doesn&apos;t exist or has been moved. Explore our popular outstation routes, airport transfers, or tour packages below.
+                The page you are looking for doesn&apos;t exist or has been moved. Explore our popular outstation routes or tour packages below.
               </p>
 
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "24px" }}>
@@ -24,9 +24,6 @@ export default function NotFound() {
                 </Link>
                 <Link className="btn outline" href="/cabs">
                   All Cab Routes
-                </Link>
-                <Link className="btn outline" href="/airports">
-                  Airport Transfers
                 </Link>
                 <Link className="btn outline" href="/packages">
                   Tour Packages

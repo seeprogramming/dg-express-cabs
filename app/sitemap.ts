@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { getRoutes, getAirports, airportSlug } from "@/lib/routes";
+import { getRoutes } from "@/lib/routes";
 import { getAllCategories, getAllPackages } from "@/lib/packages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -27,27 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/airports`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/rentals`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,
     },
   ];
-
-  // Airport landing pages — derived from verified airports in data/airports.json
-  const airports = getAirports();
-  const airportUrls: MetadataRoute.Sitemap = airports.map((a) => ({
-    url: `${baseUrl}/airports/${airportSlug(a.city)}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
 
   // Route pages — normalize spaces to hyphens for valid URL slugs
   const routes = getRoutes();
@@ -78,7 +63,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
-    ...airportUrls,
     ...routeUrls,
     ...categoryUrls,
     ...packageUrls,

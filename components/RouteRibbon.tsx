@@ -16,9 +16,6 @@ export default function RouteRibbon() {
         <Link className="routePill" href="/cabs/pune-to-lonavala">
           Pune → Lonavala
         </Link>
-        <Link className="routePill" href="/airports">
-          Airport Transfers
-        </Link>
         <Link className="routePill" href="/rentals">
           Local Rentals
         </Link>

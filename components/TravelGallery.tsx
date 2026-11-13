@@ -7,7 +7,7 @@ export default function TravelGallery() {
             <div className="ey">ON THE ROAD</div>
             <h2>A glimpse of the journey.</h2>
           </div>
-          <p>Comfortable outstation rides, airport transfers and weekend escapes across Maharashtra.</p>
+          <p>Comfortable outstation rides, hill station tours and weekend escapes across Maharashtra.</p>
         </div>
         <div className="galleryGrid">
           <div className="galleryTile">
@@ -15,9 +15,6 @@ export default function TravelGallery() {
           </div>
           <div className="galleryTile">
             <span>Hill escapes</span>
-          </div>
-          <div className="galleryTile">
-            <span>Airport</span>
           </div>
           <div className="galleryTile">
             <span>Outstation</span>

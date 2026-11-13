@@ -25,7 +25,7 @@ export default function CabSearch({
   initialSearched = false,
 }: CabSearchProps) {
   const router = useRouter();
-  const [mode, setMode] = useState<TripMode>(initialMode);
+  const [mode, setMode] = useState<TripMode>(initialMode === "airport" ? "one" : initialMode);
   const [fromLocation, setFromLocation] = useState(initialFrom);
   const [toLocation, setToLocation] = useState(initialTo);
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
@@ -71,8 +71,6 @@ export default function CabSearch({
   const modeLabel =
     mode === "round"
       ? "Round Trip"
-      : mode === "airport"
-      ? "Airport Transfer"
       : mode === "local"
       ? "Local Rentals"
       : "One Way";
@@ -119,17 +117,6 @@ export default function CabSearch({
             onClick={() => setMode("round")}
           >
             <span>⇄</span> Round Trip
-          </button>
-          <button
-            type="button"
-            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
-              mode === "airport"
-                ? "bg-[#123f38] text-white shadow-sm"
-                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
-            }`}
-            onClick={() => setMode("airport")}
-          >
-            <span>✈</span> Airport
           </button>
           <button
             type="button"

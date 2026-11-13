@@ -14,7 +14,6 @@ export const siteConfig = {
   supportHours: "24×7 Instant Support",
   nav: [
     { label: "Rides", href: "/#rides" },
-    { label: "Airports", href: "/airports" },
     { label: "Packages", href: "/packages" },
     { label: "Why Us", href: "/#why" },
   ],

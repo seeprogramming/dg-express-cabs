@@ -425,7 +425,7 @@ export default function LocalRentalsPage() {
               <div className="ey">EXPLORE MORE SERVICES</div>
               <h2>Looking for Other Cab Services?</h2>
             </div>
-            <p>D&amp;G Express Cabs also provides one-way intercity cabs, round-trips, and airport transfers.</p>
+            <p>D&amp;G Express Cabs also provides one-way intercity cabs, round-trips, and holiday tour packages.</p>
           </div>
 
           <div
@@ -455,28 +455,6 @@ export default function LocalRentalsPage() {
               </span>
               <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--g)", marginTop: "6px" }}>
                 View all cab routes →
-              </span>
-            </Link>
-
-            <Link
-              href="/airports"
-              className="panel"
-              style={{
-                padding: "20px",
-                textDecoration: "none",
-                color: "inherit",
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-              }}
-            >
-              <span style={{ fontSize: "20px" }}>✈️</span>
-              <strong style={{ fontSize: "16px", color: "var(--d)" }}>Airport Cab Transfers</strong>
-              <span style={{ fontSize: "13px", color: "var(--muted)" }}>
-                Pre-book doorstep pickup and drop for Pune (PNQ), Mumbai (BOM), and Nashik (ISK) airports.
-              </span>
-              <span style={{ fontSize: "13px", fontWeight: 700, color: "var(--g)", marginTop: "6px" }}>
-                View airport transfers →
               </span>
             </Link>
 
