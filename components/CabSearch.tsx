@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { getFareForMode, getLocalRentalPlans, findRoute } from "@/lib/routes";
@@ -18,7 +18,7 @@ interface CabSearchProps {
 
 export type TripMode = "one" | "round" | "airport" | "local" | "ev";
 
-export default function CabSearch({
+function CabSearchForm({
   vehicles,
   initialFrom = "Pune",
   initialTo = "Mumbai",
@@ -800,5 +800,13 @@ export default function CabSearch({
         </section>
       )}
     </>
+  );
+}
+
+export default function CabSearch(props: CabSearchProps) {
+  return (
+    <Suspense fallback={null}>
+      <CabSearchForm {...props} />
+    </Suspense>
   );
 }
