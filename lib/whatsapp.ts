@@ -6,17 +6,26 @@ export function generateWhatsAppBookingUrl(details: {
   from: string;
   to: string;
   date?: string;
+  time?: string;
+  returnDate?: string;
+  returnTime?: string;
   name?: string;
   packageTitle?: string;
+  tripType?: string;
 }): string {
   const d = details.date || "To be confirmed";
+  const timeStr = details.time ? ` at ${details.time}` : "";
   const n = details.name ? ` Name: ${details.name}` : "";
+  const t = details.tripType ? ` [${details.tripType}]` : "";
+  const ret = details.returnDate
+    ? `, Return: ${details.returnDate}${details.returnTime ? ` at ${details.returnTime}` : ""}`
+    : "";
   let message = "";
 
   if (details.packageTitle) {
-    message = `Hi D&G Express Cabs, I'm interested in booking the tour package "${details.packageTitle}" from ${details.from} on ${d}.${n}`;
+    message = `Hi D&G Express Cabs, I'm interested in booking the tour package "${details.packageTitle}" from ${details.from} on ${d}${timeStr}.${n}`;
   } else {
-    message = `Hi D&G Express Cabs, I want to book a ${details.vehicle} (${details.model}) for ${details.from} to ${details.to} on ${d}.${n}`;
+    message = `Hi D&G Express Cabs, I want to book a ${details.vehicle} (${details.model}) for ${details.from} to ${details.to}${t} on ${d}${timeStr}${ret}.${n}`;
   }
 
   return `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(message)}`;

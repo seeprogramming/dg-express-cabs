@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { getFareForMode, getLocalRentalPlans } from "@/lib/routes";
+import { getFareForMode, getLocalRentalPlans, findRoute } from "@/lib/routes";
 import { formatINR } from "@/lib/packages";
 import type { VehicleInfo } from "@/types";
 
@@ -27,15 +27,51 @@ export default function CabSearch({
   initialSearched = false,
 }: CabSearchProps) {
   const router = useRouter();
-  const [mode, setMode] = useState<TripMode>(initialMode === "airport" ? "one" : initialMode);
+  const searchParams = useSearchParams();
+
+  // Read mode from searchParams if present (e.g. /cabs/pune-to-mumbai?mode=round)
+  const urlModeParam = searchParams.get("mode");
+  const effectiveInitialMode: TripMode =
+    urlModeParam === "round" || urlModeParam === "round_trip"
+      ? "round"
+      : urlModeParam === "local" || urlModeParam === "local_rentals"
+      ? "local"
+      : urlModeParam === "ev"
+      ? "ev"
+      : initialMode === "airport"
+      ? "one"
+      : initialMode;
+
+  const [mode, setMode] = useState<TripMode>(effectiveInitialMode);
   const [selectedCategory, setSelectedCategory] = useState<string>(
-    initialCategory || (initialMode === "ev" ? "EV" : "all")
+    initialCategory || (effectiveInitialMode === "ev" ? "EV" : "all")
   );
   const [fromLocation, setFromLocation] = useState(initialFrom);
   const [toLocation, setToLocation] = useState(initialTo);
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [travelTime, setTravelTime] = useState("09:00");
+  const [returnDate, setReturnDate] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().slice(0, 10);
+  });
+  const [returnTime, setReturnTime] = useState("18:00");
   const [hasSearched, setHasSearched] = useState(initialSearched);
+
+  // Sync mode if query params change
+  useEffect(() => {
+    const qMode = searchParams.get("mode");
+    if (qMode === "round" || qMode === "round_trip") {
+      setMode("round");
+    } else if (qMode === "local" || qMode === "local_rentals") {
+      setMode("local");
+    } else if (qMode === "ev") {
+      setMode("ev");
+      setSelectedCategory("EV");
+    } else if (qMode === "one" || qMode === "one_way") {
+      setMode("one");
+    }
+  }, [searchParams]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,6 +93,15 @@ export default function CabSearch({
   };
 
   const handleSelectCab = (vehicle: VehicleInfo, price: number, planLabel?: string) => {
+    const tripType =
+      mode === "round"
+        ? "Round Trip"
+        : mode === "local"
+        ? (planLabel ? `Local Rental (${planLabel})` : "Local Rentals")
+        : mode === "ev" || selectedCategory === "EV" || vehicle.category === "EV"
+        ? "EV Cabs"
+        : "One Way";
+
     const params = new URLSearchParams({
       vehicle: vehicle.category,
       model: vehicle.model,
@@ -65,8 +110,15 @@ export default function CabSearch({
       from: fromLocation.trim(),
       to: mode === "local" ? "Local" : toLocation.trim(),
       date: travelDate,
+      time: travelTime,
       price: String(price),
+      tripType: tripType,
+      mode: mode,
     });
+    if (mode === "round") {
+      params.append("returnDate", returnDate);
+      params.append("returnTime", returnTime);
+    }
     if (planLabel) {
       params.append("plan", planLabel);
     }
@@ -162,124 +214,296 @@ export default function CabSearch({
           </button>
         </div>
 
-        {/* Compact, Modern Grid Form */}
-        <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
-          {/* From & To with Swap Button */}
-          <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
-            <div className="w-full">
-              <label htmlFor="from" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-                FROM
-              </label>
-              <input
-                id="from"
-                list="routeCities"
-                value={fromLocation}
-                onChange={(e) => setFromLocation(e.target.value)}
-                placeholder="Pickup City"
-                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
-                required
-              />
+        {/* Compact, Modern Form */}
+        <form onSubmit={handleSearch} className="flex flex-col gap-3">
+          {mode === "round" ? (
+            /* Round Trip: 2-Row Spacious Layout */
+            <div className="space-y-3">
+              {/* Row 1: From/To Location & Category */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                {/* From & To with Swap Button */}
+                <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2.5 rounded-xl border border-[#e2e8df]">
+                  <div className="w-full">
+                    <label htmlFor="from" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                      FROM
+                    </label>
+                    <input
+                      id="from"
+                      list="routeCities"
+                      value={fromLocation}
+                      onChange={(e) => setFromLocation(e.target.value)}
+                      placeholder="Pickup City"
+                      className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleSwapLocations}
+                    className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
+                    title="Swap Locations"
+                    aria-label="Swap pickup and drop locations"
+                  >
+                    ⇄
+                  </button>
+
+                  <div className="w-full">
+                    <label htmlFor="to" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                      TO
+                    </label>
+                    <input
+                      id="to"
+                      list="routeCities"
+                      value={toLocation}
+                      onChange={(e) => setToLocation(e.target.value)}
+                      placeholder="Drop City"
+                      className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Category Dropdown */}
+                <div className="md:col-span-4 bg-[#fafbf7] p-2.5 rounded-xl border border-[#e2e8df]">
+                  <label htmlFor="cabCategory" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                    CAB CATEGORY
+                  </label>
+                  <select
+                    id="cabCategory"
+                    value={selectedCategory}
+                    onChange={(e) => {
+                      setSelectedCategory(e.target.value);
+                    }}
+                    className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition cursor-pointer"
+                  >
+                    <option value="all">All Cabs</option>
+                    <option value="EV">⚡ EV Cabs</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Innova / Kia Carens">Innova / Carens</option>
+                    <option value="Innova Crysta">Innova Crysta</option>
+                    <option value="Toyota Hycross">Toyota Hycross</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Row 2: Pickup Timing, Return Timing & Search Button */}
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                {/* Departure Schedule */}
+                <div className="md:col-span-5 bg-[#fafbf7] p-2.5 rounded-xl border border-[#e2e8df]">
+                  <div className="text-[11px] font-extrabold text-[#123f38] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                    <span>🗓️</span>
+                    <span>Departure Schedule</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div>
+                      <label htmlFor="date" className="block text-[10px] font-bold text-[#718079] tracking-wider mb-0.5">
+                        PICKUP DATE
+                      </label>
+                      <input
+                        id="date"
+                        type="date"
+                        value={travelDate}
+                        onChange={(e) => {
+                          setTravelDate(e.target.value);
+                          if (e.target.value > returnDate) {
+                            const nextDay = new Date(e.target.value);
+                            nextDay.setDate(nextDay.getDate() + 1);
+                            setReturnDate(nextDay.toISOString().slice(0, 10));
+                          }
+                        }}
+                        className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="time" className="block text-[10px] font-bold text-[#718079] tracking-wider mb-0.5">
+                        PICKUP TIME
+                      </label>
+                      <input
+                        id="time"
+                        type="time"
+                        value={travelTime}
+                        onChange={(e) => setTravelTime(e.target.value)}
+                        className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Return Schedule */}
+                <div className="md:col-span-5 bg-[#f3f9ef] p-2.5 rounded-xl border border-[#cde2c6]">
+                  <div className="text-[11px] font-extrabold text-[#2d7335] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                    <span>🔄</span>
+                    <span>Return Schedule</span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div>
+                      <label htmlFor="returnDate" className="block text-[10px] font-bold text-[#2d7335] tracking-wider mb-0.5">
+                        RETURN DATE
+                      </label>
+                      <input
+                        id="returnDate"
+                        type="date"
+                        value={returnDate}
+                        min={travelDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        className="w-full bg-white border border-[#c2deb9] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="returnTime" className="block text-[10px] font-bold text-[#2d7335] tracking-wider mb-0.5">
+                        RETURN TIME
+                      </label>
+                      <input
+                        id="returnTime"
+                        type="time"
+                        value={returnTime}
+                        onChange={(e) => setReturnTime(e.target.value)}
+                        className="w-full bg-white border border-[#c2deb9] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Search Button */}
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    className="w-full bg-[#62c33a] hover:bg-[#52ad2e] text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 h-[58px]"
+                  >
+                    <span>Search</span>
+                    <span className="text-base">→</span>
+                  </button>
+                </div>
+              </div>
             </div>
+          ) : (
+            /* Standard 1-Row Grid for One Way, EV, Local */
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+              {/* From & To with Swap Button */}
+              <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+                <div className="w-full">
+                  <label htmlFor="from" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                    FROM
+                  </label>
+                  <input
+                    id="from"
+                    list="routeCities"
+                    value={fromLocation}
+                    onChange={(e) => setFromLocation(e.target.value)}
+                    placeholder="Pickup City"
+                    className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                    required
+                  />
+                </div>
 
-            {mode !== "local" && (
-              <button
-                type="button"
-                onClick={handleSwapLocations}
-                className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
-                title="Swap Locations"
-                aria-label="Swap pickup and drop locations"
-              >
-                ⇄
-              </button>
-            )}
+                {mode !== "local" && (
+                  <button
+                    type="button"
+                    onClick={handleSwapLocations}
+                    className="hidden sm:flex self-end mb-1 w-8 h-8 rounded-full bg-white border border-[#dce5da] hover:bg-[#edf5e7] hover:border-[#3d9646] items-center justify-center text-[#123f38] text-xs font-bold transition shadow-sm"
+                    title="Swap Locations"
+                    aria-label="Swap pickup and drop locations"
+                  >
+                    ⇄
+                  </button>
+                )}
 
-            <div className="w-full">
-              <label htmlFor="to" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-                {mode === "local" ? "TO (Optional)" : "TO"}
-              </label>
-              <input
-                id="to"
-                list="routeCities"
-                value={toLocation}
-                onChange={(e) => setToLocation(e.target.value)}
-                placeholder={mode === "local" ? "Local" : "Drop City"}
-                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition disabled:bg-gray-100 disabled:text-gray-400"
-                disabled={mode === "local"}
-                required={mode !== "local"}
-              />
+                <div className="w-full">
+                  <label htmlFor="to" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                    {mode === "local" ? "TO (Optional)" : "TO"}
+                  </label>
+                  <input
+                    id="to"
+                    list="routeCities"
+                    value={toLocation}
+                    onChange={(e) => setToLocation(e.target.value)}
+                    placeholder={mode === "local" ? "Local" : "Drop City"}
+                    className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition disabled:bg-gray-100 disabled:text-gray-400"
+                    disabled={mode === "local"}
+                    required={mode !== "local"}
+                  />
+                </div>
+              </div>
+
+              {/* Date & Time */}
+              <div className="md:col-span-3 grid grid-cols-2 gap-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+                <div>
+                  <label htmlFor="date" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                    DATE
+                  </label>
+                  <input
+                    id="date"
+                    type="date"
+                    value={travelDate}
+                    onChange={(e) => setTravelDate(e.target.value)}
+                    className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="time" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                    TIME
+                  </label>
+                  <input
+                    id="time"
+                    type="time"
+                    value={travelTime}
+                    onChange={(e) => setTravelTime(e.target.value)}
+                    className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Category Dropdown */}
+              <div className="md:col-span-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+                <label htmlFor="cabCategory" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+                  CATEGORY
+                </label>
+                <select
+                  id="cabCategory"
+                  value={selectedCategory}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setSelectedCategory(val);
+                    if (val === "EV") {
+                      if (mode !== "local") setMode("ev");
+                    } else if (mode === "ev") {
+                      setMode("one");
+                    }
+                  }}
+                  className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-2.5 py-2 text-sm font-semibold text-[#123f38] outline-none transition cursor-pointer"
+                >
+                  <option value="all">All Cabs</option>
+                  <option value="EV">⚡ EV Cabs</option>
+                  <option value="Sedan">Sedan</option>
+                  <option value="SUV">SUV</option>
+                  <option value="Hatchback">Hatchback</option>
+                  <option value="Innova / Kia Carens">Innova / Carens</option>
+                  <option value="Innova Crysta">Innova Crysta</option>
+                  <option value="Toyota Hycross">Toyota Hycross</option>
+                </select>
+              </div>
+
+              {/* Search Button */}
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="w-full bg-[#62c33a] hover:bg-[#52ad2e] text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 h-[54px]"
+                >
+                  <span>Search rides</span>
+                  <span className="text-base">→</span>
+                </button>
+              </div>
             </div>
-          </div>
-
-          {/* Date & Time */}
-          <div className="md:col-span-3 grid grid-cols-2 gap-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
-            <div>
-              <label htmlFor="date" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-                DATE
-              </label>
-              <input
-                id="date"
-                type="date"
-                value={travelDate}
-                onChange={(e) => setTravelDate(e.target.value)}
-                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="time" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-                TIME
-              </label>
-              <input
-                id="time"
-                type="time"
-                value={travelTime}
-                onChange={(e) => setTravelTime(e.target.value)}
-                className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-3 py-2 text-sm font-semibold text-[#123f38] outline-none transition"
-                required
-              />
-            </div>
-          </div>
-
-          {/* Category Dropdown */}
-          <div className="md:col-span-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
-            <label htmlFor="cabCategory" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
-              CATEGORY
-            </label>
-            <select
-              id="cabCategory"
-              value={selectedCategory}
-              onChange={(e) => {
-                const val = e.target.value;
-                setSelectedCategory(val);
-                if (val === "EV") {
-                  if (mode !== "local" && mode !== "round") setMode("ev");
-                } else if (mode === "ev") {
-                  setMode("one");
-                }
-              }}
-              className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-2.5 py-2 text-sm font-semibold text-[#123f38] outline-none transition cursor-pointer"
-            >
-              <option value="all">All Cabs</option>
-              <option value="EV">⚡ EV Cabs</option>
-              <option value="Sedan">Sedan</option>
-              <option value="SUV">SUV</option>
-              <option value="Hatchback">Hatchback</option>
-              <option value="Innova / Kia Carens">Innova / Carens</option>
-              <option value="Innova Crysta">Innova Crysta</option>
-              <option value="Toyota Hycross">Toyota Hycross</option>
-            </select>
-          </div>
-
-          {/* Search Button */}
-          <div className="md:col-span-2">
-            <button
-              type="submit"
-              className="w-full bg-[#62c33a] hover:bg-[#52ad2e] text-white font-bold text-sm py-3 px-4 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-1.5 h-[54px]"
-            >
-              <span>Search rides</span>
-              <span className="text-base">→</span>
-            </button>
-          </div>
+          )}
         </form>
 
         <datalist id="routeCities">
@@ -302,7 +526,16 @@ export default function CabSearch({
                 </h2>
               </div>
               <p id="meta">
-                {modeLabel} · {travelDate} {travelTime ? `at ${travelTime}` : ""}
+                {modeLabel}
+                {mode !== "local" && findRoute(fromLocation, toLocation)?.distance_km && (
+                  <span className="font-bold text-[#2d7335]">
+                    {" "}· {mode === "round"
+                      ? `${findRoute(fromLocation, toLocation)!.distance_km! * 2} km round-trip`
+                      : `${findRoute(fromLocation, toLocation)!.distance_km} km`}
+                  </span>
+                )}
+                {" "}· {travelDate} {travelTime ? `at ${travelTime}` : ""}
+                {mode === "round" && ` — Return: ${returnDate} ${returnTime ? `at ${returnTime}` : ""}`}
               </p>
             </div>
 

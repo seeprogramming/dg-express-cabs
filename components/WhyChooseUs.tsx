@@ -21,7 +21,7 @@ export default function WhyChooseUs() {
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             <div className="w-full lg:w-1/2 relative rounded-[32px] overflow-hidden shadow-2xl h-[400px] lg:h-[540px] group">
                <Image 
-                 src="/images/about.jpg" 
+                 src="/images/about.jpeg" 
                  alt="Comfortable intercity cab travel" 
                  fill
                  sizes="(max-width: 1024px) 100vw, 50vw"

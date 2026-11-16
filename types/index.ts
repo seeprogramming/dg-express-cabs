@@ -2,6 +2,7 @@ export interface RouteInfo {
   from: string;
   to: string;
   fare: number;
+  distance_km?: number;
 }
 
 export interface VehicleInfo {

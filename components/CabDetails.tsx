@@ -8,6 +8,7 @@ import { formatINR } from "@/lib/packages";
 import { generateWhatsAppBookingUrl, getQrCodeImageUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import vehicles from "@/data/vehicles.json";
+import { findRoute } from "@/lib/routes";
 
 /* Map vehicle category → image path from vehicles.json */
 const vehicleImageMap: Record<string, string> = Object.fromEntries(
@@ -24,7 +25,57 @@ export default function CabDetails() {
   const seats = searchParams.get("seats") || "4";
   const bags = searchParams.get("bags") || "2";
   const initialDate = searchParams.get("date") || "";
+  const initialTime = searchParams.get("time") || "";
   const priceParam = searchParams.get("price") || "";
+  const tripTypeParam = searchParams.get("tripType") || searchParams.get("mode") || "";
+  const planParam = searchParams.get("plan") || "";
+  const initialReturnDate = searchParams.get("returnDate") || "";
+  const initialReturnTime = searchParams.get("returnTime") || "";
+
+  /* Resolve the trip type / category (One Way, Round Trip, Local Rentals, EV Cabs) */
+  const resolveTripType = (): string => {
+    const raw = tripTypeParam.trim().toLowerCase();
+    if (raw === "round" || raw.includes("round")) {
+      return "Round Trip";
+    }
+    if (raw === "local" || raw.includes("local") || to.toLowerCase() === "local" || planParam) {
+      return planParam ? `Local Rental (${planParam})` : "Local Rentals";
+    }
+    if (raw === "ev" || raw.includes("ev") || vehicle.toLowerCase() === "ev") {
+      return "EV Cabs";
+    }
+    if (raw === "one" || raw.includes("one")) {
+      return "One Way";
+    }
+    if (tripTypeParam) {
+      return tripTypeParam;
+    }
+    if (to.toLowerCase() === "local" || planParam) {
+      return planParam ? `Local Rental (${planParam})` : "Local Rentals";
+    }
+    return "One Way";
+  };
+
+  const tripType = resolveTripType();
+  const isRoundTrip = tripType.toLowerCase().includes("round");
+  const isLocalRental = tripType.toLowerCase().includes("local") || to.toLowerCase() === "local";
+
+  const routeDisplay = isRoundTrip
+    ? `${from} ⇄ ${to}`
+    : isLocalRental
+    ? `${from} (Local Rental)`
+    : `${from} → ${to}`;
+
+  /* Look up route distance */
+  const matchedRoute = findRoute(from, to);
+  const oneWayKm = matchedRoute?.distance_km;
+  const displayDistance = isLocalRental
+    ? planParam || null
+    : oneWayKm
+    ? isRoundTrip
+      ? `${oneWayKm * 2} km (Round Trip)`
+      : `${oneWayKm} km`
+    : null;
 
   /* Resolve the correct vehicle image */
   const vehicleImage =
@@ -33,6 +84,9 @@ export default function CabDetails() {
     siteConfig.stockImages.car;             // fallback
 
   const [travelDate, setTravelDate] = useState(initialDate);
+  const [travelTime, setTravelTime] = useState(initialTime);
+  const [returnDate, setReturnDate] = useState(initialReturnDate);
+  const [returnTime, setReturnTime] = useState(initialReturnTime);
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [pickup, setPickup] = useState("");
@@ -40,13 +94,21 @@ export default function CabDetails() {
 
   const formattedFare = priceParam ? formatINR(Number(priceParam)) : "On request";
 
+  const dateDisplay = isRoundTrip && returnDate
+    ? `${travelDate}${travelTime ? ` at ${travelTime}` : ""} — Return: ${returnDate}${returnTime ? ` at ${returnTime}` : ""}`
+    : `${travelDate}${travelTime ? ` at ${travelTime}` : ""}`;
+
   const waLink = generateWhatsAppBookingUrl({
     vehicle,
     model,
     from,
     to,
     date: travelDate,
+    time: travelTime,
+    returnDate: isRoundTrip ? returnDate : undefined,
+    returnTime: isRoundTrip ? returnTime : undefined,
     name,
+    tripType,
   });
 
   const qrImageUrl = getQrCodeImageUrl(waLink, 220);
@@ -98,12 +160,22 @@ export default function CabDetails() {
             {vehicle} — {model}
           </h1>
           <div className="tripline" id="tripline">
-            {from} → {to}
+            <span>{routeDisplay}</span>
+            {displayDistance && (
+              <span style={{ fontSize: "14px", fontWeight: 700, color: "#3d9646", background: "#edf5e7", padding: "2px 10px", borderRadius: "12px", border: "1px solid #cde2c6", marginLeft: "10px", verticalAlign: "middle" }}>
+                📍 {displayDistance}
+              </span>
+            )}
           </div>
 
           <p id="cabCopy">
-            A comfortable private cab for your outstation journey. Final vehicle allocation may be
-            the selected model or a similar vehicle in the same category.
+            {isLocalRental
+              ? `A comfortable chauffeur-driven cab for your local city travel in and around ${from}. Flexible hourly packages for city commutes, shopping, or business meetings.`
+              : tripType === "EV Cabs"
+              ? "A 100% electric, zero-emission private cab for your outstation journey. Whisper-quiet cabin, zero engine vibration, and eco-friendly comfort."
+              : isRoundTrip
+              ? `A reliable private cab for your complete round-trip journey (${from} ⇄ ${to}). Same vehicle and verified driver dedicated for your round trip.`
+              : "A comfortable private cab for your outstation journey. Final vehicle allocation may be the selected model or a similar vehicle in the same category."}
           </p>
 
           <div className="specs">
@@ -117,8 +189,14 @@ export default function CabDetails() {
             </div>
             <div className="spec">
               <small>TRIP TYPE</small>
-              <b>Private cab</b>
+              <b id="tripType">{tripType}</b>
             </div>
+            {displayDistance && (
+              <div className="spec">
+                <small>DISTANCE</small>
+                <b id="distance">{displayDistance}</b>
+              </div>
+            )}
             <div className="spec">
               <small>ESTIMATED FARE</small>
               <b id="selectedFare">{formattedFare}</b>
@@ -153,7 +231,10 @@ export default function CabDetails() {
             </div>
           </div>
 
-          <InclusionExclusion />
+          <InclusionExclusion
+            distanceKm={oneWayKm ? (isRoundTrip ? oneWayKm * 2 : oneWayKm) : null}
+            isRoundTrip={isRoundTrip}
+          />
         </section>
 
         <aside className="bookingCard">
@@ -164,17 +245,112 @@ export default function CabDetails() {
             <label htmlFor="vehicleField">Selected cab</label>
             <input id="vehicleField" readOnly value={`${vehicle} — ${model}`} />
 
-            <label htmlFor="routeField">Route</label>
-            <input id="routeField" readOnly value={`${from} → ${to}`} />
+            <label htmlFor="tripTypeField">Trip type</label>
+            <input id="tripTypeField" readOnly value={tripType} />
 
-            <label htmlFor="travelDateField">Travel date</label>
-            <input
-              id="travelDateField"
-              type="date"
-              required
-              value={travelDate}
-              onChange={(e) => setTravelDate(e.target.value)}
-            />
+            <label htmlFor="routeField">Route</label>
+            <input id="routeField" readOnly value={routeDisplay} />
+
+            {isRoundTrip ? (
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", margin: "6px 0 10px" }}>
+                {/* Departure Group */}
+                <div style={{ background: "#fafbf7", border: "1px solid #e2e8df", borderRadius: "10px", padding: "10px" }}>
+                  <div style={{ fontSize: "11px", fontWeight: 800, color: "#123f38", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "5px" }}>
+                    <span>🗓️</span>
+                    <span>Departure</span>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    <div>
+                      <label htmlFor="travelDateField" style={{ fontSize: "10px", fontWeight: 700, color: "#718079", marginBottom: "3px", display: "block" }}>
+                        PICKUP DATE
+                      </label>
+                      <input
+                        id="travelDateField"
+                        type="date"
+                        required
+                        value={travelDate}
+                        onChange={(e) => {
+                          setTravelDate(e.target.value);
+                          if (e.target.value > returnDate) {
+                            const nextDay = new Date(e.target.value);
+                            nextDay.setDate(nextDay.getDate() + 1);
+                            setReturnDate(nextDay.toISOString().slice(0, 10));
+                          }
+                        }}
+                        style={{ margin: 0, padding: "8px 10px", fontSize: "13px" }}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="travelTimeField" style={{ fontSize: "10px", fontWeight: 700, color: "#718079", marginBottom: "3px", display: "block" }}>
+                        PICKUP TIME
+                      </label>
+                      <input
+                        id="travelTimeField"
+                        type="time"
+                        value={travelTime}
+                        onChange={(e) => setTravelTime(e.target.value)}
+                        style={{ margin: 0, padding: "8px 10px", fontSize: "13px" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Return Group */}
+                <div style={{ background: "#f3f9ef", border: "1px solid #cde2c6", borderRadius: "10px", padding: "10px" }}>
+                  <div style={{ fontSize: "11px", fontWeight: 800, color: "#2d7335", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px", display: "flex", alignItems: "center", gap: "5px" }}>
+                    <span>🔄</span>
+                    <span>Return</span>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                    <div>
+                      <label htmlFor="returnDateField" style={{ fontSize: "10px", fontWeight: 700, color: "#2d7335", marginBottom: "3px", display: "block" }}>
+                        RETURN DATE
+                      </label>
+                      <input
+                        id="returnDateField"
+                        type="date"
+                        required
+                        min={travelDate}
+                        value={returnDate}
+                        onChange={(e) => setReturnDate(e.target.value)}
+                        style={{ margin: 0, padding: "8px 10px", fontSize: "13px", borderColor: "#c2deb9" }}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="returnTimeField" style={{ fontSize: "10px", fontWeight: 700, color: "#2d7335", marginBottom: "3px", display: "block" }}>
+                        RETURN TIME
+                      </label>
+                      <input
+                        id="returnTimeField"
+                        type="time"
+                        value={returnTime}
+                        onChange={(e) => setReturnTime(e.target.value)}
+                        style={{ margin: 0, padding: "8px 10px", fontSize: "13px", borderColor: "#c2deb9" }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <>
+                <label htmlFor="travelDateField">Travel date</label>
+                <input
+                  id="travelDateField"
+                  type="date"
+                  required
+                  value={travelDate}
+                  onChange={(e) => setTravelDate(e.target.value)}
+                />
+
+                <label htmlFor="travelTimeField">Preferred time</label>
+                <input
+                  id="travelTimeField"
+                  type="time"
+                  value={travelTime}
+                  onChange={(e) => setTravelTime(e.target.value)}
+                />
+              </>
+            )}
 
             <label htmlFor="nameField">Your name</label>
             <input

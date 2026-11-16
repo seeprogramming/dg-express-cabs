@@ -280,7 +280,7 @@ export default async function RoutePage({ params }: Props) {
             {to}. Whether you are travelling for work or leisure, choose from a
             range of well-maintained air-conditioned vehicles with clear, transparent pricing.
           </p>
-          <InclusionExclusion />
+          <InclusionExclusion distanceKm={routeData?.distance_km} />
 
           {/* Reverse Route Link */}
           {reverseRouteExists && (

@@ -196,7 +196,14 @@ export default function AllRoutesClient({
                             <small>Starting at</small>
                             <b>{formatINR(r.fare)}</b>
                           </div>
-                          <Link className="btn green" href={`/cabs/${slug}`}>
+                          <Link
+                            className="btn green"
+                            href={
+                              mode === "round_trip"
+                                ? `/cabs/${slug}?mode=round`
+                                : `/cabs/${slug}`
+                            }
+                          >
                             View cabs
                           </Link>
                         </div>

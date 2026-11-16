@@ -97,6 +97,8 @@ export default function EvExperience() {
       vehicle: modelName,
       model: modelName,
       category: "EV",
+      tripType: "EV Cabs",
+      mode: "ev",
       from: currentRoute.from,
       to: currentRoute.to,
       price: String(fare),

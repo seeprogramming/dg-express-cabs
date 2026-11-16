@@ -6,6 +6,7 @@ import type { RouteInfo, VehicleInfo, AirportInfo } from "@/types";
 export interface WebsiteRateRoute {
   from: string;
   to: string;
+  distance_km?: number;
   fares: Record<string, number>;
 }
 
@@ -31,6 +32,7 @@ export function getRoutes(): RouteInfo[] {
       from: r.from,
       to: r.to,
       fare: startingFare,
+      distance_km: r.distance_km,
     };
   });
 }
@@ -147,6 +149,7 @@ export function getRoundTripRoutes(): RouteInfo[] {
       from: r.from,
       to: r.to,
       fare: startingFare,
+      distance_km: r.distance_km,
     };
   });
 }

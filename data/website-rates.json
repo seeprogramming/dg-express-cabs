@@ -14,6 +14,7 @@
     {
       "from": "Pune",
       "to": "Mumbai",
+      "distance_km": 150,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -28,6 +29,7 @@
     {
       "from": "Mumbai",
       "to": "Pune",
+      "distance_km": 150,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -42,6 +44,7 @@
     {
       "from": "Pune",
       "to": "Nashik",
+      "distance_km": 210,
       "fares": {
         "hatchback": 2940,
         "sedan": 3150,
@@ -55,6 +58,7 @@
     {
       "from": "Nashik",
       "to": "Pune",
+      "distance_km": 210,
       "fares": {
         "hatchback": 2940,
         "sedan": 3150,
@@ -68,6 +72,7 @@
     {
       "from": "Mumbai",
       "to": "Nashik",
+      "distance_km": 165,
       "fares": {
         "hatchback": 2940,
         "sedan": 3097,
@@ -79,6 +84,7 @@
     {
       "from": "Nashik",
       "to": "Mumbai",
+      "distance_km": 165,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -90,6 +96,7 @@
     {
       "from": "Nashik",
       "to": "Navi Mumbai",
+      "distance_km": 155,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -101,6 +108,7 @@
     {
       "from": "Navi Mumbai",
       "to": "Nashik",
+      "distance_km": 155,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -112,6 +120,7 @@
     {
       "from": "Pune",
       "to": "Kolhapur",
+      "distance_km": 235,
       "fares": {
         "hatchback": 3780,
         "sedan": 3885,
@@ -123,6 +132,7 @@
     {
       "from": "Kolhapur",
       "to": "Pune",
+      "distance_km": 235,
       "fares": {
         "hatchback": 3780,
         "sedan": 3885,
@@ -134,6 +144,7 @@
     {
       "from": "Mumbai",
       "to": "Kolhapur",
+      "distance_km": 380,
       "fares": {
         "hatchback": 7770,
         "sedan": 7885,
@@ -145,6 +156,7 @@
     {
       "from": "Kolhapur",
       "to": "Mumbai",
+      "distance_km": 380,
       "fares": {
         "hatchback": 7770,
         "sedan": 7885,
@@ -156,6 +168,7 @@
     {
       "from": "Pune",
       "to": "Lonavala",
+      "distance_km": 65,
       "fares": {
         "hatchback": 2415,
         "sedan": 2520,
@@ -167,6 +180,7 @@
     {
       "from": "Lonavala",
       "to": "Pune",
+      "distance_km": 65,
       "fares": {
         "hatchback": 2415,
         "sedan": 2520,
@@ -178,6 +192,7 @@
     {
       "from": "Mumbai",
       "to": "Lonavala",
+      "distance_km": 85,
       "fares": {
         "hatchback": 2520,
         "sedan": 2625,
@@ -189,6 +204,7 @@
     {
       "from": "Lonavala",
       "to": "Mumbai",
+      "distance_km": 85,
       "fares": {
         "hatchback": 2520,
         "sedan": 2625,
@@ -200,6 +216,7 @@
     {
       "from": "Pune",
       "to": "Mahabaleshwar",
+      "distance_km": 120,
       "fares": {
         "hatchback": 3045,
         "sedan": 3150,
@@ -211,6 +228,7 @@
     {
       "from": "Mahabaleshwar",
       "to": "Pune",
+      "distance_km": 120,
       "fares": {
         "hatchback": 3250,
         "sedan": 3360,
@@ -222,6 +240,7 @@
     {
       "from": "Mumbai",
       "to": "Mahabaleshwar",
+      "distance_km": 260,
       "fares": {
         "hatchback": 5565,
         "sedan": 5775,
@@ -233,6 +252,7 @@
     {
       "from": "Mahabaleshwar",
       "to": "Mumbai",
+      "distance_km": 260,
       "fares": {
         "hatchback": 5670,
         "sedan": 5780,
@@ -244,6 +264,7 @@
     {
       "from": "Pune",
       "to": "Sangli",
+      "distance_km": 230,
       "fares": {
         "hatchback": 3780,
         "sedan": 3885,
@@ -255,6 +276,7 @@
     {
       "from": "Sangli",
       "to": "Pune",
+      "distance_km": 230,
       "fares": {
         "hatchback": 3780,
         "sedan": 3885,
@@ -266,6 +288,7 @@
     {
       "from": "Mumbai",
       "to": "Sangli",
+      "distance_km": 375,
       "fares": {
         "hatchback": 7770,
         "sedan": 7885,
@@ -277,6 +300,7 @@
     {
       "from": "Sangli",
       "to": "Mumbai",
+      "distance_km": 375,
       "fares": {
         "hatchback": 7770,
         "sedan": 7885,
@@ -288,6 +312,7 @@
     {
       "from": "Pune",
       "to": "Satara",
+      "distance_km": 115,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -299,6 +324,7 @@
     {
       "from": "Satara",
       "to": "Pune",
+      "distance_km": 115,
       "fares": {
         "hatchback": 2625,
         "sedan": 2730,
@@ -310,6 +336,7 @@
     {
       "from": "Mumbai",
       "to": "Satara",
+      "distance_km": 255,
       "fares": {
         "hatchback": 5565,
         "sedan": 5775,
@@ -321,6 +348,7 @@
     {
       "from": "Satara",
       "to": "Mumbai",
+      "distance_km": 255,
       "fares": {
         "hatchback": 5775,
         "sedan": 5985,
@@ -332,6 +360,7 @@
     {
       "from": "Pune",
       "to": "Igatpuri",
+      "distance_km": 240,
       "fares": {
         "hatchback": 5355,
         "sedan": 5670,
@@ -343,6 +372,7 @@
     {
       "from": "Igatpuri",
       "to": "Pune",
+      "distance_km": 240,
       "fares": {
         "hatchback": 5565,
         "sedan": 5775,
@@ -354,6 +384,7 @@
     {
       "from": "Mumbai",
       "to": "Igatpuri",
+      "distance_km": 120,
       "fares": {
         "hatchback": 2415,
         "sedan": 2520,
@@ -365,6 +396,7 @@
     {
       "from": "Igatpuri",
       "to": "Mumbai",
+      "distance_km": 120,
       "fares": {
         "hatchback": 2835,
         "sedan": 2940,
@@ -449,6 +481,7 @@
     {
       "from": "Pune",
       "to": "Mumbai",
+      "distance_km": 150,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -459,6 +492,7 @@
     {
       "from": "Mumbai",
       "to": "Pune",
+      "distance_km": 150,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -469,6 +503,7 @@
     {
       "from": "Pune",
       "to": "Nashik",
+      "distance_km": 210,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -479,6 +514,7 @@
     {
       "from": "Nashik",
       "to": "Pune",
+      "distance_km": 210,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -489,6 +525,7 @@
     {
       "from": "Mumbai",
       "to": "Nashik",
+      "distance_km": 165,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -499,6 +536,7 @@
     {
       "from": "Nashik",
       "to": "Mumbai",
+      "distance_km": 165,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -509,6 +547,7 @@
     {
       "from": "Pune",
       "to": "Kolhapur",
+      "distance_km": 235,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
@@ -518,6 +557,7 @@
     {
       "from": "Kolhapur",
       "to": "Pune",
+      "distance_km": 235,
       "fares": {
         "sedan": 4095,
         "suv": 4725,
