@@ -20,8 +20,11 @@ const VEHICLE_ORDER = [
   "hatchback",
   "sedan",
   "suv",
+  "windsor",
+  "zs",
   "innova_kia_carens",
   "innova_crysta",
+  "hycross",
 ] as const;
 
 function formatINR(amount: number): string {
@@ -51,8 +54,11 @@ function buildVehicleMap(): Record<
     hatchback: "Hatchback",
     sedan: "Sedan",
     suv: "SUV",
+    windsor: "windsor",
+    zs: "zs",
     innova_kia_carens: "Innova / Kia Carens",
     innova_crysta: "Innova Crysta",
+    hycross: "Toyota Hycross",
   };
   const result: Record<
     string,
@@ -63,9 +69,15 @@ function buildVehicleMap(): Record<
     model: string;
     seats: number;
     icon: string;
+    rateKey?: string;
   }>;
   for (const [rateKey, categoryName] of Object.entries(keyMapping)) {
-    const v = vehicles.find((veh) => veh.category === categoryName);
+    const v = vehicles.find(
+      (veh) =>
+        veh.rateKey === rateKey ||
+        veh.model?.toLowerCase().includes(rateKey) ||
+        veh.category === categoryName
+    );
     result[rateKey] = {
       label: websiteRates.vehicle_labels[rateKey as keyof typeof websiteRates.vehicle_labels] || categoryName,
       model: v?.model || categoryName,

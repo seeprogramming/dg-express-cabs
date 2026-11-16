@@ -13,6 +13,7 @@ export interface VehicleInfo {
   icon: string;
   image?: string;
   badge?: string;
+  rateKey?: string;
 }
 
 export interface AirportInfo {

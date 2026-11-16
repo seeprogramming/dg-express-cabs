@@ -27,6 +27,7 @@ export default function Footer() {
         <div>
           <strong className="text-white text-[13px] tracking-wider mb-4 block">SERVICES</strong>
           <ul className="space-y-3 text-[13px]">
+            <li><Link href="/#ev" className="hover:text-white transition-colors text-[#62c33a] font-semibold">⚡ EV Cabs (Zero Emission)</Link></li>
             <li><Link href="/#rides" className="hover:text-white transition-colors">Outstation Rides</Link></li>
             <li><Link href="/rentals" className="hover:text-white transition-colors">Local Rentals</Link></li>
             <li><Link href="/packages" className="hover:text-white transition-colors">Tour Packages</Link></li>
@@ -80,8 +81,8 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-2.5">
               <span className="text-[#62c33a] shrink-0">✉️</span>
-              <a href="mailto:support@dgexpresscabs.com" className="hover:text-white transition-colors">
-                support@dgexpresscabs.com
+              <a href={`mailto:${siteConfig.email}`} className="hover:text-white transition-colors">
+                {siteConfig.email}
               </a>
             </li>
           </ul>

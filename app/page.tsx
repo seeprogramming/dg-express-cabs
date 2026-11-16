@@ -18,6 +18,7 @@ import CabSearch from "@/components/CabSearch";
 import PopularRides from "@/components/PopularRides";
 import PackageSection from "@/components/PackageSection";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import EvExperience from "@/components/EvExperience";
 import RouteRibbon from "@/components/RouteRibbon";
 import TravelGallery from "@/components/TravelGallery";
 import MumbaiOutstationPoster from "@/components/MumbaiOutstationPoster";
@@ -34,6 +35,7 @@ export default function HomePage() {
       <Hero />
       <CabSearch vehicles={vehicles} initialFrom="Pune" initialTo="Mumbai" />
       <WhyChooseUs />
+      <EvExperience />
       <MumbaiOutstationPoster />
       <PopularRides rides={routes.slice(0, 4)} showViewAll={true} />
       <PackageSection packages={packages} />

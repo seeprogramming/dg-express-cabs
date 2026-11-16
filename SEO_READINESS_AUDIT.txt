@@ -195,7 +195,7 @@ H. SITEMAP.TS / SITEMAP.XML:
 
 I. JSON-LD / STRUCTURED DATA:
 - Root Layout (`app/layout.tsx`):
-  - Embeds `@type: "AutoRental"` schema with name "D&G Express Cabs", phone "+917030813082", Lohgaon address, and areaServed.
+  - Embeds `@type: "AutoRental"` schema with name "D&G Express Cabs", phone "+917030813082", Dhanori address, and areaServed.
 - Package Detail Pages (`app/packages/[category]/[slug]/page.tsx`):
   - Embeds `@type: "TouristTrip"` schema with `offers` (Sedan, SUV, Crysta prices) and day-wise `itinerary` (`ItemList`).
 - MISSING STRUCTURED DATA:

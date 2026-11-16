@@ -68,13 +68,25 @@ export function findAirportBySlug(slug: string): AirportInfo | null {
 }
 
 // Map the vehicle info category to the key used in website-rates.json
-export function getVehicleRateKey(category: string): string {
+export function getVehicleRateKey(category: string, model?: string, rateKey?: string): string {
+  if (rateKey) return rateKey;
+  if (model) {
+    const m = model.toLowerCase();
+    if (m.includes("windsor")) return "windsor";
+    if (m.includes("zs")) return "zs";
+    if (m.includes("hycross")) return "hycross";
+  }
   const mapping: Record<string, string> = {
     "Hatchback": "hatchback",
     "Sedan": "sedan",
     "SUV": "suv",
     "Innova / Kia Carens": "innova_kia_carens",
-    "Innova Crysta": "innova_crysta"
+    "Innova Crysta": "innova_crysta",
+    "Windsor": "windsor",
+    "ZS": "zs",
+    "Toyota Hycross": "hycross",
+    "Innova Hycross": "hycross",
+    "Hycross": "hycross",
   };
   return mapping[category] || category.toLowerCase();
 }
@@ -95,24 +107,26 @@ export function getFareForMode(
   from: string,
   to: string,
   category: string,
-  mode: "one" | "round" | "airport" | "local"
+  mode: "one" | "round" | "airport" | "local" | "ev",
+  model?: string,
+  rateKey?: string
 ): number | null {
   const norm = (v: string) => v.trim().toLowerCase();
-  const rateKey = getVehicleRateKey(category);
+  const rateKeyResolved = getVehicleRateKey(category, model, rateKey);
 
-  if (mode === "one" || mode === "airport") {
+  if (mode === "one" || mode === "airport" || mode === "ev") {
     const route = (websiteRates.one_way as WebsiteRateRoute[]).find(
       (r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)
     );
-    if (route && route.fares[rateKey]) {
-      return route.fares[rateKey];
+    if (route && route.fares && route.fares[rateKeyResolved] != null) {
+      return route.fares[rateKeyResolved];
     }
   } else if (mode === "round") {
     const route = (websiteRates.round_trip as WebsiteRateRoute[]).find(
       (r) => norm(r.from) === norm(from) && norm(r.to) === norm(to)
     );
-    if (route && route.fares[rateKey]) {
-      return route.fares[rateKey];
+    if (route && route.fares && route.fares[rateKeyResolved] != null) {
+      return route.fares[rateKeyResolved];
     }
   }
   return null;

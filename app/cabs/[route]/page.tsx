@@ -106,7 +106,16 @@ export default async function RoutePage({ params }: Props) {
   const hasPricing = !!fares;
 
   // Vehicle names and lowest fare for FAQ
-  const vehicleOrder = ["hatchback", "sedan", "suv", "innova_kia_carens", "innova_crysta"] as const;
+  const vehicleOrder = [
+    "hatchback",
+    "sedan",
+    "suv",
+    "windsor",
+    "zs",
+    "innova_kia_carens",
+    "innova_crysta",
+    "hycross",
+  ] as const;
   const vehicleLabels = websiteRates.vehicle_labels as Record<string, string>;
   const vehicleNames = fares
     ? vehicleOrder
@@ -139,6 +148,8 @@ export default async function RoutePage({ params }: Props) {
           name: "D&G Express Cabs",
           url: siteConfig.url,
           telephone: "+917030813082",
+          email: siteConfig.email,
+          address: siteConfig.address,
         },
         serviceType: "Cab / Taxi",
         areaServed: [from, to],

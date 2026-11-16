@@ -5,7 +5,10 @@
     "sedan": "Sedan",
     "suv": "SUV",
     "innova_kia_carens": "Innova / Kia Carens",
-    "innova_crysta": "Innova Crysta"
+    "innova_crysta": "Innova Crysta",
+    "windsor": "MG Windsor EV",
+    "zs": "MG ZS EV",
+    "hycross": "Toyota Hycross"
   },
   "one_way": [
     {
@@ -16,7 +19,10 @@
         "sedan": 2730,
         "suv": 3150,
         "innova_kia_carens": 3990,
-        "innova_crysta": 4880
+        "innova_crysta": 4880,
+        "windsor": 3300,
+        "zs": 3600,
+        "hycross": 7000
       }
     },
     {
@@ -27,7 +33,10 @@
         "sedan": 2730,
         "suv": 3150,
         "innova_kia_carens": 3990,
-        "innova_crysta": 4880
+        "innova_crysta": 4880,
+        "windsor": 3300,
+        "zs": 3600,
+        "hycross": 7000
       }
     },
     {
@@ -38,7 +47,9 @@
         "sedan": 3150,
         "suv": 3885,
         "innova_kia_carens": 5355,
-        "innova_crysta": 7885
+        "innova_crysta": 7885,
+        "windsor": 3600,
+        "zs": 4000
       }
     },
     {
@@ -49,7 +60,9 @@
         "sedan": 3150,
         "suv": 3885,
         "innova_kia_carens": 5355,
-        "innova_crysta": 7885
+        "innova_crysta": 7885,
+        "windsor": 3600,
+        "zs": 4000
       }
     },
     {

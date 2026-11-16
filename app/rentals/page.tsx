@@ -90,6 +90,7 @@ export default function LocalRentalsPage() {
       "@type": "LocalBusiness",
       name: siteConfig.name,
       telephone: siteConfig.phonePrimary,
+      email: siteConfig.email,
       url: siteConfig.url,
       address: siteConfig.address,
     },

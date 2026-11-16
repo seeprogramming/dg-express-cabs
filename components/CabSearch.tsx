@@ -12,20 +12,25 @@ interface CabSearchProps {
   initialFrom?: string;
   initialTo?: string;
   initialMode?: TripMode;
+  initialCategory?: string;
   initialSearched?: boolean;
 }
 
-export type TripMode = "one" | "round" | "airport" | "local";
+export type TripMode = "one" | "round" | "airport" | "local" | "ev";
 
 export default function CabSearch({
   vehicles,
   initialFrom = "Pune",
   initialTo = "Mumbai",
   initialMode = "one",
+  initialCategory,
   initialSearched = false,
 }: CabSearchProps) {
   const router = useRouter();
   const [mode, setMode] = useState<TripMode>(initialMode === "airport" ? "one" : initialMode);
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    initialCategory || (initialMode === "ev" ? "EV" : "all")
+  );
   const [fromLocation, setFromLocation] = useState(initialFrom);
   const [toLocation, setToLocation] = useState(initialTo);
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
@@ -71,6 +76,8 @@ export default function CabSearch({
   const modeLabel =
     mode === "round"
       ? "Round Trip"
+      : mode === "ev" || selectedCategory === "EV"
+      ? "EV Cabs"
       : mode === "local"
       ? "Local Rentals"
       : "One Way";
@@ -84,7 +91,8 @@ export default function CabSearch({
   let hasValidFare = false;
   if (mode !== "local") {
     for (const v of vehicles) {
-      if (getFareForMode(fromLocation, toLocation, v.category, mode) !== null) {
+      if (selectedCategory !== "all" && v.category !== selectedCategory) continue;
+      if (getFareForMode(fromLocation, toLocation, v.category, mode, v.model, v.rateKey) !== null) {
         hasValidFare = true;
         break;
       }
@@ -99,11 +107,14 @@ export default function CabSearch({
           <button
             type="button"
             className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
-              mode === "one"
+              mode === "one" && selectedCategory !== "EV"
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => setMode("one")}
+            onClick={() => {
+              setMode("one");
+              setSelectedCategory("all");
+            }}
           >
             <span>→</span> One Way
           </button>
@@ -114,9 +125,26 @@ export default function CabSearch({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => setMode("round")}
+            onClick={() => {
+              setMode("round");
+              setSelectedCategory("all");
+            }}
           >
             <span>⇄</span> Round Trip
+          </button>
+          <button
+            type="button"
+            className={`px-4 py-2 text-xs sm:text-sm font-bold rounded-lg transition-all whitespace-nowrap flex items-center gap-1.5 ${
+              mode === "ev" || selectedCategory === "EV"
+                ? "bg-[#123f38] text-white shadow-sm"
+                : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
+            }`}
+            onClick={() => {
+              setMode("ev");
+              setSelectedCategory("EV");
+            }}
+          >
+            <span>⚡</span> EV Cabs
           </button>
           <button
             type="button"
@@ -125,7 +153,10 @@ export default function CabSearch({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => setMode("local")}
+            onClick={() => {
+              setMode("local");
+              setSelectedCategory("all");
+            }}
           >
             <span>⏱</span> Local Rentals
           </button>
@@ -134,7 +165,7 @@ export default function CabSearch({
         {/* Compact, Modern Grid Form */}
         <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
           {/* From & To with Swap Button */}
-          <div className="md:col-span-6 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+          <div className="md:col-span-5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr] gap-2 items-center bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
             <div className="w-full">
               <label htmlFor="from" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
                 FROM
@@ -180,7 +211,7 @@ export default function CabSearch({
           </div>
 
           {/* Date & Time */}
-          <div className="md:col-span-4 grid grid-cols-2 gap-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+          <div className="md:col-span-3 grid grid-cols-2 gap-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
             <div>
               <label htmlFor="date" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
                 DATE
@@ -207,6 +238,36 @@ export default function CabSearch({
                 required
               />
             </div>
+          </div>
+
+          {/* Category Dropdown */}
+          <div className="md:col-span-2 bg-[#fafbf7] p-2 rounded-xl border border-[#e2e8df]">
+            <label htmlFor="cabCategory" className="block text-[11px] font-extrabold text-[#718079] tracking-wider mb-1">
+              CATEGORY
+            </label>
+            <select
+              id="cabCategory"
+              value={selectedCategory}
+              onChange={(e) => {
+                const val = e.target.value;
+                setSelectedCategory(val);
+                if (val === "EV") {
+                  if (mode !== "local" && mode !== "round") setMode("ev");
+                } else if (mode === "ev") {
+                  setMode("one");
+                }
+              }}
+              className="w-full bg-white border border-[#dce5da] focus:border-[#3d9646] rounded-lg px-2.5 py-2 text-sm font-semibold text-[#123f38] outline-none transition cursor-pointer"
+            >
+              <option value="all">All Cabs</option>
+              <option value="EV">⚡ EV Cabs</option>
+              <option value="Sedan">Sedan</option>
+              <option value="SUV">SUV</option>
+              <option value="Hatchback">Hatchback</option>
+              <option value="Innova / Kia Carens">Innova / Carens</option>
+              <option value="Innova Crysta">Innova Crysta</option>
+              <option value="Toyota Hycross">Toyota Hycross</option>
+            </select>
           </div>
 
           {/* Search Button */}
@@ -276,11 +337,23 @@ export default function CabSearch({
               <div className="panel p-6 border rounded-xl bg-gray-50 border-gray-200">
                 <h2 className="text-lg font-bold text-gray-800 mb-2">No fixed fare found</h2>
                 <p className="text-gray-600">
-                  We don't have a fixed fare for{" "}
-                  <b>
-                    {fromLocation} → {toLocation}
-                  </b>{" "}
-                  in {modeLabel} mode. Try Pune → Mumbai, Pune → Mahabaleshwar, Mumbai → Nashik or Pune → Lonavala.
+                  {mode === "ev" || selectedCategory === "EV" ? (
+                    <>
+                      We don&apos;t have a fixed fare for{" "}
+                      <b>
+                        {fromLocation} → {toLocation}
+                      </b>{" "}
+                      in EV Cabs mode. EV cabs are currently available on Pune ⇄ Mumbai and Pune ⇄ Nashik routes.
+                    </>
+                  ) : (
+                    <>
+                      We don&apos;t have a fixed fare for{" "}
+                      <b>
+                        {fromLocation} → {toLocation}
+                      </b>{" "}
+                      in {modeLabel} mode. Try Pune → Mumbai, Pune → Mahabaleshwar, Mumbai → Nashik or Pune → Lonavala.
+                    </>
+                  )}
                 </p>
               </div>
             ) : mode === "local" ? (
@@ -341,47 +414,154 @@ export default function CabSearch({
                 })}
               </div>
             ) : (
-              <div className="results" id="results">
-                {vehicles.map((v) => {
-                  const price = getFareForMode(fromLocation, toLocation, v.category, mode);
-                  if (price === null) return null; // hide vehicle if no fare available
-                  
-                  return (
-                    <div className="result" key={v.category}>
-                      <div className="rart">
-                        {v.image ? (
-                          <Image src={v.image} alt={v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
-                        ) : (
-                          v.icon
-                        )}
-                      </div>
-                      <div>
-                        <h3>
-                          {v.category} · {v.model}
-                        </h3>
-                        <p>Comfortable air-conditioned cab</p>
-                        <div className="chips">
-                          <span>👤 {v.seats} seats</span>
-                          <span>🧳 {v.bags} bags</span>
-                          <span>✓ Clean cab</span>
+              <>
+                {/* Category Filter Pills in Results */}
+                <div className="flex flex-wrap items-center gap-2 mb-6">
+                  <span className="text-xs font-extrabold text-[#718079] mr-1">FILTER:</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("all");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      selectedCategory === "all"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#f4f7f4] text-[#5e6d66] hover:bg-[#e4eae3]"
+                    }`}
+                  >
+                    All Cabs
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("EV");
+                      setMode("ev");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1 ${
+                      selectedCategory === "EV"
+                        ? "bg-[#2d7335] text-white shadow-sm"
+                        : "bg-[#edf5e7] text-[#2d7335] hover:bg-[#ddead8] border border-[#c2e2be]"
+                    }`}
+                  >
+                    <span>⚡</span> EV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("Sedan");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      selectedCategory === "Sedan"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#f4f7f4] text-[#5e6d66] hover:bg-[#e4eae3]"
+                    }`}
+                  >
+                    Sedan
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("SUV");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      selectedCategory === "SUV"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#f4f7f4] text-[#5e6d66] hover:bg-[#e4eae3]"
+                    }`}
+                  >
+                    SUV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("Hatchback");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      selectedCategory === "Hatchback"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#f4f7f4] text-[#5e6d66] hover:bg-[#e4eae3]"
+                    }`}
+                  >
+                    Hatchback
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("Toyota Hycross");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      selectedCategory === "Toyota Hycross"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#f4f7f4] text-[#5e6d66] hover:bg-[#e4eae3]"
+                    }`}
+                  >
+                    Toyota Hycross
+                  </button>
+                </div>
+
+                <div className="results" id="results">
+                  {vehicles.map((v) => {
+                    if (selectedCategory !== "all" && v.category !== selectedCategory) return null;
+                    const price = getFareForMode(fromLocation, toLocation, v.category, mode, v.model, v.rateKey);
+                    if (price === null) return null; // hide vehicle if no fare available
+
+                    const isEV = v.category === "EV";
+
+                    return (
+                      <div className="result" key={`${v.category}-${v.model}`}>
+                        <div className="rart">
+                          {v.image ? (
+                            <Image src={v.image} alt={v.model || v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                          ) : (
+                            v.icon
+                          )}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3>
+                              {v.category === "EV" || v.category === v.model
+                                ? v.model
+                                : `${v.category} · ${v.model}`}
+                            </h3>
+                            {isEV && (
+                              <span className="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#edf5e7] text-[#2d7335] border border-[#c2e2be]">
+                                ⚡ 100% Electric
+                              </span>
+                            )}
+                          </div>
+                          <p>{isEV ? "Zero-emission, silent and comfortable electric ride" : "Comfortable air-conditioned cab"}</p>
+                          <div className="chips">
+                            <span>👤 {v.seats} seats</span>
+                            <span>🧳 {v.bags} bags</span>
+                            {isEV ? (
+                              <span>⚡ Eco-Friendly</span>
+                            ) : (
+                              <span>✓ Clean cab</span>
+                            )}
+                          </div>
+                        </div>
+                        <div className="rp">
+                          <b>{formatINR(price)}</b>
+                          <small>route fare</small>
+                          <br />
+                          <button
+                            type="button"
+                            className="btn green"
+                            onClick={() => handleSelectCab(v, price)}
+                          >
+                            Select cab
+                          </button>
                         </div>
                       </div>
-                      <div className="rp">
-                        <b>{formatINR(price)}</b>
-                        <small>route fare</small>
-                        <br />
-                        <button
-                          type="button"
-                          className="btn green"
-                          onClick={() => handleSelectCab(v, price)}
-                        >
-                          Select cab
-                        </button>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    );
+                  })}
+                </div>
+              </>
             )}
           </div>
         </section>

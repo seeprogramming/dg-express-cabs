@@ -6,7 +6,7 @@
     "bags": 2,
     "multiplier": 0.96,
     "icon": "🚗",
-    "image": "/images/waganr.avif"
+    "image": "/images/swift.jpg"
   },
   {
     "category": "Sedan",
@@ -43,5 +43,35 @@
     "multiplier": 1.78,
     "icon": "🚐",
     "image": "/images/innova.webp"
+  },
+  {
+    "category": "EV",
+    "model": "MG Windsor EV",
+    "seats": 4,
+    "bags": 2,
+    "multiplier": 1.2,
+    "icon": "⚡",
+    "image": "/images/windsor.webp",
+    "rateKey": "windsor"
+  },
+  {
+    "category": "EV",
+    "model": "MG ZS EV",
+    "seats": 4,
+    "bags": 2,
+    "multiplier": 1.35,
+    "icon": "⚡",
+    "image": "/images/zs.jpeg",
+    "rateKey": "zs"
+  },
+  {
+    "category": "Toyota Hycross",
+    "model": "Toyota Hycross",
+    "seats": 6,
+    "bags": 4,
+    "multiplier": 2.2,
+    "icon": "🚐",
+    "image": "/images/hycross.jpeg",
+    "rateKey": "hycross"
   }
 ]

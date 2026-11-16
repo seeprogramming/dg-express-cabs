@@ -28,8 +28,8 @@ export default function CabDetails() {
 
   /* Resolve the correct vehicle image */
   const vehicleImage =
+    vehicles.find((v) => v.model.toLowerCase().includes(model.toLowerCase()) || model.toLowerCase().includes(v.model.toLowerCase()))?.image ||
     vehicleImageMap[vehicle] ||             // exact match (e.g. "Sedan", "SUV")
-    vehicles.find((v) => v.model.toLowerCase().includes(model.toLowerCase()))?.image ||
     siteConfig.stockImages.car;             // fallback
 
   const [travelDate, setTravelDate] = useState(initialDate);
