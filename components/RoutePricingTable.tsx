@@ -127,7 +127,7 @@ export default function RoutePricingTable({ from, to }: Props) {
           </div>
           <p>
             Starting from {formatINR(lowestFare)} for one-way travel. All prices
-            are for a private cab with driver.
+            are for a cab with driver.
           </p>
         </div>
 

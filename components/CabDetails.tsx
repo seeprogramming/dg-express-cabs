@@ -172,10 +172,10 @@ export default function CabDetails() {
             {isLocalRental
               ? `A comfortable chauffeur-driven cab for your local city travel in and around ${from}. Flexible hourly packages for city commutes, shopping, or business meetings.`
               : tripType === "EV Cabs"
-              ? "A 100% electric, zero-emission private cab for your outstation journey. Whisper-quiet cabin, zero engine vibration, and eco-friendly comfort."
+              ? "A 100% electric, zero-emission cab for your outstation journey. Whisper-quiet cabin, zero engine vibration, and eco-friendly comfort."
               : isRoundTrip
-              ? `A reliable private cab for your complete round-trip journey (${from} ⇄ ${to}). Same vehicle and verified driver dedicated for your round trip.`
-              : "A comfortable private cab for your outstation journey. Final vehicle allocation may be the selected model or a similar vehicle in the same category."}
+              ? `A reliable cab for your complete round-trip journey (${from} ⇄ ${to}). Same vehicle and verified driver dedicated for your round trip.`
+              : "A comfortable cab for your outstation journey. Final vehicle allocation may be the selected model or a similar vehicle in the same category."}
           </p>
 
           <div className="specs">
@@ -211,7 +211,7 @@ export default function CabDetails() {
                 <span className="w-7 h-7 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-sm shrink-0 mt-0.5">✓</span>
                 <div>
                   <span className="text-[13px] font-extrabold text-[#123f38]">Free Cancellation</span>
-                  <span className="text-[12px] text-[#718079] block">Cancel your ride for free up to 2 hours before your scheduled pickup time.</span>
+                  <span className="text-[12px] text-[#718079] block">Cancel your ride for free up to 1 hour before your scheduled pickup time.</span>
                 </div>
               </div>
               <div className="flex items-start gap-2.5">
@@ -225,7 +225,7 @@ export default function CabDetails() {
                 <span className="w-7 h-7 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-sm shrink-0 mt-0.5">⚠️</span>
                 <div>
                   <span className="text-[13px] font-extrabold text-[#123f38]">Late Cancellation</span>
-                  <span className="text-[12px] text-[#718079] block">Cancellations made less than 2 hours before pickup may attract a partial charge.</span>
+                  <span className="text-[12px] text-[#718079] block">Cancellations made less than 1 hour before pickup may attract a partial charge.</span>
                 </div>
               </div>
             </div>

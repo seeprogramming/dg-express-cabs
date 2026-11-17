@@ -5,7 +5,7 @@ export default function WhyChooseUs() {
   const whyPoints = [
     { title: "2-Hour Advance Booking", desc: "Plan your trip with just a 2-hour notice. We are always ready for your last-minute plans.", icon: "⏱️" },
     { title: "A Cab That Arrives", desc: "Reliable scheduling for your outstation travel. When you book a cab, we are dedicated to on-time arrival.", icon: "🚕" },
-    { title: "Free Cancellation", desc: "Change in plans? No worries. Cancel your ride for free up to 2 hours before your scheduled pickup.", icon: "🆓" },
+    { title: "Free Cancellation", desc: "Change in plans? No worries. Cancel your ride for free up to 1 hour before your scheduled pickup.", icon: "🆓" },
     { title: "Verified Chauffeurs", desc: "Travel with peace of mind. Our drivers are experienced, highly trained, and fully background-checked.", icon: "👨‍✈️" },
     { title: "Clean & Comfortable Cars", desc: "Enjoy a premium ride every time. Our vehicles are strictly maintained, sanitized, and fully air-conditioned.", icon: "✨" },
     { title: "Real-Time Ride Tracking", desc: "Safety first. Track your cab in real-time and share your live location with your loved ones.", icon: "📍" },

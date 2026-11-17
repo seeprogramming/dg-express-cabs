@@ -182,7 +182,7 @@ export default function LocalRentalsPage() {
             </div>
             <p>
               Fixed fares based on duration and kilometres. All packages include a
-              private AC vehicle and driver.
+              AC vehicle and driver.
             </p>
           </div>
 

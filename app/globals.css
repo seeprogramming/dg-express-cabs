@@ -828,8 +828,7 @@ nav a:hover {
 }
 
 .heroEmoji {
-  font-size: 130px;
-  text-align: center;
+  display: none;
 }
 
 /* Package Layout */
@@ -1284,7 +1283,7 @@ footer {
     padding: 30px 22px;
   }
   .heroEmoji {
-    font-size: 90px;
+    display: none;
   }
   .day {
     grid-template-columns: 1fr;

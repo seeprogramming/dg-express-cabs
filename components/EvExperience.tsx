@@ -103,7 +103,7 @@ export default function EvExperience() {
       to: currentRoute.to,
       price: String(fare),
       seats: "4",
-      bags: "2",
+      bags: "3",
     });
     return `/cabs/details?${params.toString()}`;
   };
@@ -225,7 +225,7 @@ export default function EvExperience() {
                     Aero Lounge Cabin
                   </span>
                   <span className="text-xs font-semibold text-[#718079]">
-                    👤 4 Seats · 🧳 2 Bags
+                    👤 4 Seats · 🧳 3 Bags
                   </span>
                 </div>
 
@@ -257,7 +257,7 @@ export default function EvExperience() {
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="text-[#3d9646]">✓</span>
-                    <span>Free cancellation up to 2 hours before trip</span>
+                    <span>Free cancellation up to 1 hour before trip</span>
                   </div>
                 </div>
               </div>
@@ -289,7 +289,7 @@ export default function EvExperience() {
                     Executive Luxury SUV
                   </span>
                   <span className="text-xs font-semibold text-[#718079]">
-                    👤 4 Seats · 🧳 2 Bags
+                    👤 4 Seats · 🧳 3 Bags
                   </span>
                 </div>
 

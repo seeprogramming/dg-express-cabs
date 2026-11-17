@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "D&G Express Cabs",
   tagline: "Rides, Airports & Tours",
-  description: "Airport transfers, intercity cabs and weekend escapes — comfortable private cab booking with transparent pricing and WhatsApp assistance.",
+  description: "Airport transfers, intercity cabs and weekend escapes — comfortable cab booking with transparent pricing and WhatsApp assistance.",
   url: "https://dgexpresscabs.com",
   logo: "/dgxcabs.png",
   whatsapp: "917030808151",

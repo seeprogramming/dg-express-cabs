@@ -11,7 +11,7 @@ export default function Hero() {
               <span>&amp; Cab Rentals.</span>
             </h1>
             <p>
-              Private AC cabs for intercity travel, airport pickups, and weekend
+              AC cabs for intercity travel, airport pickups, and weekend
               tour packages — transparent pricing, WhatsApp booking, and
               professional chauffeurs.
             </p>

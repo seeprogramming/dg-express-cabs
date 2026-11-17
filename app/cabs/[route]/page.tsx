@@ -72,14 +72,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${from} to ${to} Cab | One Way Cab Booking`,
-    description: `Book a private ${from} to ${to} cab with D&G Express Cabs.${startingFare} Choose Hatchback, Sedan, SUV, or Innova with professional drivers and doorstep pickup.`,
+    description: `Book a ${from} to ${to} cab with D&G Express Cabs.${startingFare} Choose Hatchback, Sedan, SUV, or Innova with professional drivers and doorstep pickup.`,
     alternates: {
       canonical: canonicalPath,
     },
     openGraph: {
       url: `${siteConfig.url}${canonicalPath}`,
       title: `${from} to ${to} Cab | D&G Express Cabs`,
-      description: `Book a reliable one-way cab from ${from} to ${to}. Transparent pricing, private AC cabs, and WhatsApp booking support.`,
+      description: `Book a reliable one-way cab from ${from} to ${to}. Transparent pricing, AC cabs, and WhatsApp booking support.`,
     },
     twitter: {
       card: "summary_large_image",
@@ -235,10 +235,10 @@ export default async function RoutePage({ params }: Props) {
               </h1>
               <p>
                 {routeData
-                  ? `Private AC cabs starting from ${formatINR(
+                  ? `AC cabs starting from ${formatINR(
                       routeData.fare
                     )}. Doorstep pickup and drop with professional drivers.`
-                  : `Book private AC cabs with instant pricing and WhatsApp booking.`}
+                  : `Book AC cabs with instant pricing and WhatsApp booking.`}
               </p>
               <div style={{ display: "flex", gap: "10px", marginTop: "16px", flexWrap: "wrap" }}>
                 <a className="btn green" href="#booking">
@@ -276,7 +276,7 @@ export default async function RoutePage({ params }: Props) {
             </div>
           </div>
           <p style={{ color: "var(--muted)", lineHeight: 1.8, marginBottom: "24px" }}>
-            D&G Express Cabs offers private chauffeur-driven cabs from {from} to{" "}
+            D&G Express Cabs offers chauffeur-driven cabs from {from} to{" "}
             {to}. Whether you are travelling for work or leisure, choose from a
             range of well-maintained air-conditioned vehicles with clear, transparent pricing.
           </p>

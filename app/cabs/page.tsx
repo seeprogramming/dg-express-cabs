@@ -65,7 +65,7 @@ export default function AllRoutesPage() {
                 <h2>One-Way Cab Routes</h2>
               </div>
               <p>
-                {oneWayRoutes.length} intercity routes available. Private AC cabs with
+                {oneWayRoutes.length} intercity routes available. AC cabs with
                 doorstep pickup.
               </p>
             </div>
