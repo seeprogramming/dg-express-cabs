@@ -2,7 +2,7 @@ import Link from "next/link";
 import { formatINR, priceAmount, getPackageDestination } from "@/lib/packages";
 import { siteConfig } from "@/config/site";
 import type { TourPackage } from "@/types";
-import Image from "next/image";
+import FallbackImage from "@/components/FallbackImage";
 
 /* Category → stock image map */
 const categoryImageMap: Record<string, string> = {
@@ -34,23 +34,24 @@ export function PackageCard({ pkg }: PackageCardProps) {
   );
   const copy = pkg.description || pkg.best_for;
   const categorySlug = pkg.categorySlug || "mahabaleshwar";
-  const bgImage = pkg.image || categoryImageMap[categorySlug] || siteConfig.stockImages.road;
+  const catFallback = categoryImageMap[categorySlug] || siteConfig.stockImages.road;
+  const bgImage = pkg.image || catFallback;
   const destination = getPackageDestination(pkg);
   const emoji = categoryEmojiMap[categorySlug] || "📦";
 
   return (
     <div className="card">
-      <div className="art relative overflow-hidden bg-[#e5ede8]">
-        {bgImage && (
-          <Image
-            src={bgImage}
-            alt={pkg.title}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            loading="lazy"
-            className="object-cover"
-          />
-        )}
+      <div className="art relative overflow-hidden bg-[#e5ede8] flex items-center justify-center">
+        <span className="text-3xl opacity-20 select-none">{emoji}</span>
+        <FallbackImage
+          src={bgImage}
+          fallbackSrc={catFallback}
+          alt={pkg.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          loading="lazy"
+          className="object-cover"
+        />
       </div>
       <div className="body">
         <div className="ey">

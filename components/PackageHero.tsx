@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import FallbackImage from "@/components/FallbackImage";
 import Breadcrumb from "@/components/Breadcrumb";
 
 interface BreadcrumbItem {
@@ -14,6 +14,7 @@ interface PackageHeroProps {
   title: string;
   intro: string;
   heroImage?: string;
+  fallbackImage?: string;
   breadcrumbs?: BreadcrumbItem[];
 }
 
@@ -24,22 +25,22 @@ export default function PackageHero({
   title,
   intro,
   heroImage,
+  fallbackImage,
   breadcrumbs,
 }: PackageHeroProps) {
   return (
     <section className="pageHero">
       <div className="container">
         <div className="wrap relative overflow-hidden bg-[#0a3731] !bg-none">
-          {heroImage && (
-            <Image
-              src={heroImage}
-              alt={title}
-              fill
-              priority
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              className="object-cover z-0"
-            />
-          )}
+          <FallbackImage
+            src={heroImage || fallbackImage || "https://images.pexels.com/photos/9420512/pexels-photo-9420512.jpeg?auto=compress&cs=tinysrgb&w=1400"}
+            fallbackSrc={fallbackImage}
+            alt={title}
+            fill
+            priority
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            className="object-cover z-0"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0a3731f5] to-[#0a373194] z-10" />
 
           <div className="relative z-20">

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import FallbackImage from "@/components/FallbackImage";
 import PackageHero from "@/components/PackageHero";
 import PackageItinerary from "@/components/PackageItinerary";
 import PackagePricing from "@/components/PackagePricing";
@@ -96,7 +97,8 @@ export default async function PackageDetailPage({ params }: Props) {
 
   const dest = getPackageDestination(pkg);
   const intro = pkg.description || pkg.best_for || pkg.route_sequence || `${dest} cab package`;
-  const heroImage = pkg.image || categoryHeroImage[category] || siteConfig.stockImages.road;
+  const categoryFallback = categoryHeroImage[category] || siteConfig.stockImages.road;
+  const heroImage = pkg.image || categoryFallback;
   const canonicalPath = `/packages/${category.toLowerCase()}/${slug}`;
   const cat = getCategoryBySlug(category);
   const catLabel = cat?.category || category;
@@ -177,13 +179,18 @@ export default async function PackageDetailPage({ params }: Props) {
         title={pkg.title}
         intro={intro}
         heroImage={heroImage}
+        fallbackImage={categoryFallback}
       />
 
       <section className="section">
         <div className="container packageLayout">
           <div>
             {pkg.itinerary && pkg.itinerary.length > 0 ? (
-              <PackageItinerary itinerary={pkg.itinerary} heroImage={heroImage} />
+              <PackageItinerary
+                itinerary={pkg.itinerary}
+                heroImage={heroImage}
+                fallbackImage={categoryFallback}
+              />
             ) : (
               /* For packages without full itinerary (e.g. one-day darshan), show route sequence */
               <div className="panel">
@@ -192,9 +199,20 @@ export default async function PackageDetailPage({ params }: Props) {
                     height: "220px",
                     borderRadius: "14px",
                     marginBottom: "22px",
-                    background: `url('${heroImage}') center/cover no-repeat`,
+                    overflow: "hidden",
+                    position: "relative",
+                    backgroundColor: "#e5ede8",
                   }}
-                />
+                >
+                  <FallbackImage
+                    src={heroImage}
+                    fallbackSrc={categoryFallback}
+                    alt={pkg.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 700px"
+                  />
+                </div>
                 <div className="ey">ROUTE</div>
                 <h2>{pkg.title}{pkg.variant ? ` — ${pkg.variant}` : ""}</h2>
                 {pkg.route_sequence && (
