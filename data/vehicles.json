@@ -73,5 +73,15 @@
     "icon": "🚐",
     "image": "/images/hycross.jpeg",
     "rateKey": "hycross"
+  },
+  {
+    "category": "VinFast",
+    "model": "VinFast VF7",
+    "seats": 7,
+    "bags": 4,
+    "multiplier": 2.0,
+    "icon": "🚐",
+    "image": "/images/vinfast.jpeg",
+    "rateKey": "vinfast"
   }
 ]

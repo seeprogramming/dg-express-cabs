@@ -8,7 +8,8 @@
     "innova_crysta": "Innova Crysta",
     "windsor": "MG Windsor EV",
     "zs": "MG ZS EV",
-    "hycross": "Toyota Hycross"
+    "hycross": "Toyota Hycross",
+    "vinfast": "VinFast VF7"
   },
   "one_way": [
     {
@@ -23,7 +24,8 @@
         "innova_crysta": 4880,
         "windsor": 3300,
         "zs": 3600,
-        "hycross": 7000
+        "hycross": 7000,
+        "vinfast": 3800
       }
     },
     {
@@ -38,7 +40,8 @@
         "innova_crysta": 4880,
         "windsor": 3300,
         "zs": 3600,
-        "hycross": 7000
+        "hycross": 7000,
+        "vinfast": 3800
       }
     },
     {
