@@ -57,7 +57,10 @@ export default function CabDetails() {
   };
 
   const tripType = resolveTripType();
-  const isRoundTrip = tripType.toLowerCase().includes("round");
+  const isRoundTrip =
+    tripType.toLowerCase().includes("round") ||
+    searchParams.get("mode") === "round" ||
+    Boolean(searchParams.get("returnDate"));
   const isLocalRental = tripType.toLowerCase().includes("local") || to.toLowerCase() === "local";
 
   const routeDisplay = isRoundTrip

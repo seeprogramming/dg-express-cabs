@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { Check, X } from "lucide-react";
 
 interface InclusionExclusionProps {
@@ -7,13 +10,63 @@ interface InclusionExclusionProps {
   isRoundTrip?: boolean;
 }
 
-export default function InclusionExclusion({
+function InclusionExclusionContent({
   distanceKm,
   extraKmRate = 20,
-  isRoundTrip = false,
+  isRoundTrip: explicitIsRoundTrip,
 }: InclusionExclusionProps) {
-  const kmText = distanceKm
-    ? `${distanceKm} Km included. Extra ₹${extraKmRate}/km beyond the included kilometres.`
+  const searchParams = useSearchParams();
+
+  // Determine initial round trip from prop or searchParams
+  const getInitialRoundTrip = () => {
+    if (typeof explicitIsRoundTrip === "boolean") {
+      return explicitIsRoundTrip;
+    }
+    const qMode = searchParams.get("mode") || searchParams.get("tripType") || "";
+    return (
+      qMode.toLowerCase().includes("round") ||
+      searchParams.has("returnDate")
+    );
+  };
+
+  const [isRoundTrip, setIsRoundTrip] = useState(getInitialRoundTrip);
+
+  // Sync when searchParams or explicit prop change
+  useEffect(() => {
+    if (typeof explicitIsRoundTrip === "boolean") {
+      setIsRoundTrip(explicitIsRoundTrip);
+      return;
+    }
+    const qMode = searchParams.get("mode") || searchParams.get("tripType") || "";
+    setIsRoundTrip(
+      qMode.toLowerCase().includes("round") ||
+      searchParams.has("returnDate")
+    );
+  }, [explicitIsRoundTrip, searchParams]);
+
+  // Listen for mode changes emitted by CabSearch tabs
+  useEffect(() => {
+    const handleModeChange = (e: Event) => {
+      const customEvent = e as CustomEvent<{ mode: string }>;
+      if (customEvent.detail?.mode) {
+        setIsRoundTrip(customEvent.detail.mode === "round");
+      }
+    };
+
+    window.addEventListener("cab-trip-mode-change", handleModeChange);
+    return () => {
+      window.removeEventListener("cab-trip-mode-change", handleModeChange);
+    };
+  }, []);
+
+  const effectiveDistance = distanceKm
+    ? isRoundTrip
+      ? distanceKm * 2
+      : distanceKm
+    : null;
+
+  const kmText = effectiveDistance
+    ? `${effectiveDistance} Km included${isRoundTrip ? " (Round Trip)" : ""}. Extra ₹${extraKmRate}/km beyond the included kilometres.`
     : `Standard route kilometres included. Extra ₹${extraKmRate}/km beyond the included kilometres.`;
 
   const inclusions = [
@@ -21,6 +74,15 @@ export default function InclusionExclusion({
       title: "Kilometres Included",
       description: kmText,
     },
+    ...(isRoundTrip
+      ? [
+          {
+            title: "Multiple Pickups & Drops",
+            description:
+              "Multiple pickup and drop points are included for your round trip journey.",
+          },
+        ]
+      : []),
     {
       title: "Toll, Tax & Other Charges",
       description: "Toll, state tax, airport entry and parking charges included.",
@@ -38,22 +100,40 @@ export default function InclusionExclusion({
   ];
 
   const exclusions = [
-    {
-      title: "Multiple Pickups & Drops",
-      description: "Additional pickup or drop points not mentioned in the booking are chargeable.",
-    },
+    ...(!isRoundTrip
+      ? [
+          {
+            title: "Multiple Pickups & Drops",
+            description:
+              "Additional pickup or drop points not mentioned in the booking are chargeable.",
+          },
+        ]
+      : []),
     {
       title: "Airport / Station Waiting Charges",
-      description: "Waiting beyond 45 minutes from scheduled arrival time may incur extra charges.",
+      description:
+        "Waiting beyond 45 minutes from scheduled arrival time may incur extra charges.",
     },
     {
       title: "Sightseeing & Route Deviations",
-      description: "Detours or extra sightseeing beyond the agreed route are charged extra per km.",
+      description: isRoundTrip
+        ? "Detours or extra sightseeing beyond the agreed destination/route are charged extra per km."
+        : "Detours or extra sightseeing beyond the agreed route are charged extra per km.",
     },
     {
       title: "Personal Expenses & Entry Fees",
-      description: "Monument entry fees, camera passes, personal shopping and meals are excluded.",
+      description:
+        "Monument entry fees, camera passes, personal shopping and meals are excluded.",
     },
+    ...(isRoundTrip
+      ? [
+          {
+            title: "Night Driving Charges",
+            description:
+              "Driving between 11:00 PM and 5:00 AM not planned in the itinerary may attract a night allowance.",
+          },
+        ]
+      : []),
   ];
 
   return (
@@ -136,5 +216,13 @@ export default function InclusionExclusion({
         </div>
       </div>
     </div>
+  );
+}
+
+export default function InclusionExclusion(props: InclusionExclusionProps) {
+  return (
+    <Suspense fallback={null}>
+      <InclusionExclusionContent {...props} />
+    </Suspense>
   );
 }

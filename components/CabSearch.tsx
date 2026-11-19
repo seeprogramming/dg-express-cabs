@@ -58,6 +58,20 @@ function CabSearchForm({
   const [returnTime, setReturnTime] = useState("18:00");
   const [hasSearched, setHasSearched] = useState(initialSearched);
 
+  const handleModeSelect = (newMode: TripMode) => {
+    setMode(newMode);
+    if (newMode === "ev") {
+      setSelectedCategory("EV");
+    } else {
+      setSelectedCategory("all");
+    }
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(
+        new CustomEvent("cab-trip-mode-change", { detail: { mode: newMode } })
+      );
+    }
+  };
+
   // Sync mode if query params change
   useEffect(() => {
     const qMode = searchParams.get("mode");
@@ -72,6 +86,53 @@ function CabSearchForm({
       setMode("one");
     }
   }, [searchParams]);
+
+  // Broadcast search state for dynamic FAQ and Inclusions/Exclusions
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const validFares: number[] = [];
+    const availableVehicleNames: string[] = [];
+
+    if (mode === "local") {
+      for (const v of vehicles) {
+        const plans = getLocalRentalPlans(v.category);
+        if (plans && plans.length > 0) {
+          availableVehicleNames.push(v.model || v.category);
+          for (const p of plans) {
+            if (p.fare > 0) validFares.push(p.fare);
+          }
+        }
+      }
+    } else {
+      for (const v of vehicles) {
+        if (selectedCategory !== "all" && v.category !== selectedCategory) continue;
+        const price = getFareForMode(fromLocation, toLocation, v.category, mode, v.model, v.rateKey);
+        if (price !== null && price > 0) {
+          validFares.push(price);
+          availableVehicleNames.push(v.model || v.category);
+        }
+      }
+    }
+
+    const lowestFare = validFares.length > 0 ? Math.min(...validFares) : null;
+
+    window.dispatchEvent(
+      new CustomEvent("cab-search-update", {
+        detail: {
+          mode,
+          from: fromLocation.trim(),
+          to: mode === "local" ? "Local" : toLocation.trim(),
+          lowestFare,
+          vehicleNames: availableVehicleNames,
+        },
+      })
+    );
+
+    window.dispatchEvent(
+      new CustomEvent("cab-trip-mode-change", { detail: { mode } })
+    );
+  }, [mode, fromLocation, toLocation, selectedCategory, vehicles]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -163,10 +224,7 @@ function CabSearchForm({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => {
-              setMode("one");
-              setSelectedCategory("all");
-            }}
+            onClick={() => handleModeSelect("one")}
           >
             <span>→</span> One Way
           </button>
@@ -177,10 +235,7 @@ function CabSearchForm({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => {
-              setMode("round");
-              setSelectedCategory("all");
-            }}
+            onClick={() => handleModeSelect("round")}
           >
             <span>⇄</span> Round Trip
           </button>
@@ -191,10 +246,7 @@ function CabSearchForm({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => {
-              setMode("ev");
-              setSelectedCategory("EV");
-            }}
+            onClick={() => handleModeSelect("ev")}
           >
             <span>⚡</span> EV Cabs
           </button>
@@ -205,10 +257,7 @@ function CabSearchForm({
                 ? "bg-[#123f38] text-white shadow-sm"
                 : "text-[#5e6d66] hover:text-[#123f38] hover:bg-[#edf5e7]"
             }`}
-            onClick={() => {
-              setMode("local");
-              setSelectedCategory("all");
-            }}
+            onClick={() => handleModeSelect("local")}
           >
             <span>⏱</span> Local Rentals
           </button>
@@ -545,7 +594,7 @@ function CabSearchForm({
                 <span className="w-8 h-8 rounded-lg bg-[#62c33a]/20 text-[#3d7c3a] flex items-center justify-center text-base">✓</span>
                 <div>
                   <span className="text-[13px] font-extrabold text-[#123f38]">Free Cancellation</span>
-                  <span className="text-[11px] text-[#718079] ml-1">up to 2 hrs before pickup</span>
+                  <span className="text-[11px] text-[#718079] ml-1">up to 1 hr before pickup</span>
                 </div>
               </div>
               <div className="hidden sm:block w-px h-6 bg-[#c5d6be]" />
@@ -598,7 +647,15 @@ function CabSearchForm({
                     <div className="result" key={v.category}>
                       <div className="rart">
                         {v.image ? (
-                          <Image src={v.image} alt={v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                          <Image
+                            src={v.image}
+                            alt={v.category}
+                            width={360}
+                            height={240}
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 180px"
+                            quality={85}
+                            className="w-full h-full object-contain p-2 mix-blend-multiply"
+                          />
                         ) : (
                           v.icon
                         )}
@@ -749,7 +806,15 @@ function CabSearchForm({
                       <div className="result" key={`${v.category}-${v.model}`}>
                         <div className="rart">
                           {v.image ? (
-                            <Image src={v.image} alt={v.model || v.category} width={120} height={80} className="w-full h-full object-contain p-2 mix-blend-multiply" />
+                            <Image
+                              src={v.image}
+                              alt={v.model || v.category}
+                              width={360}
+                              height={240}
+                              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 320px, 180px"
+                              quality={85}
+                              className="w-full h-full object-contain p-2 mix-blend-multiply"
+                            />
                           ) : (
                             v.icon
                           )}
