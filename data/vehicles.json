@@ -83,5 +83,17 @@
     "icon": "🚐",
     "image": "/images/vinfast.jpeg",
     "rateKey": "vinfast"
+  },
+  {
+    "category": "Luxury",
+    "model": "BYD 7 Seater",
+    "seats": 7,
+    "bags": 4,
+    "multiplier": 2.5,
+    "icon": "✨",
+    "image": "/images/byd.jpeg",
+    "rateKey": "byd",
+    "segment": "Luxury",
+    "callForRates": true
   }
 ]

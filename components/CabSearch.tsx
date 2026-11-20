@@ -792,15 +792,37 @@ function CabSearchForm({
                   >
                     Toyota Hycross
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedCategory("Luxury");
+                      if (mode === "ev") setMode("one");
+                    }}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1 ${
+                      selectedCategory === "Luxury"
+                        ? "bg-[#123f38] text-white shadow-sm"
+                        : "bg-[#fef9ee] text-[#854d0e] hover:bg-[#fdeece] border border-[#fef08a]"
+                    }`}
+                  >
+                    <span>✨</span> Luxury
+                  </button>
                 </div>
 
                 <div className="results" id="results">
                   {vehicles.map((v) => {
-                    if (selectedCategory !== "all" && v.category !== selectedCategory) return null;
+                    if (
+                      selectedCategory !== "all" &&
+                      v.category !== selectedCategory &&
+                      !(selectedCategory === "EV" && (v.category === "EV" || v.rateKey === "byd"))
+                    ) {
+                      return null;
+                    }
                     const price = getFareForMode(fromLocation, toLocation, v.category, mode, v.model, v.rateKey);
                     if (price === null) return null; // hide vehicle if no fare available
 
-                    const isEV = v.category === "EV";
+                    const isEV = v.category === "EV" || v.rateKey === "byd";
+                    const isLuxury = v.category === "Luxury" || v.rateKey === "byd" || v.segment === "Luxury";
+                    const isCallForRates = price === 0 || v.callForRates === true;
 
                     return (
                       <div className="result" key={`${v.category}-${v.model}`}>
@@ -820,40 +842,76 @@ function CabSearchForm({
                           )}
                         </div>
                         <div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 flex-wrap">
                             <h3>
                               {v.category === "EV" || v.category === v.model
                                 ? v.model
                                 : `${v.category} · ${v.model}`}
                             </h3>
+                            {isLuxury && (
+                              <span className="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#fef3c7] text-[#92400e] border border-[#fde68a]">
+                                ✨ Luxury Segment
+                              </span>
+                            )}
                             {isEV && (
                               <span className="px-2 py-0.5 rounded-full text-[11px] font-extrabold bg-[#edf5e7] text-[#2d7335] border border-[#c2e2be]">
                                 ⚡ 100% Electric
                               </span>
                             )}
                           </div>
-                          <p>{isEV ? "Zero-emission, silent and comfortable electric ride" : "Comfortable air-conditioned cab"}</p>
+                          <p>
+                            {isLuxury
+                              ? "Luxury segment electric 7-seater. Ultra-quiet, premium cabin experience."
+                              : isEV
+                              ? "Zero-emission, silent and comfortable electric ride"
+                              : "Comfortable air-conditioned cab"}
+                          </p>
                           <div className="chips">
                             <span>👤 {v.seats} seats</span>
                             <span>🧳 {v.bags} bags</span>
-                            {isEV ? (
+                            {isLuxury ? (
+                              <span>✨ Luxury Interior</span>
+                            ) : isEV ? (
                               <span>⚡ Eco-Friendly</span>
                             ) : (
                               <span>✓ Clean cab</span>
                             )}
+                            {isCallForRates && (
+                              <span className="text-[#123f38] font-bold">📞 Rates Discussed on Call</span>
+                            )}
                           </div>
                         </div>
                         <div className="rp">
-                          <b>{formatINR(price)}</b>
-                          <small>route fare</small>
-                          <br />
-                          <button
-                            type="button"
-                            className="btn green"
-                            onClick={() => handleSelectCab(v, price)}
-                          >
-                            Select cab
-                          </button>
+                          {isCallForRates ? (
+                            <>
+                              <b style={{ fontSize: "16px", color: "var(--g, #123f38)", display: "block" }}>
+                                Rates on Call
+                              </b>
+                              <small style={{ color: "#718079", display: "block", marginBottom: "8px" }}>
+                                discussed over phone
+                              </small>
+                              <button
+                                type="button"
+                                className="btn green"
+                                onClick={() => handleSelectCab(v, 0)}
+                              >
+                                Enquire Now
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <b>{formatINR(price)}</b>
+                              <small>route fare</small>
+                              <br />
+                              <button
+                                type="button"
+                                className="btn green"
+                                onClick={() => handleSelectCab(v, price)}
+                              >
+                                Select cab
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
                     );

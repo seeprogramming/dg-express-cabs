@@ -95,7 +95,18 @@ export default function CabDetails() {
   const [pickup, setPickup] = useState("");
   const [notes, setNotes] = useState("");
 
-  const formattedFare = priceParam ? formatINR(Number(priceParam)) : "On request";
+  const isRatesOnCall =
+    !priceParam ||
+    priceParam === "0" ||
+    Number(priceParam) === 0 ||
+    model.toLowerCase().includes("byd") ||
+    vehicle.toLowerCase().includes("luxury");
+
+  const formattedFare = isRatesOnCall
+    ? "Discussed over phone"
+    : priceParam
+    ? formatINR(Number(priceParam))
+    : "On request";
 
   const dateDisplay = isRoundTrip && returnDate
     ? `${travelDate}${travelTime ? ` at ${travelTime}` : ""} — Return: ${returnDate}${returnTime ? ` at ${returnTime}` : ""}`
@@ -172,7 +183,9 @@ export default function CabDetails() {
           </div>
 
           <p id="cabCopy">
-            {isLocalRental
+            {model.toLowerCase().includes("byd") || vehicle.toLowerCase().includes("luxury")
+              ? "Luxury segment electric 7-seater. Ultra-quiet, premium cabin experience with executive comfort. Rates will be discussed directly over phone based on your travel itinerary."
+              : isLocalRental
               ? `A comfortable chauffeur-driven cab for your local city travel in and around ${from}. Flexible hourly packages for city commutes, shopping, or business meetings.`
               : tripType === "EV Cabs"
               ? "A 100% electric, zero-emission cab for your outstation journey. Whisper-quiet cabin, zero engine vibration, and eco-friendly comfort."
@@ -202,7 +215,9 @@ export default function CabDetails() {
             )}
             <div className="spec">
               <small>ESTIMATED FARE</small>
-              <b id="selectedFare">{formattedFare}</b>
+              <b id="selectedFare" style={{ fontSize: isRatesOnCall ? "15px" : undefined }}>
+                {formattedFare}
+              </b>
             </div>
           </div>
 
@@ -396,8 +411,26 @@ export default function CabDetails() {
               className="btn green"
               style={{ width: "100%", marginTop: "14px" }}
             >
-              Request booking
+              {isRatesOnCall ? "Request Booking / Rates" : "Request booking"}
             </button>
+            {isRatesOnCall && (
+              <a
+                className="btn outline"
+                href={siteConfig.phoneCallUrl}
+                style={{
+                  width: "100%",
+                  marginTop: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "6px",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                }}
+              >
+                📞 Call to Discuss Rates ({siteConfig.phonePrimary})
+              </a>
+            )}
           </form>
 
           <div className="qrBox">

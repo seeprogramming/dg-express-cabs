@@ -9,7 +9,8 @@
     "windsor": "MG Windsor EV",
     "zs": "MG ZS EV",
     "hycross": "Toyota Hycross",
-    "vinfast": "VinFast VF7"
+    "vinfast": "VinFast VF7",
+    "byd": "BYD 7 Seater (Luxury)"
   },
   "one_way": [
     {
@@ -25,7 +26,8 @@
         "windsor": 3300,
         "zs": 3600,
         "hycross": 7000,
-        "vinfast": 3800
+        "vinfast": 3800,
+        "byd": 0
       }
     },
     {
@@ -41,7 +43,8 @@
         "windsor": 3300,
         "zs": 3600,
         "hycross": 7000,
-        "vinfast": 3800
+        "vinfast": 3800,
+        "byd": 0
       }
     },
     {
@@ -489,7 +492,8 @@
         "sedan": 4095,
         "suv": 4725,
         "innova_kia_carens": 6985,
-        "innova_crysta": 7245
+        "innova_crysta": 7245,
+        "byd": 0
       }
     },
     {
@@ -500,7 +504,8 @@
         "sedan": 4095,
         "suv": 4725,
         "innova_kia_carens": 6985,
-        "innova_crysta": 6930
+        "innova_crysta": 6930,
+        "byd": 0
       }
     },
     {

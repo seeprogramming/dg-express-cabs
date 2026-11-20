@@ -15,6 +15,8 @@ export interface VehicleInfo {
   image?: string;
   badge?: string;
   rateKey?: string;
+  segment?: string;
+  callForRates?: boolean;
 }
 
 export interface AirportInfo {

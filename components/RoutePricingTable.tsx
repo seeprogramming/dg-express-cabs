@@ -25,6 +25,8 @@ const VEHICLE_ORDER = [
   "innova_kia_carens",
   "innova_crysta",
   "hycross",
+  "vinfast",
+  "byd",
 ] as const;
 
 function formatINR(amount: number): string {
@@ -59,6 +61,8 @@ function buildVehicleMap(): Record<
     innova_kia_carens: "Innova / Kia Carens",
     innova_crysta: "Innova Crysta",
     hycross: "Toyota Hycross",
+    vinfast: "VinFast VF7",
+    byd: "BYD 7 Seater",
   };
   const result: Record<
     string,
@@ -110,7 +114,8 @@ export default function RoutePricingTable({ from, to }: Props) {
 
   if (rows.length === 0) return null;
 
-  const lowestFare = Math.min(...rows.map((r) => r.fare));
+  const validFares = rows.map((r) => r.fare).filter((f) => f > 0);
+  const lowestFare = validFares.length > 0 ? Math.min(...validFares) : 0;
   const whatsappText = encodeURIComponent(
     `Hi D&G Express Cabs, I want to book a cab from ${from} to ${to}.`
   );
@@ -196,21 +201,42 @@ export default function RoutePricingTable({ from, to }: Props) {
                       padding: "14px 16px",
                       fontWeight: 700,
                       color: "var(--g, #123f38)",
-                      fontSize: "17px",
+                      fontSize: row.fare === 0 ? "14px" : "17px",
                     }}
                   >
-                    {formatINR(row.fare)}
+                    {row.fare === 0 ? (
+                      <div>
+                        <span>Rates on Call</span>
+                        <span
+                          style={{
+                            display: "block",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            color: "#92400e",
+                            marginTop: "2px",
+                          }}
+                        >
+                          ✨ Luxury Segment
+                        </span>
+                      </div>
+                    ) : (
+                      formatINR(row.fare)
+                    )}
                   </td>
                   <td style={{ padding: "14px 16px" }}>
                     <a
-                      href={`https://wa.me/${siteConfig.whatsapp}?text=${whatsappText}`}
+                      href={`https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(
+                        row.fare === 0
+                          ? `Hi D&G Express Cabs, I want to book a ${row.label} (${row.model}) from ${from} to ${to}. Please discuss rates with me.`
+                          : `Hi D&G Express Cabs, I want to book a ${row.label} from ${from} to ${to}.`
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn green"
                       style={{ fontSize: "13px", padding: "8px 14px" }}
                       aria-label={`Book ${row.label} from ${from} to ${to}`}
                     >
-                      Book via WhatsApp
+                      {row.fare === 0 ? "Call / WhatsApp" : "Book via WhatsApp"}
                     </a>
                   </td>
                 </tr>

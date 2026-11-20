@@ -26,8 +26,9 @@ export function getRoutes(): RouteInfo[] {
   // Convert one_way routes to RouteInfo format (using lowest fare, usually hatchback)
   const oneWayRoutes = websiteRates.one_way as WebsiteRateRoute[];
   return oneWayRoutes.map((r) => {
-    // Find the minimum fare to use as starting fare
-    const startingFare = Math.min(...Object.values(r.fares));
+    // Find the minimum non-zero fare to use as starting fare
+    const validFares = Object.values(r.fares).filter((f) => f > 0);
+    const startingFare = validFares.length > 0 ? Math.min(...validFares) : 0;
     return {
       from: r.from,
       to: r.to,
@@ -77,6 +78,8 @@ export function getVehicleRateKey(category: string, model?: string, rateKey?: st
     if (m.includes("windsor")) return "windsor";
     if (m.includes("zs")) return "zs";
     if (m.includes("hycross")) return "hycross";
+    if (m.includes("vinfast")) return "vinfast";
+    if (m.includes("byd")) return "byd";
   }
   const mapping: Record<string, string> = {
     "Hatchback": "hatchback",
@@ -89,6 +92,9 @@ export function getVehicleRateKey(category: string, model?: string, rateKey?: st
     "Toyota Hycross": "hycross",
     "Innova Hycross": "hycross",
     "Hycross": "hycross",
+    "VinFast": "vinfast",
+    "BYD": "byd",
+    "Luxury": "byd",
   };
   return mapping[category] || category.toLowerCase();
 }
@@ -144,7 +150,8 @@ export function getLocalRentalPlans(category: string): LocalRentalPlan[] | null 
 export function getRoundTripRoutes(): RouteInfo[] {
   const roundTrip = websiteRates.round_trip as WebsiteRateRoute[];
   return roundTrip.map((r) => {
-    const startingFare = Math.min(...Object.values(r.fares));
+    const validFares = Object.values(r.fares).filter((f) => f > 0);
+    const startingFare = validFares.length > 0 ? Math.min(...validFares) : 0;
     return {
       from: r.from,
       to: r.to,

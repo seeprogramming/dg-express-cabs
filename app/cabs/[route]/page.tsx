@@ -116,6 +116,8 @@ export default async function RoutePage({ params }: Props) {
     "innova_kia_carens",
     "innova_crysta",
     "hycross",
+    "vinfast",
+    "byd",
   ] as const;
   const vehicleLabels = websiteRates.vehicle_labels as Record<string, string>;
   const vehicleNames = fares
@@ -156,7 +158,7 @@ export default async function RoutePage({ params }: Props) {
         areaServed: [from, to],
         url: `${siteConfig.url}/cabs/${route.toLowerCase()}`,
         offers: vehicleOrder
-          .filter((k) => fares![k] != null)
+          .filter((k) => fares![k] != null && fares![k] > 0)
           .map((k) => ({
             "@type": "Offer",
             name: vehicleLabels[k] || k,
