@@ -9,6 +9,7 @@ import { generateWhatsAppBookingUrl, getQrCodeImageUrl } from "@/lib/whatsapp";
 import { siteConfig } from "@/config/site";
 import vehicles from "@/data/vehicles.json";
 import { findRoute } from "@/lib/routes";
+import { sendCabBookingEmail } from "@/lib/emailjs";
 
 /* Map vehicle category → image path from vehicles.json */
 const vehicleImageMap: Record<string, string> = Object.fromEntries(
@@ -92,8 +93,11 @@ export default function CabDetails() {
   const [returnTime, setReturnTime] = useState(initialReturnTime);
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
   const [pickup, setPickup] = useState("");
   const [notes, setNotes] = useState("");
+  const [emailStatus, setEmailStatus] = useState<"idle" | "loading" | "success" | "error" | "skipped">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const isRatesOnCall =
     !priceParam ||
@@ -127,9 +131,47 @@ export default function CabDetails() {
 
   const qrImageUrl = getQrCodeImageUrl(waLink, 220);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.open(waLink, "_blank");
+    setEmailStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await sendCabBookingEmail({
+        vehicle,
+        model,
+        from,
+        to,
+        tripType,
+        travelDate,
+        travelTime,
+        returnDate: isRoundTrip ? returnDate : undefined,
+        returnTime: isRoundTrip ? returnTime : undefined,
+        displayDistance: displayDistance || undefined,
+        formattedFare,
+        name,
+        mobile,
+        email: customerEmail,
+        pickup,
+        notes,
+      });
+
+      if (res.success) {
+        setEmailStatus("success");
+      } else if (res.skipped) {
+        setEmailStatus("skipped");
+      } else {
+        setEmailStatus("error");
+        setErrorMessage(
+          (res.error as { text?: string })?.text ||
+            "Could not send email. Please check your EmailJS configuration or submit via WhatsApp."
+        );
+      }
+    } catch (err: unknown) {
+      console.error("[EmailJS] Cab booking error:", err);
+      setEmailStatus("error");
+      setErrorMessage("An unexpected error occurred. Please submit via WhatsApp.");
+    }
   };
 
   return (
@@ -388,6 +430,15 @@ export default function CabDetails() {
               onChange={(e) => setMobile(e.target.value)}
             />
 
+            <label htmlFor="emailField">Email address (optional)</label>
+            <input
+              id="emailField"
+              type="email"
+              placeholder="name@example.com"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
+            />
+
             <label htmlFor="pickupField">Pickup address</label>
             <input
               id="pickupField"
@@ -406,20 +457,122 @@ export default function CabDetails() {
               onChange={(e) => setNotes(e.target.value)}
             />
 
+            {/* Email submission status alert */}
+            {emailStatus === "success" && (
+              <div
+                style={{
+                  background: "#edf5e7",
+                  border: "1px solid #c2e2be",
+                  borderRadius: "10px",
+                  padding: "12px",
+                  marginTop: "12px",
+                }}
+              >
+                <div style={{ fontWeight: 800, color: "#2d7335", fontSize: "14px", display: "flex", alignItems: "center", gap: "6px" }}>
+                  <span>✓</span> Booking Request Submitted!
+                </div>
+                <p style={{ fontSize: "12px", color: "#5e6d66", margin: "4px 0 0" }}>
+                  Your details have been sent to our team via email. We will contact you at {mobile || "your number"} to confirm.
+                </p>
+              </div>
+            )}
+
+            {emailStatus === "skipped" && (
+              <div
+                style={{
+                  background: "#fef9ee",
+                  border: "1px solid #fef08a",
+                  borderRadius: "10px",
+                  padding: "12px",
+                  marginTop: "12px",
+                }}
+              >
+                <div style={{ fontWeight: 800, color: "#854d0e", fontSize: "13px" }}>
+                  ✓ Request Recorded
+                </div>
+                <p style={{ fontSize: "11px", color: "#718079", margin: "4px 0 0" }}>
+                  To deliver emails directly to your inbox, set your EmailJS credentials in <code>.env.local</code>.
+                </p>
+              </div>
+            )}
+
+            {emailStatus === "error" && (
+              <div
+                style={{
+                  background: "#fef2f2",
+                  border: "1px solid #fecaca",
+                  borderRadius: "10px",
+                  padding: "12px",
+                  marginTop: "12px",
+                }}
+              >
+                <div style={{ fontWeight: 800, color: "#991b1b", fontSize: "13px" }}>
+                  ⚠️ Email Delivery Failed
+                </div>
+                <p style={{ fontSize: "11px", color: "#7f1d1d", margin: "4px 0 0" }}>
+                  {errorMessage || "Please try again or use the WhatsApp button below."}
+                </p>
+              </div>
+            )}
+
+            {/* Button 1: Submit Form (Email) */}
             <button
               type="submit"
+              disabled={emailStatus === "loading"}
               className="btn green"
-              style={{ width: "100%", marginTop: "14px" }}
+              style={{
+                width: "100%",
+                marginTop: "14px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                fontSize: "14px",
+                fontWeight: 700,
+                opacity: emailStatus === "loading" ? 0.75 : 1,
+              }}
             >
-              {isRatesOnCall ? "Request Booking / Rates" : "Request booking"}
+              {emailStatus === "loading" ? (
+                <>⏳ Submitting Form...</>
+              ) : (
+                <><span>📨</span> Submit Form</>
+              )}
             </button>
+
+            {/* Button 2: Submit through WhatsApp */}
+            <a
+              href={waLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn whatsapp"
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                backgroundColor: "#25D366",
+                color: "#ffffff",
+                fontWeight: 700,
+                borderRadius: "10px",
+                padding: "12px",
+                textDecoration: "none",
+                fontSize: "14px",
+                border: "none",
+              }}
+            >
+              <span>💬</span> Submit through WhatsApp
+            </a>
+
+            {/* Optional Call to Discuss Rates button */}
             {isRatesOnCall && (
               <a
                 className="btn outline"
                 href={siteConfig.phoneCallUrl}
                 style={{
                   width: "100%",
-                  marginTop: "8px",
+                  marginTop: "10px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

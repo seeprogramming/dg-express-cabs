@@ -7,6 +7,7 @@ import { generateWhatsAppBookingUrl } from "@/lib/whatsapp";
 import type { TourPackage, PriceValue } from "@/types";
 import vehicles from "@/data/vehicles.json";
 import Image from "next/image";
+import { sendPackageBookingEmail } from "@/lib/emailjs";
 
 interface PackagePricingProps {
   pkg: TourPackage;
@@ -48,10 +49,12 @@ export default function PackagePricing({ pkg, categorySlug }: PackagePricingProp
   const [travelDate, setTravelDate] = useState(() => new Date().toISOString().slice(0, 10));
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
   const [pickupLocation, setPickupLocation] = useState(pkg.route.from);
   const [notes, setNotes] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [bookingId, setBookingId] = useState("");
+  const [emailStatus, setEmailStatus] = useState<"idle" | "loading" | "success" | "error" | "skipped">("idle");
 
   const selectedPrice =
     selectedVehicle === "Crysta"
@@ -74,10 +77,48 @@ export default function PackagePricing({ pkg, categorySlug }: PackagePricingProp
     packageTitle: pkg.title,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setBookingId("PK" + Math.floor(100000 + Math.random() * 900000));
-    setIsSubmitted(true);
+    setEmailStatus("loading");
+
+    const newBookingId = "PK" + Math.floor(100000 + Math.random() * 900000);
+    setBookingId(newBookingId);
+
+    const priceObj =
+      selectedVehicle === "Ertiga"
+        ? pkg.prices.ertiga
+        : selectedVehicle === "Crysta"
+        ? pkg.prices.crysta
+        : pkg.prices.sedan;
+
+    try {
+      const res = await sendPackageBookingEmail({
+        bookingId: newBookingId,
+        packageTitle: pkg.title,
+        vehicle: selectedVehicle,
+        vehicleModel: currentVehicle.model,
+        travelDate,
+        price: formatINR(priceAmount(priceObj)),
+        name,
+        mobile,
+        email: customerEmail,
+        pickupLocation: pickupLocation || pkg.route.from,
+        notes,
+      });
+
+      if (res.success) {
+        setEmailStatus("success");
+      } else if (res.skipped) {
+        setEmailStatus("skipped");
+      } else {
+        setEmailStatus("error");
+      }
+    } catch (err) {
+      console.error("[EmailJS] Package booking error:", err);
+      setEmailStatus("error");
+    } finally {
+      setIsSubmitted(true);
+    }
   };
 
   const sedanPax = getPaxLabel(pkg.prices.sedan);
@@ -207,6 +248,17 @@ export default function PackagePricing({ pkg, categorySlug }: PackagePricingProp
             />
           </label>
 
+          <label htmlFor="packageEmailInput">
+            Email address (optional)
+            <input
+              id="packageEmailInput"
+              type="email"
+              placeholder="name@example.com"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
+            />
+          </label>
+
           <label htmlFor="pickupInput">
             Pickup location
             <input
@@ -228,34 +280,104 @@ export default function PackagePricing({ pkg, categorySlug }: PackagePricingProp
             />
           </label>
 
-          <button type="submit" className="btn green" style={{ width: "100%" }}>
-            Request booking
+          {/* Button 1: Submit Form (Email) */}
+          <button
+            type="submit"
+            disabled={emailStatus === "loading"}
+            className="btn green"
+            style={{
+              width: "100%",
+              marginTop: "14px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              fontSize: "14px",
+              fontWeight: 700,
+              opacity: emailStatus === "loading" ? 0.75 : 1,
+            }}
+          >
+            {emailStatus === "loading" ? (
+              <>⏳ Submitting Form...</>
+            ) : (
+              <><span>📨</span> Submit Form</>
+            )}
           </button>
+
+          {/* Button 2: Submit through WhatsApp */}
+          <a
+            className="btn wa"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={whatsappLink}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              backgroundColor: "#25D366",
+              color: "#ffffff",
+              fontWeight: 700,
+              borderRadius: "10px",
+              padding: "12px",
+              textDecoration: "none",
+              fontSize: "14px",
+              border: "none",
+            }}
+          >
+            <span>💬</span> Submit through WhatsApp
+          </a>
+        </form>
+      ) : (
+        <div className="success" id="success">
+          <h3 style={{ color: "var(--d)", marginBottom: "8px" }}>✓ Request received</h3>
+          <p style={{ color: "var(--muted)", margin: "0 0 12px" }}>
+            Enquiry ID: <b id="bookingId" style={{ color: "var(--d)" }}>{bookingId}</b>
+          </p>
+
+          {emailStatus === "success" && (
+            <p style={{ color: "#2d7335", fontSize: "13px", margin: "0 0 14px", fontWeight: 600 }}>
+              ✓ Details sent to our email team. We will contact you shortly!
+            </p>
+          )}
+
+          {emailStatus === "skipped" && (
+            <p style={{ color: "#718079", fontSize: "11px", margin: "0 0 14px" }}>
+              Enquiry saved. (Add your EmailJS keys in <code>.env.local</code> to deliver emails to inbox).
+            </p>
+          )}
+
+          {emailStatus === "error" && (
+            <p style={{ color: "#b91c1c", fontSize: "12px", margin: "0 0 14px" }}>
+              Email delivery was not completed, but your Enquiry ID is saved. Please confirm via WhatsApp below.
+            </p>
+          )}
 
           <a
             className="btn wa"
             target="_blank"
             rel="noopener noreferrer"
             href={whatsappLink}
-            style={{ width: "100%", textAlign: "center" }}
+            style={{
+              width: "100%",
+              marginBottom: "10px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              backgroundColor: "#25D366",
+              color: "#ffffff",
+              fontWeight: 700,
+              borderRadius: "10px",
+              padding: "12px",
+              textDecoration: "none",
+              fontSize: "14px",
+              border: "none",
+            }}
           >
-            WhatsApp this package
-          </a>
-        </form>
-      ) : (
-        <div className="success" id="success">
-          <h3 style={{ color: "var(--d)", marginBottom: "8px" }}>✓ Request received</h3>
-          <p style={{ color: "var(--muted)", margin: "0 0 16px" }}>
-             enquiry ID: <b id="bookingId" style={{ color: "var(--d)" }}>{bookingId}</b>
-          </p>
-          <a
-            className="btn wa"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={whatsappLink}
-            style={{ width: "100%", marginBottom: "10px" }}
-          >
-            Confirm on WhatsApp
+            <span>💬</span> Confirm on WhatsApp
           </a>
           <Link className="btn dark" href="/packages" style={{ width: "100%" }}>
             Explore other packages
